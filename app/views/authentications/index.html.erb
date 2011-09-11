@@ -1,0 +1,14 @@
+<div class="active_connections">
+	<h3><%= t ".active_connections" %></h3>
+	<% if @user.authentications.empty? %>
+		<%= t(".none") %>
+	<% else %>
+		<% for authentication in @user.authentications %>
+			<div class="auth_provider">
+			<%= image_tag("auth/#{authentication.provider}_64.png") %>
+			<%= link_to t(".cancel"), [authentication.user, authentication], :method => :delete, :confirm => t(".attention") %>
+			</div>
+		<% end %>
+	<% end %>
+</div>
+<%= render 'list', :object => t(".available_connections") %>

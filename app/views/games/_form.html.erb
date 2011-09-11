@@ -1,0 +1,14 @@
+<%= form_for @game do |f| %>
+	<div class="field">
+  	<%= f.label :sgf, "SGF text (can be blank)" %><br />
+		<%= f.text_area :sgf %>
+	</div>
+
+	<div class="field">
+		<%= f.label :name, t(".game_name") %><br><%= f.text_field :name %>
+	</div>
+	
+	<div class="field">
+		<%= f.submit %>
+	</div> 	
+<% end %>

@@ -1,0 +1,16 @@
+<% opponent = User.find_by_name(@game.opponent) %>
+<%= form_for @game, :remote => true do |f| %>
+	<div class="field">
+		<%= f.label :opponent, t(:your_opponent)+@opponent_name %>
+		<%= f.hidden_field :opponent  %>
+	</div>
+
+	<div class="field">
+		<%= f.label :mode, t(:select_mode) %>
+		<%= f.select :mode, [[t(:old_style), 2], [t(:modern_style), 1]] %>
+	</div>
+
+	<div class="field">
+		<%= f.submit t(:send) %>
+	</div>
+<% end %>

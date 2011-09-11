@@ -1,0 +1,12 @@
+<% if item.valid? %>
+	<div class="post" id="post_<%= item.id %>">
+		<div class="poster">
+			<% user = User.find(item.user_id) %>
+			<%= link_to user.name, user_path(user) %>
+			<span id="post_<%= item.id %>_timestamp">
+				<%= time_ago_in_words item.created_at %>
+			</span>
+		</div>
+		<%= item.content %>
+	</div>
+<% end %>

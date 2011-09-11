@@ -1,0 +1,27 @@
+<div class="top">
+	<div id="intro" class="notify_wrapper wood_shadow left">
+		<div class="top_bar woody wood_shadow">
+			<%= t("intro") %>
+		</div>
+		<div id="intro_video">
+			<%= link_to image_tag('index.png'), 'http://v.youku.com/v_show/id_XMjk5MjU2MjY0.html', :target => '_blank' %>
+		</div>
+	</div>
+	<div id="sign_in" class="notify_wrapper wood_shadow right">
+		<div class="top_bar woody wood_shadow">
+			<%= t("sign_in") %>
+		</div>
+		<div id="sign_in_text">
+			<%= render 'sessions/new' %>
+		</div>
+	</div>
+</div>
+<div class="bottom">
+	<h3><%= t(:watch_game) %></h3>
+	<div id="games_list">
+		<%= render "games/index" %>
+	</div>
+</div>
+
+<div id="close_game_nav"></div>
+<div id="game_nav"></div>

@@ -1,0 +1,48 @@
+<%= render "shared/errors_messages" %>
+
+<%= form_for @user, :html => { :multipart => true } do |f| %>
+  <div class="field">
+  	<%= f.label :name, t(".username") %><br>
+		<%= f.text_field :name %>
+  </div>
+
+	<div class="field">
+		<%= f.label :email, t(".email") %><br>
+		<%= f.text_field :email %>
+	</div>
+	
+	<div class="field">
+		<%= f.label :password, t(".password") %><br>
+		<%= f.password_field :password %>
+	</div>
+	
+	<div class="field">
+		<%= f.label :password_confirmation, t(".confirm") %><br>
+		<%= f.password_field :password_confirmation %>
+	</div>
+	
+	<div class="field">
+		<%= f.radio_button :open_for_play, "true" %>
+		<%= f.label :open_for_play, t(".open_for_play") %>
+		<%= f.radio_button :open_for_play, "false" %>
+		<%= f.label :open_for_play, t(".close_for_play") %>
+	</div>
+	
+	<div class="field">
+		<%= f.label t(:upload_image) %><br/>
+		<%= f.file_field :avatar %>
+	</div>
+	
+	<div class="field">
+		<% if @user.email_confirmed %>
+			<%= f.check_box :notify_pendding_move %>
+			<%= t :notify_me_when_I_need_move %>
+		<% else %>
+			<%= link_to t(".confirm_email"), validate_email_url %>
+		<% end %>
+	</div>
+	
+	<div class="field">
+		<%= f.submit t(".create") %>
+	</div>
+<% end %>

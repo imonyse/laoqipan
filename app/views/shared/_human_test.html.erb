@@ -1,0 +1,19 @@
+<div id="recaptcha_widget" style="display:none">
+  <div id="recaptcha_image"></div>
+  <div class="recaptcha_only_if_incorrect_sol" style="color:red"><%= t :invalid_captcha %></div>
+	<div class="recaptcha_inner">
+		<div class="recaptcha_input">
+	  	<span class="recaptcha_only_if_image"><%= t :enter_the_words_above %></span>
+		  <span class="recaptcha_only_if_audio"><%= t :enter_the_numbers_you_hear %></span>
+		  <input type="text" id="recaptcha_response_field" name="recaptcha_response_field" />
+		</div>
+		<div class="recaptcha_iconsets">
+			<%= link_to image_tag("refresh.gif", :alt => t(:get_another_captcha)), "javascript:Recaptcha.reload()", :class => "recaptcha_reload" %>
+			<%= link_to image_tag("audio.gif", :alt => t(:get_audio_captcha)), "javascript:Recaptcha.switch_type('audio')", :class => "recaptcha_only_if_image" %>
+			<%= link_to image_tag("text.gif", :alt => t(:get_image_captcha)), "javascript:Recaptcha.switch_type('image')", :class => "recaptcha_only_if_audio" %>
+			<%= link_to image_tag("help.gif", :alt => t(:help)), "javascript:Recaptcha.showhelp()", :class => "recaptcha_help" %>
+		</div>
+		<%= image_tag "recaptcha-icon.gif", :class => "recaptcha_logo" %>
+	</div>
+</div>
+<%= recaptcha_tags :display => {:theme => 'custom',:custom_theme_widget => 'recaptcha_widget'} %>

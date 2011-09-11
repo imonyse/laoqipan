@@ -1,0 +1,13 @@
+.bundle
+db/*.sqlite3
+log/*.log
+tmp/
+.DS_Store
+*.log
+*~
+public/system/*
+config/private.yml
+config/cronjob
+config/database.yml
+vendor/cache
+.sass-cache/

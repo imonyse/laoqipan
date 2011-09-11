@@ -1,0 +1,10 @@
+<% object.each do |game| %>
+	<div class="record_item" id="game_<%= game.id %>">
+		<% if game.thumbnail %>
+			<%= link_to image_tag(game.thumbnail), game_path(game), :class => "record_thumbnail" %>
+		<% end %>
+		<div class="record_details">
+			<%= game.name %>
+		</div>
+	</div>
+<% end %>

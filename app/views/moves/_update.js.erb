@@ -1,0 +1,12 @@
+$("#game").attr("sgf", "<%= escape_javascript(@game.sgf) %>");
+$("#game").attr("current_player", "<%= @game.current_player.id %>");
+
+$("#game").attr("status", "<%= @game.status %>");
+$("#game").attr("access", "<%= @game.access %>");
+
+player.update($("#game"));
+
+<% if @game.status == 1 %>
+  var re = player.sgf_json.property[0]["RE"];
+  result_notify(re);
+<% end %>

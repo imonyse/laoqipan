@@ -1,0 +1,93 @@
+<%= game_div(@game) do %>
+<div class="opponent">
+	<% if !@game.nil? %>
+		<% if current_user == @game.black_player %>
+			<%= avatar_image_tag(@game.white_player) if @game.mode != 0 %>
+			<span id="white_player" class="game_player">
+				<%= link_to @game.white_player.name, '#' if @game.mode != 0 %>
+				<%= t :play_as_white %>
+			</span>
+			<img class="white_turn">
+			<div class="play_as white"></div>
+			<div class="captured" id="black_captured"></div>
+		<% else%>
+			<%= avatar_image_tag(@game.black_player) if @game.mode != 0 %>
+			<span id="black_player" class="game_player">
+				<%= link_to @game.black_player.name, '#' if @game.mode != 0 %>
+				<%= t :play_as_black %>
+			</span>
+			<img class="black_turn">
+			<div class="play_as black"></div>
+			<div class="captured" id="white_captured"></div>
+		<% end %>
+		<ul class="woody">
+			<li><%= link_to "SGF", game_sgf_path(@game) %></li>
+			<li id="analyse" class="control_button woody wood_shadow"><%= t("analyse") %></li>
+			<span id="connection"></span>
+		</ul>
+	<% end %>
+</div>
+
+<canvas id="board" class="wood_shadow"></canvas>
+<% if !@game.nil? %>
+<div id="if_no_board"></div>
+<div id="board_info" class="round"></div>
+<div id="start_info" class="round">
+	<% if @game.access == 3 and @game.current_player != current_user %>
+		<%= t :duel_create_msg %>
+	<% end %>
+</div>
+<% end %>
+
+<div class="me">
+	<div class="bottom_profile">
+		<% if !@game.nil? %>
+			<div id="bottom_turn"></div>
+			<ul class="woody">
+				<% if @game.mode != 0 and @game.status == 0 %>
+					<% if (current_user == @game.black_player or current_user == @game.white_player) %>
+						<% if !@game.vs_ai? %>
+							<li id="score" class="control_button woody wood_shadow"><%= t(".score") %></li>
+						<% end %>
+					<% end %>
+				<% end %>
+
+				<% if @game.mode != 0 and @game.status == 0 %>
+					<% if (current_user == @game.black_player) || (current_user == @game.white_player) %>
+						<li id="resign" class="control_button woody wood_shadow"><%= t(".resign") %></li>
+					<% end %>
+				<% end %>
+
+				<% if @game.mode != 0 and @game.status != 1 %>
+					<li id="pass" class="control_button woody wood_shadow"><%= t(".pass") %></li>
+					<li id="clock" class="control_button woody wood_shadow"><%= t(".click_to_confirm") %></li>
+				<% end %>
+				<span>
+					<span id="swap">0</span> <%= t "step" %>
+					<span id="dt"></span> <span id="re"></span>
+				</span>
+			</ul>
+		
+			<% if (current_user == @game.black_player) %>
+				<img class="black_turn">
+				<%= avatar_image_tag(@game.black_player) if @game.mode != 0 %>
+				<span id="black_player" class="game_player">
+					<%= link_to @game.black_player.name, '#' if @game.mode != 0 %>
+					<%= t :play_as_black %>
+				</span>
+				<div class="play_as black"></div>
+				<div class="captured" id="white_captured"></div>
+			<% else %>
+				<img class="white_turn">
+				<%= avatar_image_tag(@game.white_player) if @game.mode != 0 %>
+				<span id="white_player" class="game_player">
+					<%= link_to @game.white_player.name, '#' if @game.mode != 0 %>
+					<%= t :play_as_white %>
+				</span>
+				<div class="play_as white"></div>
+				<div class="captured" id="black_captured"></div>
+			<% end %>
+		<% end %>
+	</div>
+</div>
+<% end %>

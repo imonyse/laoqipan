@@ -1,0 +1,6 @@
+$("#notified_games").html("<%= escape_javascript(render('shared/notified_games', :object => @current_games)) %>");
+$('#current_games_pagination').html("<%= escape_javascript(paginate(@current_games, :param_name => :current_games_page, :remote => true).to_s) %>");
+$('.game_thumbnail').click(function(){
+	$.getScript('http://' + window.location.host + '/games/' + this.id + window.location.search);
+});
+  

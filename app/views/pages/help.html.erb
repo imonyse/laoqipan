@@ -1,0 +1,64 @@
+<div class="divider"></div>
+<div class="game_help span-19">
+	<h3>FAQ</h3>
+  <a name="no_realtime"></a>
+  <h4>即时更新，但不限时</h4>
+  <p>采用了基于webscoket的技术，最大限度保证棋盘的更新速度，给对局者最流畅的体验。<br/>
+  但对下棋双方每一步的花费时间没有任何限制，这可能会导致一盘棋花费比真实比赛更久的时间完成，但也能保证对局者有充分的时间思考，对局更精彩，收获更多。</p>
+  <h4>RealTime updating, without time restrictions</h4>
+  <p>We use an extra websocket based realtime server for updating board, so you can feel as smooth as possible.<br/>
+  There is no time restrication for players. It may take longer time to finish a game, but you can play a better move!</p>
+
+  <a name="html5"></a>
+  <h4>HTML5</h4>
+  <p>棋盘的绘制使用了HTML5标准里的CANVAS接口，所以你需要使用Internet Explorer 9.0、Firefox 3.0、Safari 3.0、Chrome 3.0、Opera 10.0、iPhone 1.0、Android 1.0 及其以上版本的浏览器，才能使用这里的服务。在这里推荐使用Firefox，或者Chrome，因这也是本站开发者使用的。<br/>
+  习惯使用Internet Explorer 6、7、8的用户，还有另一个选择，就是安装<%= link_to "Google浏览器内嵌框架", 'http://www.google.com/chromeframe' %>。这是一个针对IE浏览器的一个插件，能使你的IE浏览器正常浏览本站。</p>
+  <h4>HTML5</h4>
+  <p>We take advantage of HTML5 web standard, and our board drawing is based on CANVAS API. So you need a browser who supports canvas, such as Internet Explorer 9.0、Firefox 3.0、Safari 3.0、Chrome 3.0、Opera 10.0、iPhone 1.0、Android 1.0 or higher. We highly recommand you use an updated Chrome or FireFox.<br/>
+  People who used to use Internet Explorer 6, 7, 8 has another option: install <%= link_to "Google Chrome Frame", 'http://www.google.com/chromeframe' %>. This is a plugin developed by Google, it can make your old IE browser work out of the box.
+
+  <h4>掷地有声</h4>
+  <p>如果你使用的不是Safari浏览器(包括iPad上的Safari)，便可听到棋子落定时的声音。</p>
+  <h4>Sounds</h4>
+  <p>You can here sounds of stone placing if you're not using Safari(including Safari for IOS). There're some weired sound issues if you use Safari. Sorry about that.</p>
+
+  <h4>用户状态可见，对局邀请可控</h4>
+  <p>你可以查看每个用户的对局记录以及他们的上次活动的时间，便于寻找活跃用户与水平相当的对手。<br/>
+  对局邀请发出后，需要被邀请方首先落子确认。在这之前，双方都可以取消对局。
+  <h4>Online status, controllable game invitations</h4>
+  <p>You can see players' records and last activity time, so you can choose a better opponent.<br/>
+  When you send game invitation, your opponent needs to confirm. Before that, both player can cancel the game.<br/>
+  </p>
+  
+  <a name="how_to_play"></a>
+  <h4>对局说明</h4>
+  <p>目前，所有访问者都可观棋，但只有注册用户可下棋。<br/>
+  现代规则数目，黑棋先行，贴6.5目；座子规则数子，白棋先行，不贴子。<br/>
+  当你完成注册并登录后，即可点击网页上方的『下棋』，去寻找对手。所有公开接收对局邀请的棋友，名字都会出现在对手的列表中。点击名字列表后的『下战帖!』即进入到创建游戏的页面(建议选择在线的对手)。<br/>
+  你可以在任何时候回溯到对局的起始、上一步、下一步或最终状态。我们也提供每场对局的SGF棋谱下载功能，以及在棋盘上显示手数。</p>
+  <h4>How to Play</h4>
+  <p>Everybody can watch an open game, but only registered user can play.<br/>
+  When you're logged in, you can click the 'Duel' link to find an opponent. Any user's name who is open for play will be listed in the Challenge list. When you click the Challenge! link, you'll be redirected to game creating page.<br/>
+  We support backward viewing of game and SGF downloads for every game.</p>
+  
+  <a name="luozi"></a>
+  <h4>落子须确认</h4>
+  <p>目前，基于网页的围棋，落子就在鼠标点下的那一刹那，但往往会有不小心点错的时候，特别是iPad、iPhone、Android等触摸屏的用户。故提供一个落子预览、确认的功能十分必要。<br/>
+  在『老棋盘』的对局中，任何一方落子后，都需要点击下方的『落子后点我』进行确认。再也不用担心会点错了。</p>
+  <h4>Confirm before you really take a move</h4>
+  <p>Nowadays, stone is placed whenever you click the board. Laoqipan use a different approaching. When you click the board, you can only see a transparent stone. It waits until you click the 'Click to Confirm' or click another place on the board. Very well suited for iPad users.</p>
+  
+  <a name="zuozi"></a>
+  <h4>座子制</h4>
+  <p>这是古代中国围棋的规则，行棋前预先在角上四个对角星位各摆上两颗白子和两颗黑子后由白棋先著。座子制和还棋头(每方多1块棋要还给对方1个子，眼位不是地，不在计算范围内)使棋子一开始就处于对称的分割状态，棋块越多要还的子越多，这就是为何中国古代棋手喜攻好杀，逢断必断，往往一开局就绞杀在一起直到终局的原因，而且古代中国围棋是没有贴目的。当然，座子棋的缺点是开局变化较少，这可能也是后来被废弃的原因。<br/>
+  不过，一盘棋局最精彩的地方毕竟是中盘。本站尝试支持座子棋的下法，但在计算胜负方面，没有实现还棋头。我们会尽快想办法解决还棋头的问题。</p>
+  <h4>Zuozi</h4>
+  <p>This is the ancient Chinese rules. Before game starts, two black stones and two white stones will be placed at the four corners of the board. This is an extremely experimental mode, but please feel free to tell me about your thoughts.</p>
+
+  <h4>结束棋局</h4>
+  <p>任何时候，对局一方选择认输，棋局便结束。结束后，双方都无法再落子。<br/>
+  当对局一方觉得无棋可下时，可以点击数子(至少需要行棋至180手之后)，等待一段时间，对手便会看到请求。如果对手接受数子，则对局进入数子阶段。待用户确认后，将使用Gnugo进行数子。故在结束棋局前，请确保至少走完大官子的变化。如果对手拒绝数子请求，则继续行棋。</p>
+  <h4>End Game</h4>
+  <p>Whenever a player choose to resign, the game is over. Neither player can place move after that.<br/>
+  When you feel there's no place to move, you can click the score button to send a score request. If your opponent accepts, the game score will be carefully caculated by GNUGO. You may need to wait longer if you are still in an early stage of the game.</p>
+</div>

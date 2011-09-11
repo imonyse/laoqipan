@@ -1,0 +1,34 @@
+<div class="fixed show">
+<%= render "shared/errors_messages" %>
+<div>
+<%= form_for :session, :url => sessions_path do |f| %>
+  <div class="field">
+  	<%= f.label :email, t(:login_info) %><br/>
+		<%= f.text_field :email, :autocomplete => :off %>
+  </div>
+
+	<div class="field">
+		<%= f.label :password, t(:password) %><br/>
+		<%= f.password_field :password %>
+	</div>
+	
+	<div class="field">
+		<%= t(:recover_msg) %>
+		<%= link_to t(:reset_password), reset_password_path %>
+	</div>
+
+	<div class="field">
+		<%= f.check_box :cookies, :checked => true %>
+		<%= f.label :cookies, t(:remember_me) %>
+	</div>
+
+	<div class="field">
+		<%= f.submit t("continue") %>
+	</div>
+<% end %>
+
+<div class="field">
+	<%= t(:signup_msg) %> <%= link_to t(:signup_now), signup_path %>
+</div>
+</div>
+</div>

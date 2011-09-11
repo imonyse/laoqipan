@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= t :site_name %></title>
+	<%= csrf_meta_tag %>
+	<%= javascript_include_tag "application" %>
+	<%= stylesheet_link_tag "application" %>
+	<meta http-equiv="X-UA-Compatible" content="chrome=1">
+</head>
+<body>
+	<%= render "layouts/header" %>
+
+	<div class="container">
+		<%= yield %>
+	</div>
+	
+	<div id="browser_check">
+		<h4><%= t ".no_canvas_api" %></h4>
+		<div class="tips">
+			<%= t ".need_plugin_for_ie" %><br/>
+			<%= link_to t(".google_chrome_frame"), "http://www.google.com/chromeframe" %>
+		</div>
+		<div class="small tips">
+			<%= t ".sorry_for_that" %>
+		</div>
+		<h4><%= t ".I_recommand" %></h4>
+		<div class="recommand">
+			<%= link_to image_tag('chrome_64.png'), "http://www.google.com/chrome" %>
+		</div>
+		<%= t ".the_best_browser" %>
+		<%= link_to t(".download"), "http://www.google.com/chrome" %>
+	</div>
+	<div id="browser_check_bg"></div>
+</body>
+</html>

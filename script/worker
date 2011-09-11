@@ -1,0 +1,143 @@
+#!/usr/bin/env ruby
+STDERR.sync = STDOUT.sync = true
+
+def usage
+  puts "usage: worker test|development|production"
+  exit
+end
+
+if ARGV.length != 1
+  usage
+end
+
+if !["test", "development", "production"].include? ARGV[0]
+  usage
+end
+
+env_arg = ARGV[0]
+
+RAILS_ENV = ENV.fetch("RAILS_ENV", env_arg)
+RAILS_ROOT = File.expand_path("../..", __FILE__)
+
+ENV['BUNDLE_GEMFILE'] = "#{RAILS_ROOT}/Gemfile"
+require 'bundler'
+Bundler.setup(:default, RAILS_ENV.to_sym)
+
+require 'stalker'
+require 'pg'
+require "#{RAILS_ROOT}/lib/gg"
+require 'juggernaut'
+
+pg_config = Hash[YAML.load_file("#{RAILS_ROOT}/config/database.yml")[RAILS_ENV].map { |k,v| [k.to_sym, v]}]
+pg_options = {
+  :host => 'localhost',
+  :dbname => pg_config[:database],
+  :user => pg_config[:username],
+  :password => pg_config[:password]
+}
+
+Stalker.job "score_game" do |args|
+  id = args["game_id"]
+  sgf = args["game_sgf"]
+  
+  filepath = "#{RAILS_ROOT}/tmp/#{id}.sgf"
+  if File.exists?(filepath)
+    # gnugo already analyses in the backgournd
+    return
+  else
+    re = score_game(id, sgf).split
+    s = nil
+    if re[0] == "Black"
+      s = "B"
+    elsif re[0] == "White"
+      s = "W"
+    end
+    result = "RE[#{s}+#{re[3]}]"
+
+    node_list = sgf.split(';')
+    new_sgf = nil
+  
+    if node_list.length < 3
+      # no moves yet
+      new_sgf = sgf[0..-2] + result + sgf[-1]
+    else
+      rest = node_list[2..-1]
+      new_sgf = rest.unshift(node_list[0], node_list[1] + result).join(';')
+    end
+  
+    pg_conn = PGconn.connect(pg_options)
+    pg_conn.exec("BEGIN")
+    pg_conn.exec("update games set sgf='#{new_sgf}', status='1' where id='#{id}' ")
+  
+    # update user's win/lose record
+    if s == "W"
+      pg_conn.exec("update users set wins=wins+1 where id=(select white_player_id from games where id='#{id}')")
+      pg_conn.exec("update users set loses=loses+1 where id=(select black_player_id from games where id='#{id}')")
+    elsif s == "B"
+      pg_conn.exec("update users set wins=wins+1 where id=(select black_player_id from games where id='#{id}')")
+      pg_conn.exec("update users set loses=loses+1 where id=(select white_player_id from games where id='#{id}')")
+    end
+  
+    pg_conn.exec("END")
+    pg_conn.close()
+    Juggernaut.publish("#{id}", {"type" => "update"})
+  end
+end
+
+Stalker.job "ai_move" do |args|
+  id = args["game_id"]
+  sgf = args["game_sgf"]
+  color = args["color"]
+  new_sgf = nil
+  node_list = sgf.split(';')
+  
+  move = ai_move(id, sgf, color)
+  
+  pg_conn = PGconn.connect(pg_options)
+  if move == 'pass'
+    if color == "black"
+      pg_conn.exec("update games set score_requester=black_player_id, current_player_id=white_player_id where id='#{id}'")
+    elsif color == "white"
+      pg_conn.exec("update games set score_requester=white_player_id, current_player_id=black_player_id where id='#{id}'")
+    end
+  elsif move == 'resign'
+    if color == "black"
+      result = "RE[W+R]"
+    elsif color == "white"
+      result = "RE[B+R]"
+    end
+    
+    if node_list.length < 3
+      new_sgf = sgf[0..-2] + result + sgf[-1]
+    else
+      rest = node_list[2..-1]
+      new_sgf = rest.unshift(node_list[0], node_list[1] + result).join(';')
+    end
+    pg_conn.exec("update games set sgf='#{new_sgf}', status=1 where id='#{id}'")
+    
+    # update user's win/lose record
+    if color == "black"
+      pg_conn.exec("update users set wins=wins+1 where id=(select white_player_id from games where id='#{id}')")
+      pg_conn.exec("update users set loses=loses+1 where id=(select black_player_id from games where id='#{id}')")
+    elsif color == "white"
+      pg_conn.exec("update users set wins=wins+1 where id=(select black_player_id from games where id='#{id}')")
+      pg_conn.exec("update users set loses=loses+1 where id=(select white_player_id from games where id='#{id}')")
+    end
+
+  else
+    if color == "black"
+      node = ";B[#{move}]"
+      new_sgf = sgf[0..-2]+node+sgf[-1]
+      pg_conn.exec("update games set sgf='#{new_sgf}', access = 0, current_player_id=white_player_id where id='#{id}'")
+    elsif color == "white"
+      node = ";W[#{move}]"
+      new_sgf = sgf[0..-2]+node+sgf[-1]
+      pg_conn.exec("update games set sgf='#{new_sgf}', access = 0, current_player_id=black_player_id where id='#{id}'")
+    end
+  end
+  pg_conn.close()
+  Juggernaut.publish("#{id}", {"type" => "update"})
+end
+
+Stalker.work
+

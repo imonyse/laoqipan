@@ -1,0 +1,8 @@
+$('#game_area').html("<%= escape_javascript(render("games/the_game")) %>");
+$('#comment_box').html("<%= escape_javascript(render("games/game_comments")) %>");
+prepare_game()
+init_game();
+window.board_game_id = "<%= @game.id %>"
+if ($('#player_list').is(':visible')) {
+	$('#player_list').hide();
+}

@@ -1,0 +1,54 @@
+<% object.each do |game| %>
+<div class="game_item game_<%= game.id %>">
+	<% if game.thumbnail %>
+		<%= image_tag game.thumbnail, :class => "game_thumbnail", :id => "#{game.id}" %>
+	<% end %>
+	<div class="game_details <%= game.display_color(current_user) %>">
+		<% if game.current_player == game.black_player %>
+			<div class="game_player">
+				<%= image_tag("black.png") %>
+				<% if game.mode != 0 %>
+					<%= game.black_player.name %>
+				<% end %>
+			</div>
+			<div class="game_player">
+				<%= image_tag("white.png") %>
+				<% if game.mode != 0 %>
+					<%= game.white_player.name %>
+				<% end %>
+			</div>
+		<% else %>
+			<div class="game_player">
+				<%= image_tag("white.png") %>
+				<% if game.mode != 0 %>
+					<%= game.white_player.name %>
+				<% end %>
+			</div>
+			<div class="game_player">
+				<%= image_tag("black.png") %>
+				<% if game.mode != 0 %>
+					<%= game.black_player.name %>
+				<% end %>
+			</div>
+		<% end %>
+		<div class="game_update_time">
+			<% if game.mode != 0 %>
+				<% if game.access == 3 %>
+					<%= t(:wait_for_moves) %><br/>
+					<% if correct_user?(game.black_player) or correct_user?(game.white_player) %>
+						<%= link_to t(:cancel), {:controller => 'games', :action => 'destroy', :id => game.id}, 
+												{:method => :delete, :remote => true} %>
+					<% end %>
+				<% else %>
+					<%= time_ago_in_words(game.updated_at) %>
+					<% if game.status == 0%>
+						<div class="game_status"><%= t :game_in_progress %></div>
+					<% else %>
+						<div class="game_status"><%= t :game_over %></div>
+				  <% end %>
+				<% end %>
+			<% end %>
+		</div>
+	</div>
+</div>
+<% end %>

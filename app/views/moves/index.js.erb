@@ -1,0 +1,35 @@
+<%= render "update" %>
+<% if @game.access == 0 and @game.mode != 0 %>
+  if ($('#start_info').is(':visible')) {
+    $('#start_info').hide();
+  }
+<% end %>
+
+<% if @pop_scoring %>
+  if (!waiting_score) {
+    pop_score_request();
+  }
+<% end %>
+
+// reset waiting status
+if (waiting_score) {
+  <% if @game.score_requester == 0 %>
+    waiting_score = false;
+    pop_score_rejected();
+  <% end %>
+}
+
+// refresh comments 
+<% @comments = @game.comments %>
+<% if not @comments.last.nil? %>
+  if (!$("#post_<%= @comments.last.id %>").length) {
+    $("#comments").append("<%= escape_javascript(render(@comments.last)) %>");
+
+    <% @comments.each do |e| %>
+      $("#post_<%= e.id %>_timestamp").html("<%= time_ago_in_words e.created_at %>");
+    <% end %>
+  
+    var comments = $("#comments");
+    comments.animate({ scrollTop:comments.attr("scrollHeight") - comments.height() }, 1000);
+  }
+<% end %>

@@ -1,0 +1,17 @@
+<% user = User.find(comment.user_id) %>
+<% if comment.valid? %>
+	<div class="post" id="post_<%= comment.id %>">
+		<div class="poster %>">
+			<%= link_to user.name, user_path(user) %>
+			<span id="post_<%= comment.id %>_timestamp">
+				<%= time_ago_in_words comment.created_at %>
+			</span>
+		</div>
+		<div class="post_body %>">
+			<div class="post_show %>">
+				<%= comment.content %>
+			</div>
+		</div>
+	</div>
+	<div class="divider"></div>
+<% end %>

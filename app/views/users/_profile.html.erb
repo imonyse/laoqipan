@@ -1,0 +1,12 @@
+<div class="user_profile game_player">
+	<%= avatar_image_tag(@user) %>
+	<%= @user.name %>
+	<% if correct_user?(@user) %>
+		<%= link_to t(:settings), edit_user_path(@user) %>
+		<%= link_to t(:start_a_game), duel_path %>
+	<% else %>
+		<% if user_signed_in? and current_user != @user %>
+		  <%= link_to t(:start_duel), new_game_path(:opponent => @user.name) %>
+		<% end %>
+	<% end %>
+</div>

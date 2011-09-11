@@ -1,0 +1,32 @@
+<div id="header">
+	<div class="account wood_shadow">
+		<% if user_signed_in? %>
+			<%= avatar_image_tag(current_user) %>
+			<%= link_to t("settings"), edit_user_path(current_user), :class => "shadow" %>
+			<%= link_to current_user.name, user_path(current_user), :id => "account", :class => "shadow" %>
+			<%= link_to t("sign_out"), signout_path, :class => "shadow" %>
+		<% end %>
+	</div>
+	<div class="logo wood_shadow">
+		<%= link_to image_tag("logo.png"), root_url %>
+	</div>
+	<div class="nav wood_shadow">
+		<span class="switcher">
+			<% if I18n.locale == :en %>
+				<%= link_to t("Chinese"), url_for(:locale => 'zh') %>
+			<% else %>
+				<%= link_to t("English"), url_for(:locale => 'en') %>
+			<% end %>
+		</span>
+	</div>
+	<!-- <div id="system_notice" class="wood_shadow">
+		<% if user_signed_in? and current_user.admin? %>
+			<%= image_tag "expand_alt.png" %>
+		<% end %>
+		<% if I18n.locale == :zh %>
+			<%= truncate Notice.latest_zh, :length => 19 %>
+		<% else %>
+			<%= truncate Notice.latest_en %>
+		<% end %> 
+	</div> -->
+</div>

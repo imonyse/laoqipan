@@ -1,0 +1,3 @@
+<%= t :email_confirmation_msg %><br/>
+<% url = "http://#{@domain}#{confirm_email_path(@key)}"%>
+<%= link_to url, url %>

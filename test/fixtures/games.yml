@@ -1,0 +1,40 @@
+# == Schema Information
+# Schema version: 20110622093124
+#
+# Table name: games
+#
+#  id                :integer         not null, primary key
+#  sgf               :text
+#  name              :string(255)
+#  mode              :integer         default(0)
+#  current_player_id :integer
+#  status            :integer         default(0)
+#  black_player_id   :integer
+#  white_player_id   :integer
+#  created_at        :datetime
+#  updated_at        :datetime
+#  access            :integer         default(3)
+#  score_requester   :integer         default(0)
+#
+
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  sgf: "(;FF[4]GM[1])"
+  name: Takemiya Masaki vs Cho Chikun
+  mode: 1
+  status: 0
+  white_player_id: 2
+  black_player_id: 1
+  current_player_id: 1
+  access: 0
+  
+two:
+  sgf: "(;FF[4]GM[1];B[dd])"
+  name: Cho Chikun vs Ryu Shikun
+  mode: 2
+  status: 0
+  white_player_id: 1
+  black_player_id: 2
+  current_player_id: 2
+  access: 0
