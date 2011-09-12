@@ -47,11 +47,12 @@ img {vertical-align:middle;margin:0 5px 0 0;}
 #header {font-weight:bold;height:60px;background-color:#eee;}
 #footer {clear:both;text-align:center;margin:25px auto;padding:10px;background-color:#eee;}
 #post_in {font-size:1.5em;width:100%;}
-.post {font-size:1.2em;font-family:monospace;color:#205791;}
-.post_body {padding-left:5px;padding-right:5px;margin-top:3px;}
-#comments {margin:5px 0px 5px 0px;padding:5px;background-color:#FAF0E6;}
+.post {font-family:monospace;border:1px solid #bbb;}
+.poster {background-color:#eee;padding:5px;}
+.post_body {padding:5px;}
+#comments {margin:5px 0px 5px 0px;padding:5px;}
 #side_bar {z-index:1;position:absolute;left:550px;top:10px;}
-#game_info {z-index:0;width:540px;margin:0;}
+#game_info {z-index:0;width:530px;margin:0;}
 #comment_box {width:540px;margin:0;}
 #active_games {z-index:1;}
 #duel_list {z-index:3;}
@@ -184,7 +185,6 @@ tbody tr:nth-child(even) td, tbody tr.even td {background:#ddd;}
 .show_user {height:650px;}
 .opponent .game_player {margin-right:5px;}
 #post_content {font-weight:normal;}
-.poster {clear:both;font-size:0.8em;}
 ul.inline {display:inline;margin:0 5px 0 0;padding:5px 0 5px 0;}
 ul.inline a {color:black;}
 ul.inline li {display:inline;padding:4px 8px 4px 8px;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;margin-left:2px;background-color:#eee;border:1px solid #aaa;}

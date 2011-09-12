@@ -1,3 +1,12 @@
+<% if !@comments.nil? %>
+<div id="comments">
+	<%= render :partial => "comments/comment", :collection => @comments %>
+</div>
+<div class="paginate">
+	<%= paginate @comments, :param_name => :comment_page, :remote => true %>
+</div>
+<% end %>
+
 <div id="post_comments">
 	<% if user_signed_in? and !@game.nil? %>
 		<%= form_for ([@game, @game.comments.build]), :remote => true do |f| %>
@@ -9,11 +18,3 @@
 	  <span><%= t ".post_off" %></span>
 	<% end %>
 </div>
-<% if !@comments.nil? %>
-<div id="comments">
-	<%= render :partial => "comments/comment", :collection => @comments %>
-</div>
-<div class="paginate">
-	<%= paginate @comments, :param_name => :comment_page, :remote => true %>
-</div>
-<% end %>
