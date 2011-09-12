@@ -208,7 +208,7 @@ span.success, span.info, span.error, span.notice {padding:5px;}
 .bottom {clear:both;width:100%;padding-top:20px;}
 #game_nav {display:none;height:608px;width:540px;z-index:1;}
 #close_game_nav {display:none;height:42px;width:40px;background:url(/assets/close.png) no-repeat;z-index:2;cursor:pointer;}
-#player_list {height:200px;overflow:auto;width:100%;}
+#player_list {height:200px;overflow:auto;width:100%;z-index:1;background-color:#E6E6E6;}
 #system_notice {width:405px;position:absolute;top:0px;left:295px;margin-top:7px;font-size:1.2em;padding-left:7px;overflow:hidden;}
 #system_notice a {color:#963;}
 .ui-dialog {background-color:#FAF0E6;box-shadow:0 0 5px 1px #963;-webkit-box-shadow:0 0 5px 1px #963;-moz-box-shadow:0 0 5px 1px #963;}
