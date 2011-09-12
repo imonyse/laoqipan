@@ -51,9 +51,10 @@ img {vertical-align:middle;margin:0 5px 0 0;}
 #post_in {font-size:1.5em;width:100%;}
 .post {font-size:1.2em;font-family:monospace;color:#205791;}
 .post_body {padding-left:5px;padding-right:5px;margin-top:3px;}
-#comments {margin:5px 0px 5px 0px;border:1px solid #999;padding:5px;}
+#comments {margin:5px 0px 5px 0px;padding:5px;background-color:#FAF0E6;}
 #side_bar {z-index:1;position:absolute;left:550px;top:10px;}
-#game_info {z-index:0;}
+#game_info {z-index:0;width:540px;margin:0;background-color:#eee;}
+#comment_box {width:540px;margin:0;}
 #active_games {z-index:1;}
 #duel_list {z-index:3;}
 #games_widget {z-index:4;}
@@ -187,7 +188,7 @@ tbody tr:nth-child(even) td, tbody tr.even td {background:#ddd;}
 .show_user {height:650px;}
 .opponent .game_player {margin-right:5px;}
 #post_content {font-weight:normal;}
-.poster {clear:both;background:rgba(176,224,230,0.8);}
+.poster {clear:both;font-size:0.8em;}
 ul.woody {display:inline;margin:0 5px 0 0;padding:5px 0 5px 0;}
 ul.woody a {color:black;}
 ul.woody li {display:inline;padding:4px 8px 4px 8px;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;margin-left:2px;}
@@ -198,7 +199,7 @@ span.success, span.info, span.error, span.notice {padding:5px;}
 .recommand {margin-top:5px;}
 .recommand a {display:block;width:64px;height:85px;float:left;margin-right:10px;text-align:center;color:#143C99;}
 .recommand a img {width:64px;height:64px;}
-.top_bar {text-align:center;padding:1px;font-weight:bold;margin-bottom:5px;clear:both;}
+.top_bar {text-align:center;padding:1px;font-weight:bold;margin-bottom:5px;clear:both;height:20px;}
 .top_bar div {cursor:pointer;}
 .collapse {float:left;width:24px;height:24px;background:url(/assets/expand_alt.png) no-repeat;}
 .refresh {float:right;z-index:99;width:24px;height:24px;display:none;background:url(/assets/button_reload.png) no-repeat;}
@@ -218,3 +219,4 @@ span.success, span.info, span.error, span.notice {padding:5px;}
 .ui-dialog-titlebar {text-align:center;padding:4px;cursor:move;}
 .ui-dialog-titlebar-close {float:right;}
 .ui-icon-closethick {display:block;height:18px;width:18px;overflow:hidden;text-indent:-9999px;background:url(/assets/dialog_close.png);}
+#game_area {height:630px;}

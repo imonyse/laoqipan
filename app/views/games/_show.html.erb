@@ -1,5 +1,6 @@
 <div class="relative">
 	<div id="game_area"><%= render "games/the_game" %></div>
+	<div id="discussion"><%= render "games/tab_info" %></div>
 	<div id="game_review" title="<%= t(:analyse) + t(:analyse_tips) %>">
 		<div class="game_board">
 			<canvas id="board_review"></canvas>
@@ -41,7 +42,6 @@
 		<div id="help_text" class="notify_content">
 			<%= t("comming_soon") %>
 		</div>
-		<div id="discussion"><%= render "games/tab_info" %></div>
 		<% end %>
 	</div>
 </div>
