@@ -3,7 +3,6 @@ module GamesHelper
     if !game.nil?
       options = {
         "id"             => "game",
-        "class"          => "woody wood_shadow",
         "sgf"            => game.sgf,
         "mode"           => game.mode,
         "access"         => game.access,
@@ -20,7 +19,6 @@ module GamesHelper
     else
       options = {
         "id"    => "game",
-        "class" => "woody wood_shadow"
       }
     end
     

@@ -1,16 +1,14 @@
 <div id="header">
-	<div class="account wood_shadow">
-		<% if user_signed_in? %>
-			<%= avatar_image_tag(current_user) %>
-			<%= link_to t("settings"), edit_user_path(current_user), :class => "shadow" %>
-			<%= link_to current_user.name, user_path(current_user), :id => "account", :class => "shadow" %>
-			<%= link_to t("sign_out"), signout_path, :class => "shadow" %>
-		<% end %>
-	</div>
-	<div class="logo wood_shadow">
-		<%= link_to image_tag("logo.png"), root_url %>
-	</div>
-	<div class="nav wood_shadow">
+	<div class="container">
+		<div class="account">
+			<% if user_signed_in? %>
+				<%= avatar_image_tag(current_user) %>
+				<%= link_to t("settings"), edit_user_path(current_user), :class => "shadow" %>
+				<%= link_to current_user.name, user_path(current_user), :id => "account", :class => "shadow" %>
+				<%= link_to t("sign_out"), signout_path, :class => "shadow" %>
+			<% end %>
+		</div>
+		<%= link_to image_tag("logo.png"), root_url, :id => 'logo' %>
 		<span class="switcher">
 			<% if I18n.locale == :en %>
 				<%= link_to t("Chinese"), url_for(:locale => 'zh') %>

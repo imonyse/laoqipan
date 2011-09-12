@@ -32,22 +32,19 @@ form {padding:5px;}
 .left {float:left;}
 .right {float:right;}
 .container {width:950px;}
-.logo {position:absolute;top:0;left:0;}
-.nav {position:absolute;top:0;left:150px;font-size:1.2em;margin:7px auto auto 10px;text-shadow:#963 1px 1px 1px;}
-.nav a {font-weight:bold;color:#000;}
+#logo {float:left;}
+.switcher {font-weight:normal;padding-top:10px;display:block;}
+.switcher a {font-weight:bold;color:#000;padding:5px;}
+.switcher a:hover {color:#fff;background-color:#000;}
 .wood_shadow {box-shadow:0 0 5px 1px #963;-webkit-box-shadow:0 0 5px 1px #963;-moz-box-shadow:0 0 5px 1px #963;}
 .wood_shadow a {margin:0;padding:5px;}
-.log.wood_shadow {box-shadow:0 0 9px 3px #963;-webkit-box-shadow:0 0 9px 3px #963;-moz-box-shadow:0 0 9px 3px #963;}
-.account {position:absolute;right:10px;top:0px;margin-top:8px;}
-.account img {vertical-align:top;}
-.account a {color: #000;padding-top:0px;margin-top:0px;}
-.nav a:hover {color:#adff2f;}
-.account a:hover {color:#ffff00;}
-a.shadow, span.shadow {padding:0 5px 5px 5px;}
+.account {float:right;margin-top:5px;}
+.account a {padding:3px;}
+.account a:hover {color:#fff;background-color:#000;}
 img {vertical-align:middle;margin:0 5px 0 0;}
 .show {background-color:#fff;border:1px solid #ddd;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;}
-#header {font-size:1.2em;font-weight:bold;height:38px;background:url(/assets/head_bg.png);-webkit-box-shadow:0 0 5px 1px #963;-moz-box-shadow:0 0 5px 1px #963;box-shadow:0 0 5px 1px #963;}
-#footer {position:static;clear:both;text-align:center;margin:10px auto;height:60px;border-top:1px solid #aaa;padding:10px;}
+#header {font-weight:bold;height:60px;background-color:#eee;}
+#footer {clear:both;text-align:center;margin:25px auto;padding:10px;background-color:#eee;}
 #post_in {font-size:1.5em;width:100%;}
 .post {font-size:1.2em;font-family:monospace;color:#205791;}
 .post_body {padding-left:5px;padding-right:5px;margin-top:3px;}
@@ -62,7 +59,7 @@ img {vertical-align:middle;margin:0 5px 0 0;}
 #help_text {margin:5px auto 5px auto;}
 .comment_title {height:30px;font-size:1.2em;font-weight:bold;margin-top:8px;}
 #board, #board_review {width:531px;height:531px;background:url(/assets/board.jpg);margin-left:2px;}
-#game {position:absolute;top:8px;left:0px;width:535px;padding:2px;border-radius:10px;-webkit-border-radius:10px;-moz-border-radius:10px;}
+#game {position:absolute;top:8px;left:0px;width:535px;padding:2px;border-radius:10px;-webkit-border-radius:10px;-moz-border-radius:10px;background-color:#FFFAFA;border:1px solid #ccc;}
 #game img {margin:0;}
 #game_review {display:none;}
 .game_board {width:535px;height:560px;}
@@ -132,8 +129,9 @@ span.right a {margin-right: 5px;margin-left: 5px;}
 .relative {width:100%;position:relative;}
 .about {position:absolute;top:10px;left:10px;}
 .about a {color:white;margin:10px;}
-.copyright {margin:10px auto;}
-.copyright a {margin-left:10px;}
+.copyright {margin-right:30px;}
+.open {color:#999;}
+.open a {color:#aaa;}
 .fixheight {height:561px;}
 .more {font-style:italic;color:#2E8B57;}
 .user_form {width:450px;padding:5px;margin-top:20px;color:#333;}
@@ -165,7 +163,6 @@ span.right a {margin-right: 5px;margin-left: 5px;}
 .recaptcha_iconsets a.recaptcha_help {position:absolute;top:33px;left:0;}
 .recaptcha_logo {position:absolute;top:0;left:185px;}
 tbody tr:nth-child(even) td, tbody tr.even td {background:#ddd;}
-.loader {background:url(/assets/ajax-loader.gif) no-repeat center;height:300px;width:500px;}
 .authentications {margin-bottom:15px;padding:10px;height:150px;clear:both;}
 .authentications img {margin:5px;}
 .available_authentications {margin-top:10px;}
@@ -174,7 +171,7 @@ tbody tr:nth-child(even) td, tbody tr.even td {background:#ddd;}
 .connections {margin:10px auto 15px 0;}
 .active_connections {padding:10px;}
 #notification {color:#000;padding:0px 15px 0px 15px;margin-right:5px;margin-top:0px;}
-.notify_wrapper {color:black;width:380px;border-bottom-left-radius:10px;-webkit-border-bottom-left-radius:10px;-moz-bottom-left-border-radius:10px;border-bottom-right-radius:10px;-webkit-border-bottom-right-radius:10px;-moz-bottom-right-border-radius:10px;background-color:#FAF0E6;padding:5px;}
+.notify_wrapper {color:black;width:380px;border-bottom-left-radius:10px;-webkit-border-bottom-left-radius:10px;-moz-bottom-left-border-radius:10px;border-bottom-right-radius:10px;-webkit-border-bottom-right-radius:10px;-moz-bottom-right-border-radius:10px;padding:5px;}
 .woody {background:url(/assets/head_bg.png);}
 .woody2 {background:url(/assets/woody2.png);}
 .notify_wrapper a {color:#000;}
@@ -183,15 +180,13 @@ tbody tr:nth-child(even) td, tbody tr.even td {background:#ddd;}
 .notified_games_list {width:190px;height:90px;float:left;position:relative;}
 .notify_none {margin-left:10px;font-size:1.2em;color:white;}
 #comments_pagination {margin-top:5px;}
-.switcher {font-size:0.8em;font-weight:normal;color:yellow;}
-.switcher a {color:#000;padding:5px;}
 .show_user {height:650px;}
 .opponent .game_player {margin-right:5px;}
 #post_content {font-weight:normal;}
 .poster {clear:both;font-size:0.8em;}
-ul.woody {display:inline;margin:0 5px 0 0;padding:5px 0 5px 0;}
-ul.woody a {color:black;}
-ul.woody li {display:inline;padding:4px 8px 4px 8px;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;margin-left:2px;}
+ul.inline {display:inline;margin:0 5px 0 0;padding:5px 0 5px 0;}
+ul.inline a {color:black;}
+ul.inline li {display:inline;padding:4px 8px 4px 8px;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;margin-left:2px;}
 span.success, span.info, span.error, span.notice {padding:5px;}
 #browser_check {display:none;z-index:2;background-color:#FAF0E6;padding:10px;font-size:1.2em;border:3px solid #000;width:450px;text-align:left;}
 #browser_check h4 {color:red;font-weight:bold;}
@@ -199,7 +194,7 @@ span.success, span.info, span.error, span.notice {padding:5px;}
 .recommand {margin-top:5px;}
 .recommand a {display:block;width:64px;height:85px;float:left;margin-right:10px;text-align:center;color:#143C99;}
 .recommand a img {width:64px;height:64px;}
-.top_bar {text-align:center;padding:1px;font-weight:bold;margin-bottom:5px;clear:both;height:20px;}
+.top_bar {text-align:center;padding:1px;font-weight:bold;margin-bottom:5px;clear:both;height:20px;background-color:#FAF0E6;padding:2px;border:1px solid #ccc;}
 .top_bar div {cursor:pointer;}
 .collapse {float:left;width:24px;height:24px;background:url(/assets/expand_alt.png) no-repeat;}
 .refresh {float:right;z-index:99;width:24px;height:24px;display:none;background:url(/assets/button_reload.png) no-repeat;}

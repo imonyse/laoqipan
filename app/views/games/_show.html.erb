@@ -14,28 +14,27 @@
 			<span id="review_swap">0</span> <%= t "step" %>
 		</div>
 	</div>
-	<div class="loader"></div>
-	<div class="notify_wrapper wood_shadow" id="side_bar">
+	<div class="notify_wrapper" id="side_bar">
 		<% if user_signed_in? %>
-		<div class="top_bar woody wood_shadow" id="active_games">
+		<div class="top_bar" id="active_games">
 			<div class="collapse"></div>
 			<%= t(".active_games") %>
 			<div class="refresh"></div>
 		</div>
 		<div id="notified_games" class="notify_content"></div>
-		<div class="top_bar woody wood_shadow" id="games_widget">
+		<div class="top_bar" id="games_widget">
 			<div class="collapse"></div>
 			<%= t(:watch_games) %>
 			<div class="refresh"></div>
 		</div>
 		<div id="games_list" class="notify_content"></div>
-		<div class="top_bar woody wood_shadow" id="duel_list">
+		<div class="top_bar" id="duel_list">
 			<div class="collapse"></div>
 			<%= t :game_duel %>
 			<div class="refresh"></div>
 		</div>
 		<div id="player_list" class="notify_content"></div>
-		<div class="top_bar woody wood_shadow" id="help_widget">
+		<div class="top_bar" id="help_widget">
 			<div class="collapse"></div>
 			<%= t("help") %>
 		</div>

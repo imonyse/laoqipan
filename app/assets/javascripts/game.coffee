@@ -5,7 +5,6 @@ window.my_jug = null
 
 window.prepare_game = ->
   if $("#game").length
-    $("#game").hide()
     $("#if_no_board").hide()
     access = $('#game').attr('access')
     current_player = $('#game').attr('current_player')
@@ -40,8 +39,6 @@ window.showLoader = (obj) ->
   obj.html("<img src=\"/assets/current_games_loader.gif\" style=\"margin-left:10px\">")
   
 window.init_game = ->
-  $('#game').show()
-  $('.loader').hide()
   if Modernizr.canvas and $('#board').length and $('#game').attr('sgf') isnt undefined
     init_board()
     player.pre_stones()
