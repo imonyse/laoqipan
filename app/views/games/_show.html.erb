@@ -4,12 +4,12 @@
 	<div id="game_review" title="<%= t(:analyse) + t(:analyse_tips) %>">
 		<div class="game_board">
 			<canvas id="board_review"></canvas>
-			<ul class="woody">
-				<li id="show_steps" class="control_button woody wood_shadow"><%= t("show_steps") %></li>
-				<li id="start" class="control_button woody wood_shadow"><%= "<<" %></li>
-				<li id="end" class="control_button woody wood_shadow"><%= ">>" %></li>
-				<li id="prev" class="control_button woody wood_shadow"><%= "<=" %></li>
-				<li id="next" class="control_button woody wood_shadow"><%= "=>" %></li>
+			<ul class="inline">
+				<li id="show_steps" class="control_button wood_shadow"><%= t("show_steps") %></li>
+				<li id="start" class="control_button wood_shadow"><%= "<<" %></li>
+				<li id="end" class="control_button wood_shadow"><%= ">>" %></li>
+				<li id="prev" class="control_button wood_shadow"><%= "<=" %></li>
+				<li id="next" class="control_button wood_shadow"><%= "=>" %></li>
 			</ul>
 			<span id="review_swap">0</span> <%= t "step" %>
 		</div>

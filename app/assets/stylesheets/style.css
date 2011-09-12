@@ -27,6 +27,7 @@ body {font-size:13px;font-family:Arial, Helvetica, sans-serif;}
 div {margin:0 auto;}
 ul {list-style-type:none;}
 a {text-decoration:none;font-weight:bold;}
+a img {border:none;}
 p {margin-bottom:10px;}
 form {padding:5px;}
 .left {float:left;}
@@ -34,7 +35,7 @@ form {padding:5px;}
 .container {width:950px;}
 #logo {float:left;}
 .switcher {font-weight:normal;padding-top:10px;display:block;}
-.switcher a {font-weight:bold;color:#000;padding:5px;}
+.switcher a {font-weight:bold;color:#008040;padding:5px;}
 .switcher a:hover {color:#fff;background-color:#000;}
 .wood_shadow {box-shadow:0 0 5px 1px #963;-webkit-box-shadow:0 0 5px 1px #963;-moz-box-shadow:0 0 5px 1px #963;}
 .wood_shadow a {margin:0;padding:5px;}
@@ -50,7 +51,7 @@ img {vertical-align:middle;margin:0 5px 0 0;}
 .post_body {padding-left:5px;padding-right:5px;margin-top:3px;}
 #comments {margin:5px 0px 5px 0px;padding:5px;background-color:#FAF0E6;}
 #side_bar {z-index:1;position:absolute;left:550px;top:10px;}
-#game_info {z-index:0;width:540px;margin:0;background-color:#eee;}
+#game_info {z-index:0;width:540px;margin:0;}
 #comment_box {width:540px;margin:0;}
 #active_games {z-index:1;}
 #duel_list {z-index:3;}
@@ -58,8 +59,8 @@ img {vertical-align:middle;margin:0 5px 0 0;}
 #help_widget {z-index:5;}
 #help_text {margin:5px auto 5px auto;}
 .comment_title {height:30px;font-size:1.2em;font-weight:bold;margin-top:8px;}
-#board, #board_review {width:531px;height:531px;background:url(/assets/board.jpg);margin-left:2px;}
-#game {position:absolute;top:8px;left:0px;width:535px;padding:2px;border-radius:10px;-webkit-border-radius:10px;-moz-border-radius:10px;background-color:#FFFAFA;border:1px solid #ccc;}
+#board, #board_review {width:531px;height:531px;margin-left:2px;margin-bottom:5px;background:url(/assets/board.jpg);border:1px solid #aaa;}
+#game {position:absolute;top:8px;left:0px;width:535px;padding:2px;border-radius:10px;-webkit-border-radius:10px;-moz-border-radius:10px;background-color:#FAF0E6;border:1px solid #ccc;}
 #game img {margin:0;}
 #game_review {display:none;}
 .game_board {width:535px;height:560px;}
@@ -119,8 +120,8 @@ span.right a {margin-right: 5px;margin-left: 5px;}
 .field {margin:20px auto;font-size:1.2em;width:320px;}
 #step_from {position:absolute;top:40px;left:45px;}
 #step_to {position:absolute;top:40px;left:130px;}
-#intro {width:480px;margin-top:10px;}
-#sign_in {margin-top:10px;z-index:6;}
+#intro {width:480px;margin-top:10px;position:absolute;top:0;left:0;}
+#sign_in {margin-top:10px;z-index:1;position:absolute;top:0;right:0;}
 .tips {color:#666;line-height:30px;}
 .user_online {font-size:2em;color:green;}
 .user_offline {font-size:2em;color:red;}
@@ -186,7 +187,7 @@ tbody tr:nth-child(even) td, tbody tr.even td {background:#ddd;}
 .poster {clear:both;font-size:0.8em;}
 ul.inline {display:inline;margin:0 5px 0 0;padding:5px 0 5px 0;}
 ul.inline a {color:black;}
-ul.inline li {display:inline;padding:4px 8px 4px 8px;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;margin-left:2px;}
+ul.inline li {display:inline;padding:4px 8px 4px 8px;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;margin-left:2px;background-color:#eee;border:1px solid #aaa;}
 span.success, span.info, span.error, span.notice {padding:5px;}
 #browser_check {display:none;z-index:2;background-color:#FAF0E6;padding:10px;font-size:1.2em;border:3px solid #000;width:450px;text-align:left;}
 #browser_check h4 {color:red;font-weight:bold;}
@@ -194,7 +195,7 @@ span.success, span.info, span.error, span.notice {padding:5px;}
 .recommand {margin-top:5px;}
 .recommand a {display:block;width:64px;height:85px;float:left;margin-right:10px;text-align:center;color:#143C99;}
 .recommand a img {width:64px;height:64px;}
-.top_bar {text-align:center;padding:1px;font-weight:bold;margin-bottom:5px;clear:both;height:20px;background-color:#FAF0E6;padding:2px;border:1px solid #ccc;}
+.top_bar {text-align:center;padding:1px;font-weight:bold;margin-bottom:5px;clear:both;height:20px;background-color:#eee;padding:2px;border:1px solid #ccc;}
 .top_bar div {cursor:pointer;}
 .collapse {float:left;width:24px;height:24px;background:url(/assets/expand_alt.png) no-repeat;}
 .refresh {float:right;z-index:99;width:24px;height:24px;display:none;background:url(/assets/button_reload.png) no-repeat;}
@@ -203,6 +204,7 @@ span.success, span.info, span.error, span.notice {padding:5px;}
 #games_list {font-weight:normal;}
 #intro_video {width:480px;height:400px;}
 #intro_video a {margin:0;padding:0;}
+.top {position:relative;height:500px;}
 .bottom {clear:both;width:100%;padding-top:20px;}
 #game_nav {display:none;height:608px;width:540px;z-index:1;}
 #close_game_nav {display:none;height:42px;width:40px;background:url(/assets/close.png) no-repeat;z-index:2;cursor:pointer;}
@@ -214,4 +216,4 @@ span.success, span.info, span.error, span.notice {padding:5px;}
 .ui-dialog-titlebar {text-align:center;padding:4px;cursor:move;}
 .ui-dialog-titlebar-close {float:right;}
 .ui-icon-closethick {display:block;height:18px;width:18px;overflow:hidden;text-indent:-9999px;background:url(/assets/dialog_close.png);}
-#game_area {height:630px;}
+#game_area {height:630px;z-index:1;}

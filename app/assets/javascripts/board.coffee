@@ -37,44 +37,44 @@ class Board
     @draw_game()
     
   draw_game: ->
-  #   @context_2d.beginPath()
-  #   @context_2d.strokeStyle = '#000'
-  #   # vertical lines
-  #   for x in [@board_edge..(@board_image_size - @board_edge)] by @board_square
-  #     @context_2d.moveTo x, @board_edge
-  #     @context_2d.lineTo x, @board_image_size - @board_edge
-  #     
-  #   # horizontal lines
-  #   for y in [@board_edge..(@board_image_size - @board_edge)] by @board_square
-  #     @context_2d.moveTo @board_edge, y
-  #     @context_2d.lineTo @board_image_size - @board_edge, y
-  #     
-  #   # board coordinates
-  #   @context_2d.fillStyle = '#000'
-  #   @context_2d.font = 'bold 15px sans-serif'
-  #   alphabet = "ABCDEFGHJKLMNOPQRST"
-  #   for i in [0...alphabet.length]
-  #     # top coordinates
-  #     @context_2d.fillText(alphabet[i], @board_square*i+@board_edge-5.5, @board_edge/2)
-  #     # bottom coordinates
-  #     @context_2d.fillText(alphabet[i], @board_square*i+@board_edge-5.5, @board_image_size - @board_edge/2 + 11)
-  #     
-  #   for i in [0...@board_size]
-  #     # left coordinates
-  #     if i < 9
-  #       @context_2d.fillText(i+1, @board_edge/2-8, @board_image_size - @board_square*i - @board_edge + 4)
-  #     else
-  #       @context_2d.fillText(i+1, @board_edge/2-12, @board_image_size - @board_square*i - @board_edge + 4)
-  #       
-  #     # right coordinates
-  #     if i < 9
-  #       @context_2d.fillText(i+1, @board_image_size - @board_edge + 18, @board_image_size - @board_square*i - @board_edge + 4)
-  #     else
-  #       @context_2d.fillText(i+1, @board_image_size - @board_edge + 14, @board_image_size - @board_square*i - @board_edge + 4)
-  #     
-  #   @context_2d.closePath()
-  #   @context_2d.stroke()
-  #   @context_2d.fill()
+    # @context_2d.beginPath()
+    # @context_2d.strokeStyle = '#000'
+    # # vertical lines
+    # for x in [@board_edge..(@board_image_size - @board_edge)] by @board_square
+    #   @context_2d.moveTo x, @board_edge
+    #   @context_2d.lineTo x, @board_image_size - @board_edge
+    #   
+    # # horizontal lines
+    # for y in [@board_edge..(@board_image_size - @board_edge)] by @board_square
+    #   @context_2d.moveTo @board_edge, y
+    #   @context_2d.lineTo @board_image_size - @board_edge, y
+    #   
+    # # board coordinates
+    # @context_2d.fillStyle = '#000'
+    # @context_2d.font = 'bold 15px sans-serif'
+    # alphabet = "ABCDEFGHJKLMNOPQRST"
+    # for i in [0...alphabet.length]
+    #   # top coordinates
+    #   @context_2d.fillText(alphabet[i], @board_square*i+@board_edge-5.5, @board_edge/2)
+    #   # bottom coordinates
+    #   @context_2d.fillText(alphabet[i], @board_square*i+@board_edge-5.5, @board_image_size - @board_edge/2 + 11)
+    #   
+    # for i in [0...@board_size]
+    #   # left coordinates
+    #   if i < 9
+    #     @context_2d.fillText(i+1, @board_edge/2-8, @board_image_size - @board_square*i - @board_edge + 4)
+    #   else
+    #     @context_2d.fillText(i+1, @board_edge/2-12, @board_image_size - @board_square*i - @board_edge + 4)
+    #     
+    #   # right coordinates
+    #   if i < 9
+    #     @context_2d.fillText(i+1, @board_image_size - @board_edge + 18, @board_image_size - @board_square*i - @board_edge + 4)
+    #   else
+    #     @context_2d.fillText(i+1, @board_image_size - @board_edge + 14, @board_image_size - @board_square*i - @board_edge + 4)
+    #   
+    # @context_2d.closePath()
+    # @context_2d.stroke()
+    # @context_2d.fill()
     if @status == 0
       @init_dots()
     else if @status == 1
@@ -131,8 +131,8 @@ class Board
     for i in [0...alphabet.length]
       for j in [0...alphabet.length]
         dot = new BoardDot alphabet[i]+alphabet[j], @board_edge + @board_square*i, @board_edge + @board_square*j, @
-        # if dot.is_star
-        #   @draw_star dot.x, dot.y
+        if dot.is_star
+          @draw_star dot.x, dot.y
           
         @dots[@dots.length] = dot
         
@@ -140,8 +140,8 @@ class Board
     
   draw_dots: ->
     for dot in @dots
-      # if dot.is_star
-      #   @draw_star dot.x, dot.y
+      if dot.is_star
+        @draw_star dot.x, dot.y
       if dot.owner == "b"
         @draw_black_stone dot.x, dot.y
       else if dot.owner == "w"

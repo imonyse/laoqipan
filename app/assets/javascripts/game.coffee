@@ -34,6 +34,7 @@ $(document).ready ->
   prepare_game()
   $(".notify_content").hide() if $(".notify_content").length
   $('#side_bar').hide()
+  $(document).pngFix()
   
 window.showLoader = (obj) ->
   obj.html("<img src=\"/assets/current_games_loader.gif\" style=\"margin-left:10px\">")
@@ -239,7 +240,7 @@ window.subscribe_game = ->
       $('#connection').html("reconnecting")
 
 window.init_review = ->
-  if typeof window.review is 'undefined'
+  if typeof window.review is 'undefined' or $('#game_nav').length
     $("#next").click ->
       review.next();
     $("#prev").click ->
@@ -283,7 +284,7 @@ window.init_board = ->
       position:"center",
       draggable:true,
       resizable:false,
-      dialogClass:"woody wood_shaodw round_board"
+      dialogClass:"wood_shaodw round_board"
     })
     $('#game_review').attr('sgf', $('#game').attr('sgf'))
     # make sure 'update' works

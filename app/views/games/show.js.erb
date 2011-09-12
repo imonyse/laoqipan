@@ -1,6 +1,7 @@
 if ($('#game_nav').length) {
 	$('#game_nav').html("<%= escape_javascript(render("games/show")) %>");
 	$('#game_nav').show();
+	$('#discussion').hide();
   var width = document.documentElement.clientWidth;
   var height = document.documentElement.clientHeight;
   var pop_width = $('#game_nav').width();
@@ -11,7 +12,7 @@ if ($('#game_nav').length) {
   $('#close_game_nav').click(function(){
 		$('#game_nav').hide();
     $('#close_game_nav').hide();
-})
+	});
 	$('#side_bar').hide();
 } else {
 	$('#game_area').html("<%= escape_javascript(render("games/the_game")) %>");
