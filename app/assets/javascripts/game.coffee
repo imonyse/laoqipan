@@ -5,7 +5,6 @@ window.my_jug = null
 
 window.prepare_game = ->
   if $("#game").length
-    $("#if_no_board").hide()
     access = $('#game').attr('access')
     current_player = $('#game').attr('current_player')
     current_user = $('#game').attr('current_user')
@@ -150,6 +149,7 @@ $(window).load ->
   if $('#intro').length
     $('.game_thumbnail').click ->
       $('#game_nav').show()
+      $('#loader').show();
       width = document.documentElement.clientWidth
       height = document.documentElement.clientHeight
       pop_width = $('#game_nav').width()
@@ -284,7 +284,7 @@ window.init_board = ->
       position:"center",
       draggable:true,
       resizable:false,
-      dialogClass:"wood_shaodw round_board"
+      dialogClass:"woody wood_shaodw round_board"
     })
     $('#game_review').attr('sgf', $('#game').attr('sgf'))
     # make sure 'update' works

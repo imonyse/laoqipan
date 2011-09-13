@@ -29,8 +29,8 @@
 </div>
 
 <canvas id="board"></canvas>
+<div id="loader"></div>
 <% if !@game.nil? %>
-<div id="if_no_board"></div>
 <div id="board_info" class="round"></div>
 <div id="start_info" class="round">
 	<% if @game.access == 3 and @game.current_player != current_user %>

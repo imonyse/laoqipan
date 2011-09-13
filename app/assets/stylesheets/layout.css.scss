@@ -1,0 +1,156 @@
+* {
+  margin:0;
+}
+
+html, body {
+  height:100%;
+}
+
+body {
+  font-size:13px;
+  font-family:Arial, Helvetica, sans-serif;
+}
+
+div {
+  margin:0 auto;
+  h3 {
+    padding:5px;
+  }
+}
+
+h3 {
+  img {
+    margin-right:5px;
+  }
+}
+
+@mixin border-radius($radius: 5px) {
+  border-radius:$radius;
+  -webkit-border-radius:$radius;
+  -moz-border-radius:$radius;
+}
+
+ul {
+  list-style-type:none;
+  &.inline {
+    display:inline;
+    margin:0 5px 0 0;
+    padding:5px 0 5px 0;
+    a {
+      color:black;
+    }
+    li {
+      display:inline;
+      padding:4px 8px 4px 8px;
+      @include border-radius;
+      margin-left:2px;
+      border:1px solid #aaa;
+    }
+  }
+}
+
+a {
+  text-decoration:none;
+  font-weight:bold;
+  img {
+    border:none;
+  }
+}
+
+p {
+  margin-bottom:10px;
+}
+
+form {
+  padding:5px;
+}
+
+img {
+  vertical-align:middle;
+  margin:0 5px 0 0;
+}
+
+.info, .success, .notice, .error, .validation {
+    border: 1px solid;
+    margin: 10px 0px;
+    padding:15px 10px 15px 50px;
+    background-repeat: no-repeat;
+    background-position: 10px center;
+}
+
+.info {
+    color: #00529B;
+    background-color: #BDE5F8;
+}
+
+.success {
+    color: #4F8A10;
+    background-color: #DFF2BF;
+}
+
+.notice {
+    color: #9F6000;
+    background-color: #FEEFB3;
+}
+
+.error {
+    color: #D8000C;
+    background-color: #FFBABA;
+}
+
+.left {
+  float:left !important;
+}
+
+.right {
+  float:right !important;
+}
+
+.container {
+  width:950px;
+}
+
+@mixin href_style {
+  font-weight:bold;
+  padding:5px;
+  &:hover {
+    color:#fff;
+    background-color:#000;
+  }
+}
+
+.account {
+  float:right !important;
+  margin-top:5px;
+  a {
+    @include href_style;
+  }
+}
+
+#logo {
+  float:left !important;
+}
+
+#header {
+  font-weight:bold;
+  height:60px;
+  background-color:#eee;
+}
+  
+#footer {
+  clear:both;
+  text-align:center;
+  margin:25px auto;
+  padding:10px;
+  background-color:#eee;
+}
+
+.switcher {
+  font-weight:normal;
+  padding-top:10px;
+  display:block;
+  a {
+    color:#008040;
+    @include href_style;
+  }
+}

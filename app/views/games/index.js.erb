@@ -1,4 +1,5 @@
 $('#games_list').html("<%= escape_javascript(render('games/index')) %>");
 $('.game_thumbnail').click(function(){
+	$('#loader').show();
 	$.getScript('http://' + window.location.host + '/games/' + this.id + window.location.search);
 });
