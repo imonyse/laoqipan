@@ -61,7 +61,7 @@ img {vertical-align:middle;margin:0 5px 0 0;}
 #help_text {margin:5px auto 5px auto;}
 .comment_title {height:30px;font-size:1.2em;font-weight:bold;margin-top:8px;}
 #board, #board_review {width:531px;height:531px;margin-left:2px;margin-bottom:5px;background:url(/assets/board.jpg);border:1px solid #aaa;}
-#game {position:absolute;top:8px;left:0px;width:535px;padding:2px;border-radius:10px;-webkit-border-radius:10px;-moz-border-radius:10px;background-color:#FAF0E6;border:1px solid #ccc;}
+#game {position:absolute;top:8px;left:0px;width:535px;padding:2px;border-radius:10px;-webkit-border-radius:10px;-moz-border-radius:10px;background-color:#FDFDF0;border:1px solid #ccc;}
 #game img {margin:0;}
 #game_review {display:none;}
 .game_board {width:535px;height:560px;}

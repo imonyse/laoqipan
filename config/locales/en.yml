@@ -49,7 +49,7 @@ en:
   send: "send"
   watch_games: "Watch a game"
   win_rate: "win rate"
-  copyright: "© Copyright 2011 Wei Huang <@imonyse>"
+  copyright: "© Copyright 2011 laoqipan <@laoqipan>"
   open_source: "This site is open source (MIT LICENSE) at: "
   unique_msg: "already registered"
   invalid_email_msg: "Email format is invalid"
