@@ -1,0 +1,13 @@
+<div id="board_fallback">
+	<div class="board_fallback_area">
+		<% for y in ('a'..'s') %>
+			<% for x in ('a'..'s') %>
+				<% if @game.nil? %>
+					<div id="<%= x+y %>" class="e"></div>
+				<% else %>
+				  <div id="<%= @game.id.to_s + '-' + x + y %>" class="e"></div>
+				<% end %>
+			<% end %>
+		<% end %>
+	</div>
+</div>
