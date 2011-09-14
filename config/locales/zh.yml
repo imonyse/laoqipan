@@ -8,7 +8,7 @@ zh:
   microblog: "微博"
   feedback: "问题反馈"
   blog: "BLOG"
-  site_name: "老棋盘 - 基于HTML5的在线围棋平台"
+  site_name: "老棋盘 - 在线围棋对弈"
   cancel: "取消对局"
   access_denied: "没有权限"
   game_type: "对局类型:"

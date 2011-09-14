@@ -283,18 +283,14 @@ class Board
     dot.set_text text
     
   click : (click_fn) ->
-    target = @game_id.split('-')[0]
-    if target is 'board'
-      $('#board .e').bind('click', click_fn)
-    else
-      $('#board_review .e').bind('click', click_fn)
+    for dot in @dots
+      if dot.owner is 'e'
+        dot.bind_click(click_fn)
     
   remove_click_fn : (click_fn) ->
-    target = @game_id.split('-')[0]
-    if target is 'board'
-      $('#board .e').unbind('click', click_fn)
-    else
-      $('#board_review .e').unbind('click', click_fn)
+    for dot in @dots
+      if dot.owner is 'e'
+        dot.unbind_click(click_fn)
       
 class BoardDot
 
@@ -321,6 +317,12 @@ class BoardDot
       
     @owner = color
     return true
+    
+  bind_click : (click_fn) ->
+    @jquery_target.bind('click', click_fn)
+    
+  unbind_click : (click_fn) ->
+    @jquery_target.unbind('click', click_fn)
   
   reset: ->
     @owner = "e"
@@ -523,17 +525,6 @@ window.post_comments = ->
       if e.ctrlKey
         $('#post_button').trigger('click')
         
-window.bind_key_fn = ->
-  (e) ->
-    charCode = e.which
-    charStr = String.fromCharCode charCode
-    switch charStr
-      when "n" then $("#next").trigger("click")
-      when "p" then $("#prev").trigger("click")
-      when "a" then $("#start").trigger("click")
-      when "e" then $("#end").trigger("click")
-      when "s" then $("#show_steps").trigger("click")
-
 window.Board = Board
 window.BoardDot = BoardDot
 window.refresh = true
