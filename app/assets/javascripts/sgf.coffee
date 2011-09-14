@@ -36,10 +36,10 @@ class SGF
     while @index < @data.length
       i = @data[@index..].search @next
       if i isnt -1
-        cur = @data[@index+i]
+        cur = @data.charAt(@index+i)
         while cur is '\n' or cur is '\r' or cur is ' ' or cur is '\t'
           @index++
-          cur = @data[@index+i]
+          cur = @data.charAt(@index+i)
         
         if cur is ';'
           @index += i + 1
@@ -130,7 +130,7 @@ class SGF
     if c isnt -1
       comment = comment[0...c] + '\\' + comment[c..]
       
-    while @data[i] isnt ';'
+    while @data.charAt(i) isnt ';'
       i--
 
     j = @data[i..].search /C\[/

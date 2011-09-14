@@ -33,13 +33,11 @@ class Board
     else if @status == 1
       @draw_dots()
       
-  draw_black_stone: (name) ->
-    target = @game_id + '-' + name
-    $('#'+target).attr('class', 'b')
+  draw_black_stone: (dot) ->
+    dot.jquery_target.attr('class', 'b')
     
-  draw_white_stone: (name) ->
-    target = @game_id + '-' + name
-    $('#'+target).attr('class', 'w')
+  draw_white_stone: (dot) ->
+    dot.jquery_target.attr('class', 'w')
     
   draw_last_mark: (dot) ->
     if not @draw_last_move then return
@@ -49,9 +47,9 @@ class Board
     else
       target = @game_id + '-' + dot.name
       if dot.owner is "b"
-        $('#'+target).attr('class', 'b last')
+        dot.jquery_target.attr('class', 'b last')
       else
-        $('#'+target).attr('class', 'w last')
+        dot.jquery_target.attr('class', 'w last')
 
     @last_move = dot
     
@@ -74,9 +72,9 @@ class Board
   draw_dots: ->
     for dot in @dots
       if dot.owner == "b"
-        @draw_black_stone dot.name
+        @draw_black_stone dot
       else if dot.owner == "w"
-        @draw_white_stone dot.name
+        @draw_white_stone dot
       if @show_step and dot.owner isnt 'e'
         dot.show_dot_step()
     return
@@ -85,8 +83,7 @@ class Board
     @refresh()
     if @last_move? then @draw_last_mark @last_move
     
-    target = @game_id + '-' + dot.name
-    $('#'+target).attr('class', @color_in_turn + " fake")
+    dot.jquery_target.attr('class', @color_in_turn + " fake")
     
   on_dot_click: (dot) ->
     if dot?
@@ -131,10 +128,10 @@ class Board
       throw "invalid coordinates"
       
     name_set = "abcdefghijklmnopqrs"
-    x = "ABCDEFGHJKLMNOPQRST".indexOf co[0].toUpperCase()
-    y = @board_size - parseInt co[1]+co[2], 10
+    x = "ABCDEFGHJKLMNOPQRST".indexOf co.charAt(0).toUpperCase()
+    y = @board_size - parseInt co.charAt(1)+co.charAt(2), 10
     
-    @find_stone_by_name name_set[x] + name_set[y]
+    @find_stone_by_name name_set.charAt(x) + name_set.charAt(y)
     
   add_examined: (name) ->
     for e in @dots_checked
@@ -239,10 +236,11 @@ class Board
     return rc
     
   refresh : ->
-    for dot in @dots
-      dot.refresh()
+    if window.refresh
+      for dot in @dots
+        dot.refresh()
       
-    @draw_game()
+      @draw_game()
     
   reset : ->
     @step_count = 0
@@ -308,16 +306,17 @@ class BoardDot
         @is_star = true
         break
     @owner = "e"
+    @jquery_target = $('#' + @parent.game_id + '-' + @name)
   
   occupy: (color) ->
     if @owner isnt "e" 
       return false
       
     if @parent.color_in_turn is "b"
-      @parent.draw_black_stone @name
+      @parent.draw_black_stone @
       @parent.color_in_turn = "w"
     else if @parent.color_in_turn is "w"
-      @parent.draw_white_stone @name
+      @parent.draw_white_stone @
       @parent.color_in_turn = "b"
       
     @owner = color
@@ -329,23 +328,20 @@ class BoardDot
     @refresh()
     
   refresh : ->
-    target = @parent.game_id + '-' + @name
-    $('#'+target).attr('class', 'e')
-    $('#'+target).text('')
-    $('#'+target).removeAttr('style')
+    @jquery_target.attr('class', 'e')
+    @jquery_target.text('')
+    @jquery_target.removeAttr('style')
     
   set_text: (text) ->
-    target = @parent.game_id + '-' + @name
-    $('#'+target).text(text)
-    $('#'+target).css({"background-color":'#FFCC66';})
+    @jquery_target.text(text)
+    @jquery_target.css({"background-color":'#FFCC66';})
     
   show_dot_step: (color) ->
     return if @step is -1
     if @step is 0
       @step = @parent.step_count + 1
       
-    target = @parent.game_id + '-' + @name
-    $('#'+target).text(@step)
+    @jquery_target.text(@step)
     
     if color?
       font_color = color
@@ -355,12 +351,12 @@ class BoardDot
       else
         font_color = '#000'
     
-    $('#'+target).css({color:font_color})
+    @jquery_target.css({color:font_color})
     
   get_dot_from: (pos) ->
     alphabet = 'abcdefghijklmnopqrs'
-    my_x_index = alphabet.indexOf @name[0]
-    my_y_index = alphabet.indexOf @name[1]
+    my_x_index = alphabet.indexOf @name.charAt(0)
+    my_y_index = alphabet.indexOf @name.charAt(1)
     if pos is "left"
       if my_x_index > 0
         x = my_x_index - 1
@@ -379,7 +375,7 @@ class BoardDot
         y = my_y_index + 1
         
     if typeof x isnt 'undefined' and typeof y isnt 'undefined'
-      return @parent.find_stone_by_name(alphabet[x] + alphabet[y])
+      return @parent.find_stone_by_name(alphabet.charAt(x) + alphabet.charAt(y))
     else
       return null
   

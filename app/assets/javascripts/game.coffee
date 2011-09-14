@@ -34,13 +34,12 @@ $(document).ready ->
   prepare_game()
   $(".notify_content").hide() if $(".notify_content").length
   $('#side_bar').hide()
-  $(document).pngFix()
   
 window.showLoader = (obj) ->
   obj.html("<img src=\"/assets/current_games_loader.gif\" style=\"margin-left:10px\">")
   
 window.init_game = ->
-  if Modernizr.canvas and $('#board').length and $('#game').attr('sgf') isnt undefined
+  if $('#game').attr('sgf')
     init_board()
     player.pre_stones()
     player.end()
@@ -63,18 +62,18 @@ window.init_game = ->
         $.getScript('http://' + window.location.host + '/games/' + window.board_game_id + '/moves')
 
 $(window).load ->
-  if !Modernizr.canvas
-    $('#browser_check_bg').css("opacity":"0.7")
-    # center pop up div
-    width = document.documentElement.clientWidth
-    height = document.documentElement.clientHeight
-    pop_width = $('#browser_check').width()
-    pop_height = $('#browser_check').height()
-    $('#browser_check').css({"position":"absolute", "top":height/2-pop_height/2,"left":width/2-pop_width/2})
-    
-    $('#browser_check_bg').fadeIn("slow")
-    $('#browser_check').fadeIn("slow")
-    return
+  # if !Modernizr.canvas
+  #   $('#browser_check_bg').css("opacity":"0.7")
+  #   # center pop up div
+  #   width = document.documentElement.clientWidth
+  #   height = document.documentElement.clientHeight
+  #   pop_width = $('#browser_check').width()
+  #   pop_height = $('#browser_check').height()
+  #   $('#browser_check').css({"position":"absolute", "top":height/2-pop_height/2,"left":width/2-pop_width/2})
+  #   
+  #   $('#browser_check_bg').fadeIn("slow")
+  #   $('#browser_check').fadeIn("slow")
+  #   return
     
   $("#active_games").children('.collapse').click ->
     if $("#notified_games").is(":visible")
@@ -162,6 +161,7 @@ $(window).load ->
         $('#game_nav').hide()
         $('#close_game_nav').hide()
       $.getScript('http://' + window.location.host + '/games/' + $(this).attr('id') + window.location.search)
+      
       
 window.open_my_channel = ->
   if $('#account').length
@@ -258,7 +258,6 @@ window.init_review = ->
         
   $('#game_review').attr('sgf', $('#game').attr('sgf'))
   parser = new SGF $('#game_review')
-  delete window.review
   window.review = new Player(parser, 'board_review'+'-'+$('#game').attr('channel'), true) if parser
   
   review.pre_stones()
@@ -266,7 +265,6 @@ window.init_review = ->
 
 window.init_board = ->
   parser = new SGF $('#game')
-  delete window.player
   window.player = new Player(parser, 'board'+'-'+$('#game').attr('channel'))
   
   $("#pass").click -> pass_notify()

@@ -272,9 +272,11 @@ class Player
                 @board.set_text(head_node.W, count)
             count++
           
+    window.refresh = true
+    @board.refresh()
     if @step > 1
       @board.draw_last_mark @board.last_move
-    window.refresh = true
+    
 
     re = @basic_info.RE
     result_notify re if typeof re isnt 'undefined'

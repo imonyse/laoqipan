@@ -4,6 +4,9 @@
   <title><%= t :site_name %></title>
 	<%= csrf_meta_tag %>
 	<%= javascript_include_tag "application" %>
+	<!--[if lt IE 7]>
+		<script type="text/javascript" src="/unitpngfix.js"></script>
+	<![endif]-->
 	<%= stylesheet_link_tag "application" %>
 	<meta http-equiv="X-UA-Compatible" content="chrome=1">
 </head>
