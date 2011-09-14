@@ -68,6 +68,8 @@ class MovesController < ApplicationController
         @game.who_is_ai.save
         color = @game.current_player == @game.black_player ? 'black' : 'white'
         Stalker.enqueue("ai_move", :game_id => @game.id, :game_sgf => @game.sgf, :color => color)
+      else
+        Stalker.enqueue('generate_thumbnail', :game_id => @game.id, :game_sgf => @game.sgf, :thumb_path => @game.thumbnail_path)
       end
     else
       # post requests without player_id are final_score request

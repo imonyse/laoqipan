@@ -36,16 +36,15 @@ class Game < ActiveRecord::Base
   validates_presence_of :sgf, :on => :create, :message => I18n.t(:no_sgf_msg)
   validates_length_of :sgf, :maximum => 1.megabyte, :on => :create, :message => I18n.t(:sgf_length_msg)
   
-  def save_thumbnail(data)
+  def thumbnail_path
     dir = File.expand_path("public/system/thumbnails", Rails.root.to_s)
     year, month, day = self.created_at.year, self.created_at.month, self.created_at.day
     dir = dir + "/#{year}/#{month}/#{day}"
     FileUtils.makedirs(dir)
     
     path = dir+"/#{self.id}.png"
-    open(path, 'wb') do |f|
-      f.write(data.unpack('m')[0])
-    end
+
+    return path
   end
   
   def thumbnail
@@ -54,9 +53,9 @@ class Game < ActiveRecord::Base
       return path
     else
       if mode == 1
-        return "default_board.jpg"
+        return "default_board.png"
       elsif mode == 2
-        return "zuozi_board.jpg"
+        return "zuozi_board.png"
       end
     end
   end

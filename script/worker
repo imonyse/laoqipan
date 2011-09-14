@@ -84,6 +84,15 @@ Stalker.job "score_game" do |args|
   end
 end
 
+Stalker.job "generate_thumbnail" do |args|
+  id = args["game_id"]
+  sgf = args["game_sgf"]
+  path = args["thumb_path"]
+  puts path
+  board = generate_thumbnail(id, sgf)
+  board.save(path, :fast_rgba)
+end
+
 Stalker.job "ai_move" do |args|
   id = args["game_id"]
   sgf = args["game_sgf"]

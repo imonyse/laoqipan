@@ -258,7 +258,7 @@ window.init_review = ->
   $('#game_review').attr('sgf', $('#game').attr('sgf'))
   parser = new SGF $('#game_review')
   delete window.review
-  window.review = new Player(parser, 'board_review', true) if parser
+  window.review = new Player(parser, 'board_review'+'-'+$('#game').attr('channel'), true) if parser
   
   review.pre_stones()
   review.end()
@@ -266,7 +266,7 @@ window.init_review = ->
 window.init_board = ->
   parser = new SGF $('#game')
   delete window.player
-  window.player = new Player(parser, 'board')
+  window.player = new Player(parser, 'board'+'-'+$('#game').attr('channel'))
   
   $("#pass").click -> pass_notify()
   

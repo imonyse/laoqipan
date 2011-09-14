@@ -36,7 +36,6 @@ Html5Weiqi::Application.routes.draw do
   
   resources :games do
     resources :moves
-    resources :thumbnails
     resources :comments
   end
 

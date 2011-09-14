@@ -76,26 +76,6 @@ $board_width: 531px;
   margin-top:8px;
 }
 
-#board_fallback {
-  width:$board_width;
-  height:$board_width;
-  margin-left:1px;
-  background:url(/assets/board.jpg);
-  border:1px solid #aaa;
-}
-
-.board_fallback_area {
-  position:relative;
-  width:475px;
-  height:475px;
-  margin:28px;
-  div {
-    width:25px;
-    height:25px;
-    float:left;
-  }
-}
-
 #board, #board_review {
   width:$board_width;
   height:$board_width;
@@ -106,6 +86,35 @@ $board_width: 531px;
 
 #board_review {
   margin-bottom:5px;
+}
+
+.board_fallback_area {
+  position:relative;
+  width:475px;
+  height:475px;
+  margin:28px;
+  div {
+    text-align:center;
+    line-height:25px;
+    width:25px;
+    height:25px;
+    float:left;
+    &.b {
+      background:url(/assets/black_stone.png) no-repeat;
+    }
+    &.b.last {
+      background:url(/assets/last_black_stone.png) no-repeat;
+    }
+    &.w {
+      background:url(/assets/white_stone.png) no-repeat;
+    }
+    &.w.last {
+      background:url(/assets/last_white_stone.png) no-repeat;
+    }
+    &.fake {
+      opacity: 0.6;
+    }
+  }
 }
 
 #game {

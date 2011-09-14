@@ -1,0 +1,11 @@
+<div class="game_board">
+	<%= render 'games/fallback', :div_id => 'board_review' %>
+	<ul class="inline">
+		<li id="show_steps" class="control_button wood_shadow"><%= t("show_steps") %></li>
+		<li id="start" class="control_button wood_shadow"><%= "<<" %></li>
+		<li id="end" class="control_button wood_shadow"><%= ">>" %></li>
+		<li id="prev" class="control_button wood_shadow"><%= "<=" %></li>
+		<li id="next" class="control_button wood_shadow"><%= "=>" %></li>
+	</ul>
+	<span id="review_swap">0</span> <%= t "step" %>
+</div>

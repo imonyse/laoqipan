@@ -28,12 +28,7 @@
 	<% end %>
 </div>
 
-<canvas id="board" style="display:none;"></canvas>
-<% if !@game.nil? %>
-	<%= render 'games/fallback', :object => @game %>
-<% else %>
-  <%= render 'games/fallback' %>
-<% end %>
+<%= render 'games/fallback', :div_id => 'board' %>
 
 <div id="loader"></div>
 <% if !@game.nil? %>

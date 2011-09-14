@@ -1,6 +1,6 @@
 class Board
 
-  constructor: (@board_size, @first_color, @board_id) ->
+  constructor: (@board_size, @first_color, @game_id) ->
     @stone_radius     = 12
     @board_edge       = 40.5
     @board_square     = @stone_radius*2 + 1
@@ -25,99 +25,34 @@ class Board
     @dead_black_count = 0
     @dead_white_count = 0
     
-    if $("##{@board_id}").length
-      @canvas = $("##{@board_id}").get(0)
-    else
-      jquery_canvas = $(document.createElement('canvas')).attr("id","#{@board_id}")
-      jquery_canvas.appendTo('body')
-      @canvas = jquery_canvas.get(0)
-      
-    @canvas.width = @canvas.height = @board_image_size
-    @context_2d = @canvas.getContext("2d")
     @draw_game()
     
   draw_game: ->
-    # @context_2d.beginPath()
-    # @context_2d.strokeStyle = '#000'
-    # # vertical lines
-    # for x in [@board_edge..(@board_image_size - @board_edge)] by @board_square
-    #   @context_2d.moveTo x, @board_edge
-    #   @context_2d.lineTo x, @board_image_size - @board_edge
-    #   
-    # # horizontal lines
-    # for y in [@board_edge..(@board_image_size - @board_edge)] by @board_square
-    #   @context_2d.moveTo @board_edge, y
-    #   @context_2d.lineTo @board_image_size - @board_edge, y
-    #   
-    # # board coordinates
-    # @context_2d.fillStyle = '#000'
-    # @context_2d.font = 'bold 15px sans-serif'
-    # alphabet = "ABCDEFGHJKLMNOPQRST"
-    # for i in [0...alphabet.length]
-    #   # top coordinates
-    #   @context_2d.fillText(alphabet[i], @board_square*i+@board_edge-5.5, @board_edge/2)
-    #   # bottom coordinates
-    #   @context_2d.fillText(alphabet[i], @board_square*i+@board_edge-5.5, @board_image_size - @board_edge/2 + 11)
-    #   
-    # for i in [0...@board_size]
-    #   # left coordinates
-    #   if i < 9
-    #     @context_2d.fillText(i+1, @board_edge/2-8, @board_image_size - @board_square*i - @board_edge + 4)
-    #   else
-    #     @context_2d.fillText(i+1, @board_edge/2-12, @board_image_size - @board_square*i - @board_edge + 4)
-    #     
-    #   # right coordinates
-    #   if i < 9
-    #     @context_2d.fillText(i+1, @board_image_size - @board_edge + 18, @board_image_size - @board_square*i - @board_edge + 4)
-    #   else
-    #     @context_2d.fillText(i+1, @board_image_size - @board_edge + 14, @board_image_size - @board_square*i - @board_edge + 4)
-    #   
-    # @context_2d.closePath()
-    # @context_2d.stroke()
-    # @context_2d.fill()
     if @status == 0
       @init_dots()
     else if @status == 1
       @draw_dots()
       
-  draw_star: (x, y)->
-    @context_2d.beginPath()
-    @context_2d.arc x, y, @star_radius, 0, Math.PI*2, false
-    @context_2d.closePath()
-    @context_2d.fillStyle = '#000'
-    @context_2d.fill()
+  draw_black_stone: (name) ->
+    target = @game_id + '-' + name
+    $('#'+target).attr('class', 'b')
     
-  draw_black_stone: (x, y) ->
-    @context_2d.beginPath()
-    @context_2d.arc x, y, @stone_radius, 0, Math.PI*2, false
-    @context_2d.closePath()
-    @context_2d.fillStyle = '#000'
-    @context_2d.fill()
-    
-  draw_white_stone: (x, y) ->
-    @context_2d.beginPath()
-    @context_2d.arc x, y, @stone_radius, 0, Math.PI*2, false
-    @context_2d.closePath()
-    @context_2d.fillStyle = '#fff'
-    @context_2d.fill()
-    @context_2d.strokeStyle = '#666'
-    @context_2d.stroke()
+  draw_white_stone: (name) ->
+    target = @game_id + '-' + name
+    $('#'+target).attr('class', 'w')
     
   draw_last_mark: (dot) ->
     if not @draw_last_move then return
+
     if @show_step
       dot.show_dot_step '#f00'
     else
-      @context_2d.beginPath()
-      @context_2d.arc dot.x, dot.y, @stone_radius/2, 0, Math.PI*2, false
-      @context_2d.closePath()
-      
+      target = @game_id + '-' + dot.name
       if dot.owner is "b"
-        @context_2d.strokeStyle = '#fff'
+        $('#'+target).attr('class', 'b last')
       else
-        @context_2d.strokeStyle = '#000'
-      @context_2d.stroke()
-      
+        $('#'+target).attr('class', 'w last')
+
     @last_move = dot
     
   block_last_mark: -> @draw_last_move = false
@@ -131,8 +66,6 @@ class Board
     for i in [0...alphabet.length]
       for j in [0...alphabet.length]
         dot = new BoardDot alphabet[i]+alphabet[j], @board_edge + @board_square*i, @board_edge + @board_square*j, @
-        if dot.is_star
-          @draw_star dot.x, dot.y
           
         @dots[@dots.length] = dot
         
@@ -140,54 +73,20 @@ class Board
     
   draw_dots: ->
     for dot in @dots
-      if dot.is_star
-        @draw_star dot.x, dot.y
       if dot.owner == "b"
-        @draw_black_stone dot.x, dot.y
+        @draw_black_stone dot.name
       else if dot.owner == "w"
-        @draw_white_stone dot.x, dot.y
+        @draw_white_stone dot.name
       if @show_step and dot.owner isnt 'e'
         dot.show_dot_step()
     return
-        
-  get_cursor_position: (e) ->
-    closest = null
-    if typeof e.pageX isnt 'undefined' and typeof epageY isnt 'undefined'
-      x = e.pageX
-      y = e.pageY
-    else
-      x = e.clientX + document.body.scrollLeft + document.documentElement.scrollLeft
-      y = e.clientY + document.body.scrollTop + document.documentElement.scrollTop
-    
-    x -= $("##{@board_id}").offset().left
-    y -= $("##{@board_id}").offset().top
-    
-    for dot in @dots
-      dx = Math.abs(dot.x - x)
-      dy = Math.abs(dot.y - y)
-      cur = Math.sqrt(dx*dx + dy*dy)
-      if cur > @stone_radius
-        continue
-      
-      unless min? or min <= cur
-        closest = dot
-        min = cur
-        
-    return closest
     
   draw_fake_stone: (dot) ->
     @refresh()
     if @last_move? then @draw_last_mark @last_move
     
-    @context_2d.beginPath()
-    @context_2d.arc dot.x, dot.y, @stone_radius, 0, Math.PI*2, false
-    @context_2d.closePath()
-    
-    if @color_in_turn is "b"
-      @context_2d.fillStyle = 'rgba(0, 0, 0, 0.6)'
-    else if @color_in_turn is "w"
-      @context_2d.fillStyle = 'rgba(255, 255, 255, 0.6)'
-    @context_2d.fill()
+    target = @game_id + '-' + dot.name
+    $('#'+target).attr('class', @color_in_turn + " fake")
     
   on_dot_click: (dot) ->
     if dot?
@@ -340,7 +239,15 @@ class Board
     return rc
     
   refresh : ->
-    @context_2d.clearRect(0, 0, @board_image_size, @board_image_size)
+    board = @game_id.split('-')[0]
+    if board is 'board'
+      $('#board .board_fallback_area div').attr('class', 'e')
+    else if board is 'board_review'
+      $('#board_review .board_fallback_area div').attr('class', 'e')
+    
+    for dot in @dots
+      dot.refresh()
+      
     @draw_game()
     
   reset : ->
@@ -384,10 +291,18 @@ class Board
     dot.set_text text
     
   click : (click_fn) ->
-    @canvas.addEventListener('click', click_fn, false)
+    target = @game_id.split('-')[0]
+    if target is 'board'
+      $('#board .e').bind('click', click_fn)
+    else
+      $('#board_review .e').bind('click', click_fn)
     
   remove_click_fn : (click_fn) ->
-    @canvas.removeEventListener('click', click_fn, false)
+    target = @game_id.split('-')[0]
+    if target is 'board'
+      $('#board .e').unbind('click', click_fn)
+    else
+      $('#board_review .e').unbind('click', click_fn)
       
 class BoardDot
 
@@ -405,10 +320,10 @@ class BoardDot
       return false
       
     if @parent.color_in_turn is "b"
-      @parent.draw_black_stone @x, @y
+      @parent.draw_black_stone @name
       @parent.color_in_turn = "w"
     else if @parent.color_in_turn is "w"
-      @parent.draw_white_stone @x, @y
+      @parent.draw_white_stone @name
       @parent.color_in_turn = "b"
       
     @owner = color
@@ -418,36 +333,33 @@ class BoardDot
     @owner = "e"
     @step = 0
     
+  refresh: ->
+    target = @parent.game_id + '-' + @name
+    $('#'+target).text('')
+    $('#'+target).removeAttr('style')
+    
   set_text: (text) ->
-    @parent.context_2d.clearRect(@x-6, @y-5, 12, 12);
-    @parent.context_2d.fillStyle = "#E9C2A6";
-    @parent.context_2d.fillRect(@x-6, @y-5, 12, 12);
-    @parent.context_2d.fillStyle = "#000";
-    @parent.context_2d.font = "bold 18px Monospace";
-    @parent.context_2d.fillText(text, @x-5, @y+5);
+    target = @parent.game_id + '-' + @name
+    $('#'+target).text(text)
+    $('#'+target).css({"background-color":'#FFCC66';})
     
   show_dot_step: (color) ->
     return if @step is -1
     if @step is 0
       @step = @parent.step_count + 1
+      
+    target = @parent.game_id + '-' + @name
+    $('#'+target).text(@step)
     
     if color?
-      @parent.context_2d.fillStyle = color
+      font_color = color
     else
       if @owner is "b"
-        @parent.context_2d.fillStyle = '#fff'
+        font_color = '#fff'
       else
-        @parent.context_2d.fillStyle = '#000'
+        font_color = '#000'
     
-    @parent.context_2d.font = '14px sans serif'
-    y = @y + 4
-    if @step < 10
-      x = @x - 3;
-    else if @step < 100
-      x = @x - 6
-    else
-      x = @x - 10
-    @parent.context_2d.fillText(@step, x, y)
+    $('#'+target).css({color:font_color})
     
   get_dot_from: (pos) ->
     alphabet = 'abcdefghijklmnopqrs'
@@ -523,7 +435,8 @@ window.bind_review = ->
 
 window.on_review_click = (e) ->
   move = {}
-  dot = review.board.get_cursor_position e
+  name = e.target.id.split('-')[2]
+  dot = review.board.find_stone_by_name name
   if dot?
     if dot.owner isnt 'e' then return
     if review.board.on_dot_click(dot) is true
@@ -590,28 +503,27 @@ window.on_player_click = (e) ->
   if game_mode isnt 0
     if current_player isnt current_user or game_status is '1'
       return
-  
-  dot = player.board.get_cursor_position e
-  if dot?
-    if dot.owner isnt 'e' then return
-    player.board.draw_fake_stone dot
-    if clock_status is 0
-      rattle_clock()
-    window.pendding_move = ->
-      if player.board.on_dot_click(dot) is true
-        move[dot.owner.toUpperCase()] = dot.name
-        player.parser.update_game move
-        if black_player is current_player
-          $('#game').attr('current_player', white_player)
-        else
-          $('#game').attr('current_player', black_player)
-        # for better user experience
-        $('#pass').hide()
-        $('#score').hide()
-        $('#resign').hide()
-        $('#clock').hide()
-        if window.board_game_id?
-          $.post('http://' + window.location.host + '/games/' + window.board_game_id  + '/moves', {"sgf":$("#game").attr("sgf"), "player_id":$("#game").attr("current_user")})
+
+  name = e.target.id.split('-')[2]
+  dot = player.board.find_stone_by_name name
+  player.board.draw_fake_stone dot
+  if clock_status is 0
+    rattle_clock()
+  window.pendding_move = ->
+    if player.board.on_dot_click(dot) is true
+      move[dot.owner.toUpperCase()] = dot.name
+      player.parser.update_game move
+      if black_player is current_player
+        $('#game').attr('current_player', white_player)
+      else
+        $('#game').attr('current_player', black_player)
+      # for better user experience
+      $('#pass').hide()
+      $('#score').hide()
+      $('#resign').hide()
+      $('#clock').hide()
+      if window.board_game_id?
+        $.post('http://' + window.location.host + '/games/' + window.board_game_id  + '/moves', {"sgf":$("#game").attr("sgf"), "player_id":$("#game").attr("current_user")})
 
 window.post_comments = ->
   (e) ->
@@ -630,38 +542,6 @@ window.bind_key_fn = ->
       when "e" then $("#end").trigger("click")
       when "s" then $("#show_steps").trigger("click")
 
-      
-window.play_sound = (name, volume) ->
-  if sound_enabled and $.inArray(name, loaded_sounds) isnt -1
-    try
-      sound = $('#'+name+'_sound').get(0)
-      sound.volume = volume
-      sound.currentTime = 0
-      sound.play()
-    catch err
-      alert('sound error: '+err)
-      loaded_sounds.splice($.inArray(name, loaded_sounds), 1)
-      
-window.create_thumbnail = ->
-  size = 80
-  canvas = document.getElementById('board')
-  dataURL = canvas.toDataURL('image/png')
-  copy = document.createElement('canvas')
-  copy.width = size
-  copy.height = size
-  
-  source_image = new Image()
-  source_image.src = dataURL
-  ctx = copy.getContext('2d')
-  source_image.onload = ->
-    copy_bg = new Image()
-    copy_bg.src = '/assets/default_board.jpg'
-    copy_bg.onload = ->
-      ctx.drawImage(copy_bg, 0, 0, size, size)
-      ctx.drawImage(source_image, 0, 0, size, size)
-      data = copy.toDataURL('image/png').replace(/^data:image\/(png);base64,/, "")
-      $.post('http://' + window.location.host + '/games/' + window.board_game_id + '/thumbnails', {'image_data':data})
-    
 window.Board = Board
 window.BoardDot = BoardDot
 window.refresh = true

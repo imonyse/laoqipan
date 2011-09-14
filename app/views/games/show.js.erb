@@ -17,6 +17,7 @@ if ($('#game_nav').length) {
 	$('#side_bar').hide();
 } else {
 	$('#game_area').html("<%= escape_javascript(render("games/the_game")) %>");
+	$('#game_review').html("<%= escape_javascript(render("games/analyse_board")) %>");
 }
 
 if ($('#comment_box').length) {

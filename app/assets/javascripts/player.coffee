@@ -89,9 +89,9 @@ class Player
     status = $('#game').attr('status')
     if mode isnt 0 and status isnt 0
       if @flag
-        @board.click(bind_review(@board))
+        @board.click(bind_review())
       else
-        @board.click(bind_click(@board))
+        @board.click(bind_click())
 
   pre_stones : ->
     ab = @basic_info.AB

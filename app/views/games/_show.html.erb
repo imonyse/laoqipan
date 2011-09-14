@@ -2,17 +2,7 @@
 	<div id="game_area"><%= render "games/the_game" %></div>
 	<div id="discussion"><%= render "games/tab_info" %></div>
 	<div id="game_review" title="<%= t(:analyse) + t(:analyse_tips) %>">
-		<div class="game_board">
-			<canvas id="board_review"></canvas>
-			<ul class="inline">
-				<li id="show_steps" class="control_button wood_shadow"><%= t("show_steps") %></li>
-				<li id="start" class="control_button wood_shadow"><%= "<<" %></li>
-				<li id="end" class="control_button wood_shadow"><%= ">>" %></li>
-				<li id="prev" class="control_button wood_shadow"><%= "<=" %></li>
-				<li id="next" class="control_button wood_shadow"><%= "=>" %></li>
-			</ul>
-			<span id="review_swap">0</span> <%= t "step" %>
-		</div>
+		<%= render "games/analyse_board" %>
 	</div>
 	<div class="notify_wrapper" id="side_bar">
 		<% if user_signed_in? %>

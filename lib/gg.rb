@@ -1,3 +1,6 @@
+# RAILS_ROOT = File.expand_path("../..", __FILE__)
+require 'chunky_png'
+
 class GTP
   def self.run(bot_type, &command)
     if bot_type == 'gnugo'
@@ -40,9 +43,16 @@ class GTP
     send_command(:genmove, color)
   end
   
+  def list_stones(color)
+    @io.puts [:list_stones, color].join(" ")
+    result = @io.take_while { |line| line != "\n" }.join
+    return result.sub(/^=\s/, "").sub(/\n/, "")
+  end
+  
   def send_command(command, *arguments)
     @io.puts [command, *arguments].join(" ")
     result = @io.take_while { |line| line != "\n" }.join
+    
     rc = result.scan(/^=\s[a-zA-Z]*[0-9]*$/)
     if rc.first.nil?
       return rc
@@ -65,6 +75,48 @@ def score_game(game_id, game_sgf)
   
   File.delete(filepath)
   return re
+end
+
+def generate_thumbnail(game_id, game_sgf)
+  black_pos = nil
+  white_pos = nil
+  
+  filepath = "#{RAILS_ROOT}/tmp/#{game_id}.sgf"
+  File.open(filepath, "w") do |f|
+    f.write game_sgf
+  end
+  
+  GTP.run('gnugo') do |gtp|
+    gtp.loadsgf filepath
+    black_pos = gtp.list_stones('black').split(" ")
+    white_pos = gtp.list_stones('white').split(" ")
+  end
+  
+  File.delete(filepath)
+
+  board = ChunkyPNG::Image.from_file(File.join(File.dirname(__FILE__), *%w[.. app assets images default_board.png]))
+  black = ChunkyPNG::Image.from_file(File.join(File.dirname(__FILE__), *%w[.. app assets images black_thumb.png]))
+  white = ChunkyPNG::Image.from_file(File.join(File.dirname(__FILE__), *%w[.. app assets images white_thumb.png]))
+  # now we have black and white stones' position
+  # convert these position to coordinates
+  offset = (80.0/531.0)*25
+  black_pos.each do |pos|
+    x, y = pos_to_coordinates(pos)
+    board.compose!(black, 4 + (x * offset).round, 4 + (y * offset).round)
+  end
+  white_pos.each do |pos|
+    x, y = pos_to_coordinates(pos)
+    board.compose!(white, 4 + (x * offset).round, 4 + (y * offset).round)
+  end
+  
+  return board
+end
+
+def pos_to_coordinates(pos)
+  pos.scan /\A([A-HJ-T])(\d{1,2})\z/i
+  x = $1.getbyte(0) - "A".getbyte(0) - (pos > "I" ? 1 : 0)
+  y = 19 - $2.to_i
+  return [x,y]
 end
 
 # return a move coordinates, such as "c17", or "PASS", or "resign"
