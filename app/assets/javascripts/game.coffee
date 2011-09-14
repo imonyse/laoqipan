@@ -20,6 +20,7 @@ window.prepare_game = ->
     $("#start").removeAttr('onclick')
     $("#end").removeAttr('onclick')
     $("#show_steps").removeAttr('onclick')
+    
     $("#pass").removeAttr('onclick')
     $("#resign").removeAttr('onclick')
     $("#score").removeAttr('onclick')
@@ -240,20 +241,20 @@ window.subscribe_game = ->
       $('#connection').html("reconnecting")
 
 window.init_review = ->
-  if typeof window.review is 'undefined' or $('#game_nav').length
-    $("#next").click ->
-      review.next();
-    $("#prev").click ->
-      review.prev()
-    $("#start").click ->
-      review.start()
-    $("#end").click ->
-      review.end()
-    $("#show_steps").click ->
-      if review.board.show_step
-        review.hide_steps()
-      else
-        review.show_steps()
+  # if typeof window.review is 'undefined' or $('#game_nav').length
+  $("#next").click ->
+    review.next();
+  $("#prev").click ->
+    review.prev()
+  $("#start").click ->
+    review.start()
+  $("#end").click ->
+    review.end()
+  $("#show_steps").click ->
+    if review.board.show_step
+      review.hide_steps()
+    else
+      review.show_steps()
         
   $('#game_review').attr('sgf', $('#game').attr('sgf'))
   parser = new SGF $('#game_review')

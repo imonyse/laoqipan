@@ -50,13 +50,9 @@ class Game < ActiveRecord::Base
   def thumbnail
     path = "/system/thumbnails/#{self.created_at.year}/#{self.created_at.month}/#{self.created_at.day}/#{self.id}.png"
     if File.exists?("#{Rails.root.to_s}/public#{path}")
-      return path
+      return path + "?#{self.updated_at.to_s(:number)}"
     else
-      if mode == 1
-        return "default_board.png"
-      elsif mode == 2
-        return "zuozi_board.png"
-      end
+      return "default_board.png"
     end
   end
   

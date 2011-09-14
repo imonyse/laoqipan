@@ -6,7 +6,7 @@ end
 Given /^I login as "([^"]*)" with password "([^"]*)"$/ do |arg1, arg2|
   When 'I fill in "session_email" with "'+arg1+'"'
   And 'I fill in "session_password" with "'+arg2+'"'
-  And 'I press "session_submit"'
+  And 'I press "继续"'
 end
 
 When /^I logout$/ do

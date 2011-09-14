@@ -239,12 +239,6 @@ class Board
     return rc
     
   refresh : ->
-    board = @game_id.split('-')[0]
-    if board is 'board'
-      $('#board .board_fallback_area div').attr('class', 'e')
-    else if board is 'board_review'
-      $('#board_review .board_fallback_area div').attr('class', 'e')
-    
     for dot in @dots
       dot.refresh()
       
@@ -332,9 +326,11 @@ class BoardDot
   reset: ->
     @owner = "e"
     @step = 0
+    @refresh()
     
-  refresh: ->
+  refresh : ->
     target = @parent.game_id + '-' + @name
+    $('#'+target).attr('class', 'e')
     $('#'+target).text('')
     $('#'+target).removeAttr('style')
     

@@ -9,7 +9,7 @@ Feature: user
 		And I am on the home page
 		When I fill in "session_email" with "tidy@example.com"
 		And I fill in "session_password" with "foobar"
-		And I press "session_submit"
+		And I press "继续"
 		Then I should be on tidy's personal page
 		And I should see "tidy"
 		And I should see "登出"
@@ -24,7 +24,7 @@ Feature: user
 		And I wait until text "邀请" is visible
 		And I follow "邀请"
 		And I select "现代棋" from "game_mode"
-		And I press "game_submit"
+		And I press "发出对局邀请"
 		Then I should see "等待对手落子确认"
 
 

@@ -41,7 +41,6 @@ module Html5Weiqi
     config.filter_parameters += [:password]
     
     config.assets.enabled = true
-    
     # config.assets.version = '1.0'
   end
 end
