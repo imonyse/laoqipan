@@ -100,19 +100,33 @@ $board_width: 531px;
     height:25px;
     float:left;
     &.b {
+      color:#fff;
       background:url(/assets/black_stone.png) no-repeat;
     }
     &.b.last {
+      color:#f00;
       background:url(/assets/last_black_stone.png) no-repeat;
     }
+    &.b.last_text {
+      color:#f00;
+      background:url(/assets/black_stone.png) no-repeat;
+    }
     &.w {
+      color:#000;
       background:url(/assets/white_stone.png) no-repeat;
     }
     &.w.last {
+      color:#f00;
       background:url(/assets/last_white_stone.png) no-repeat;
+    }
+    &.w.last_text {
+      color:#f00;
+      background:url(/assets/white_stone.png) no-repeat;
     }
     &.fake {
       opacity: 0.6;
+      -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=60)";
+    	filter: alpha(opacity=60);
     }
   }
 }

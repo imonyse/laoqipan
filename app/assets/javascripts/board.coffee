@@ -24,6 +24,7 @@ class Board
     
     @dead_black_count = 0
     @dead_white_count = 0
+    @fake_stone       = null
     
     @draw_game()
     
@@ -43,14 +44,10 @@ class Board
     if not @draw_last_move then return
 
     if @show_step
-      dot.show_dot_step '#f00'
+      dot.jquery_target.addClass('last_text')
     else
-      target = @game_id + '-' + dot.name
-      if dot.owner is "b"
-        dot.jquery_target.attr('class', 'b last')
-      else
-        dot.jquery_target.attr('class', 'w last')
-
+      dot.jquery_target.addClass('last')
+    
     @last_move = dot
     
   block_last_mark: -> @draw_last_move = false
@@ -80,8 +77,12 @@ class Board
     return
     
   draw_fake_stone: (dot) ->
-    @refresh()
-    if @last_move? then @draw_last_mark @last_move
+    if @fake_stone
+      @fake_stone.jquery_target.attr('class', 'e')
+    @fake_stone = dot
+
+    if @last_move?
+      @draw_last_mark @last_move
     
     dot.jquery_target.attr('class', @color_in_turn + " fake")
     
@@ -108,9 +109,10 @@ class Board
         if dot.step != -1
           @step_count++
           dot.step = @step_count
-        if window.refresh
-          @refresh()
-          
+
+        if @last_move
+          target = @last_move.jquery_target
+          target.removeClass('last')   
         @draw_last_mark dot
 
       return true
@@ -169,6 +171,10 @@ class Board
         @dead_white_count++
       dot.owner = "e"
       dot.step = 0
+      
+      target = dot.jquery_target
+      target.attr('class', 'e')
+      target.text('')
     
     # update stone capture status
     $('#black_captured').text(@dead_black_count)
@@ -239,7 +245,7 @@ class Board
     if window.refresh
       for dot in @dots
         dot.refresh()
-      
+    
       @draw_game()
     
   reset : ->
@@ -332,28 +338,17 @@ class BoardDot
   refresh : ->
     @jquery_target.attr('class', 'e')
     @jquery_target.text('')
-    @jquery_target.removeAttr('style')
     
   set_text: (text) ->
     @jquery_target.text(text)
     @jquery_target.css({"background-color":'#FFCC66';})
     
-  show_dot_step: (color) ->
+  show_dot_step: ->
     return if @step is -1
     if @step is 0
       @step = @parent.step_count + 1
       
     @jquery_target.text(@step)
-    
-    if color?
-      font_color = color
-    else
-      if @owner is "b"
-        font_color = '#fff'
-      else
-        font_color = '#000'
-    
-    @jquery_target.css({color:font_color})
     
   get_dot_from: (pos) ->
     alphabet = 'abcdefghijklmnopqrs'
@@ -507,6 +502,7 @@ window.on_player_click = (e) ->
     if player.board.on_dot_click(dot) is true
       move[dot.owner.toUpperCase()] = dot.name
       player.parser.update_game move
+
       if black_player is current_player
         $('#game').attr('current_player', white_player)
       else
