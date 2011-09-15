@@ -112,12 +112,12 @@ zh:
       more: "查看更多 >"
       join_chat: "讨论频道"
     application:
-      no_canvas_api: "很遗憾，我暂不支持你使用的浏览器"
-      need_plugin_for_ie: "为确保最佳使用体验，已将你和网站内容隔离。如果你正在使用windows下的Internet Explorer 6，请安装插件: "
+      no_canvas_api: "很遗憾，因为你使用的浏览器太慢"
+      need_plugin_for_ie: "为确保最佳使用体验，已将你和网站内容隔离。请升级你的浏览器，或者请安装插件: "
       sorry_for_that: "然后继续。该插件不支持其他非IE6(包括但不限于使用IE内核进行二次开发的)浏览器"
       I_recommand: "你也可以使用推荐浏览器: "
-      the_best_browser: "它不仅拥有最快的前台脚本执行速度，而且绝对比国内某些厂商吹嘘的浏览器安全得多。"
-      download: "前往下载页面"
+      the_best_browser: "老棋盘正在尽力解决低端浏览器的速度问题。"
+      download: "前往Google Chrome下载页面"
       google_chrome_frame: "安装Google浏览器框架"
   sessions:
     new:
