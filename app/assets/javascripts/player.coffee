@@ -12,9 +12,9 @@ window.notify_message = (current_player) ->
   else
     alert_name = $('#white_player a').html()
   if window.get_locale() is 'zh'
-    alert_msg = ", 该你了!看看红名的对局"
+    alert_msg = ", 该你了!"
   else
-    alert_msg = ", your turn! See your red games"
+    alert_msg = ", your turn!"
   $.titleAlert(alert_name+alert_msg, {requireBlur:true, stopOnFocus:true, duration:12000, interval:1000})
 
 window.show_clock = ->

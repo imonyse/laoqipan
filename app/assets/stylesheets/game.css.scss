@@ -95,7 +95,7 @@ $board_width: 531px;
   margin:28px;
   div {
     text-align:center;
-    line-height:25px;
+    line-height:24px;
     width:25px;
     height:25px;
     float:left;
@@ -166,6 +166,7 @@ $board_width: 531px;
   width:200px;
   color:#fff;
   background:transparent;
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000050,endColorstr=#99000050);
   background:rgba(0, 0, 0, 0.4);
 }
 
@@ -350,6 +351,7 @@ input[type="text"], input[type="password"], input[type="url"], input[type="email
   margin-top:10px;
   top:0;
   left:0;
+  border:1px solid #ccc;
 }
 
 #sign_in {
@@ -358,6 +360,7 @@ input[type="text"], input[type="password"], input[type="url"], input[type="email
   position:absolute;
   top:0;
   right:0;
+  border: 1px solid #ccc;
 }
 
 .tips {
@@ -541,27 +544,33 @@ span {
   margin-bottom:5px;
   clear:both;
   height:20px;
+  width:100%;
   background-color:#eee;
   padding-top:2px;
   border:1px solid #ccc;
+  position:relative;
   div {
     cursor:pointer;
-  }
-}
-.collapse {
-  float:left;
-  width:24px;
-  height:24px;
-  background:url(/assets/expand_alt.png) no-repeat;
-}
+    &.collapse {
+      position:absolute;
+      top:0;
+      left:0;
+      width:24px;
+      height:24px;
+      background:url(/assets/expand_alt.png) no-repeat;
+    }
 
-.refresh {
-  float:right;
-  z-index:99;
-  width:24px;
-  height:24px;
-  display:none;
-  background:url(/assets/button_reload.png) no-repeat;
+    &.refresh {
+      position:absolute;
+      top:0;
+      right:0;
+      z-index:99;
+      width:24px;
+      height:24px;
+      display:none;
+      background:url(/assets/button_reload.png) no-repeat;
+    }
+  }
 }
 
 .dialog_close {
@@ -653,6 +662,8 @@ span {
 
 #loader {
   display:none;
+  z-index:11;
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000050,endColorstr=#99000050);
   background:url(/assets/ajax-loader.gif) no-repeat rgba(0,0,0,0.6) center;
   width:60px;
   height:60px;

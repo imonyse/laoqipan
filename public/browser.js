@@ -1,0 +1,1 @@
+window.unsupported = true;

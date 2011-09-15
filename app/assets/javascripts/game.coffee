@@ -62,18 +62,18 @@ window.init_game = ->
         $.getScript('http://' + window.location.host + '/games/' + window.board_game_id + '/moves')
 
 $(window).load ->
-  # if !Modernizr.canvas
-  #   $('#browser_check_bg').css("opacity":"0.7")
-  #   # center pop up div
-  #   width = document.documentElement.clientWidth
-  #   height = document.documentElement.clientHeight
-  #   pop_width = $('#browser_check').width()
-  #   pop_height = $('#browser_check').height()
-  #   $('#browser_check').css({"position":"absolute", "top":height/2-pop_height/2,"left":width/2-pop_width/2})
-  #   
-  #   $('#browser_check_bg').fadeIn("slow")
-  #   $('#browser_check').fadeIn("slow")
-  #   return
+  if window.unsupported
+    $('#browser_check_bg').css("opacity":"0.7")
+    # center pop up div
+    width = document.documentElement.clientWidth
+    height = document.documentElement.clientHeight
+    pop_width = $('#browser_check').width()
+    pop_height = $('#browser_check').height()
+    $('#browser_check').css({"position":"absolute", "top":height/2-pop_height/2,"left":width/2-pop_width/2})
+    
+    $('#browser_check_bg').fadeIn("slow")
+    $('#browser_check').fadeIn("slow")
+    return
     
   $("#active_games").children('.collapse').click ->
     if $("#notified_games").is(":visible")
@@ -143,9 +143,6 @@ $(window).load ->
     # $('#duel_list').children('.collapse').trigger('click')
     $('#game_info').children('.collapse').trigger('click')
   
-  if $('#account').length
-    open_my_channel()
-    
   if $('#intro').length
     $('.game_thumbnail').click ->
       $('#game_nav').show()
@@ -162,17 +159,6 @@ $(window).load ->
         $('#close_game_nav').hide()
       $.getScript('http://' + window.location.host + '/games/' + $(this).attr('id') + window.location.search)
       
-      
-window.open_my_channel = ->
-  if $('#account').length
-    my_channel = $('#account').attr('href').match(/^\/users\/\d+/)[0].split('/')[2]
-    window.my_jug = new Juggernaut
-    window.my_jug.subscribe my_channel, (data) ->
-      if data['type'] is 'turn'
-        if $('#notified_games').is(':hidden')
-          $('#active_games div.collapse').trigger('click')
-        else
-          $('#active_games div.refresh').trigger('click')
       
 window.subscribe_game = ->
   if $('#game').attr('status') is '1'

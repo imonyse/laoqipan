@@ -45,6 +45,7 @@ class Board
 
     if @show_step
       dot.jquery_target.addClass('last_text')
+      dot.jquery_target.text(@step_count)
     else
       dot.jquery_target.addClass('last')
     
@@ -78,7 +79,7 @@ class Board
     
   draw_fake_stone: (dot) ->
     if @fake_stone
-      @fake_stone.jquery_target.attr('class', 'e')
+      @fake_stone.jquery_target.removeClass('last')
     @fake_stone = dot
 
     if @last_move?
@@ -246,7 +247,7 @@ class Board
       for dot in @dots
         dot.refresh()
     
-      @draw_game()
+    @draw_game()
     
   reset : ->
     @step_count = 0

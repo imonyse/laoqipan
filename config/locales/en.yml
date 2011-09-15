@@ -109,8 +109,8 @@ en:
       
       join_chat: "Chat Channel"
     application:
-      no_canvas_api: "I detect your browser doesnt support CANVAS API"
-      need_plugin_for_ie: "To insure best user experience, you are now blocked. If you are using Internet Explorer on Windows, please install this plugin: "
+      no_canvas_api: "Sorry, your browser is not supported atm."
+      need_plugin_for_ie: "To insure best user experience, you are now blocked. If you are using Internet Explorer 6 on Windows, please install this plugin: "
       sorry_for_that: "and continue then. This plugin doesnt support other non-IE browser."
       I_recommand: "You can also use the recommand browser: "
       the_best_browser: "It's fast, and works great for the website."
