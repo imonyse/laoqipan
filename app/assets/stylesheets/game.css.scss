@@ -590,6 +590,19 @@ span {
   }
 }
 
+#gnugo {
+  margin-top:10px;
+  margin-bottom:10px;
+  div.select_player {
+    margin-left:5px;
+  }
+}
+
+#human {
+  margin-top:10px;
+  margin-bottom:10px;
+}
+
 .dialog_close {
   background:url(/assets/dialog_close.png) no-repeat;
   width:16px;
