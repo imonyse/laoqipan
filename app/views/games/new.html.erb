@@ -1,5 +1,5 @@
 <% opponent = User.find_by_name(@game.opponent) %>
-<%= form_for @game, :remote => true do |f| %>
+<%= form_for @game do |f| %>
 	<div class="field">
 		<%= f.label :opponent, t(:your_opponent)+@opponent_name %>
 		<%= f.hidden_field :opponent  %>
@@ -14,3 +14,5 @@
 		<%= f.submit t(:send) %>
 	</div>
 <% end %>
+
+<%= link_to t(".back_to_select"), duel_path %>

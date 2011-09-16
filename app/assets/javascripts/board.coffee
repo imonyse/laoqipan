@@ -513,8 +513,7 @@ window.on_player_click = (e) ->
       $('#score').hide()
       $('#resign').hide()
       $('#clock').hide()
-      if window.board_game_id?
-        $.post('http://' + window.location.host + '/games/' + window.board_game_id  + '/moves', {"sgf":$("#game").attr("sgf"), "player_id":$("#game").attr("current_user")})
+      $.post(window.location.pathname  + '/moves', {"sgf":$("#game").attr("sgf"), "player_id":$("#game").attr("current_user")})
 
 window.post_comments = ->
   (e) ->

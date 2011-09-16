@@ -34,7 +34,7 @@ ul {
   list-style-type:none;
   &.inline {
     display:inline;
-    margin:0 5px 0 0;
+    position:absolute;
     padding:5px 0 5px 0;
     a {
       color:black;

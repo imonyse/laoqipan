@@ -2,8 +2,8 @@ zh:
   English: "English Version"
   Chinese: "汉语版"
   none: "无"
-  manifesto_p1: "老棋盘是一个基于HTML5的网页对弈网站，受govsgo.com和无争围棋网的影响很深，但希望能做得更好。"
-  manifesto_p2: "希望你能喜欢这个平台，并从中受益。有任何问题，请通过网站下方的提供的信息和开发者取得联系。"
+  introduce_go: "围棋，是发源于古代中国策略性二人棋类，使用格状棋盘及黑白二色棋子进行对弈，过程中围地吃子，以所围「地」的大小决定胜负。中国古时有“弈”、“碁”（“棋”的异体字）、“手谈”等多种称谓，属琴棋书画四艺之一。"
+  introduce_site: "在老棋盘你可以和来自网络上的对手下棋。一场对局没有时间限制，你可以仔细思考后再落子。你还可以同时和多个对手下棋，也可以和一个对手同时下多个对局。下棋请先登录。"
   about: "致谢"
   microblog: "微博"
   feedback: "问题反馈"
@@ -107,6 +107,7 @@ zh:
   analyse_tips: "(测试版, 以后将对当前对局者有功能限制，可拖动，点击棋盘落子)"
   show_steps: "手数"
   step: "手"
+  active_games: "我的对局"
   layouts:
     header:
       more: "查看更多 >"
@@ -179,8 +180,8 @@ zh:
       
       click_to_confirm: "落子后点我"
       score: "数子"      
-    show:
-      active_games: "我的对局"
+    new:
+      back_to_select: "重新选择对手"
   users:
     form:
       username: "名号(2到9个汉字或字母)"
@@ -201,6 +202,7 @@ zh:
       close_for_play: "拒绝对局邀请"
       create: "提交"
     show:
+      
       wait_for: "等待"
       to_move: "落子"
       other_games: "其他棋局"

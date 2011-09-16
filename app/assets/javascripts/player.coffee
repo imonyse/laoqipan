@@ -194,9 +194,7 @@ class Player
           for vt in cur.LB
             mark = vt.split ':'
             @board.set_text(mark[0], mark[1])
-        if @flag
-          $('#review_swap').html(@step) 
-        else
+        if !@flag
           $('#swap').html(@step)
         @step++
     
@@ -240,9 +238,7 @@ class Player
   start : ->
     @step = 1
     @board.reset()
-    if @flag
-      $('#review_swap').html('0')
-    else
+    if !@flag
       $('#swap').html('0')
     $('#post_out').html('')
 
@@ -277,7 +273,7 @@ class Player
     if @step > 1
       @board.draw_last_mark @board.last_move
     
-
+    $('#loader').hide()
     re = @basic_info.RE
     result_notify re if typeof re isnt 'undefined'
 
@@ -308,7 +304,7 @@ class Player
         move['W'] = ''
       @parser.update_game(move)
 
-      $.post('http://' + window.location.host + '/games/' + window.board_game_id + '/moves', {"sgf":$("#game").attr("sgf"), "moves":"PASS", "player_id":$("#game").attr("current_user")})
+      $.post(window.location.pathname + '/moves', {"sgf":$("#game").attr("sgf"), "moves":"PASS", "player_id":$("#game").attr("current_user")})
 
   resign : ->
     current_user = $('#game').attr('current_user')
@@ -322,7 +318,7 @@ class Player
       move = 'WRESIGN'
 
     @parser.add_winner winner
-    $.post('http://' + window.location.host + '/games/' + window.board_game_id + '/moves', {"sgf":$("#game").attr("sgf"), "moves":move})
+    $.post(window.location.pathname + '/moves', {"sgf":$("#game").attr("sgf"), "moves":move})
 
 
 window.Player = Player

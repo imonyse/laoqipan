@@ -2,8 +2,8 @@ en:
   English: "English Version"
   Chinese: "汉语版"
   none: "none"
-  manifesto_p1: "Laoqipan is an HTML5 based website that you can play the board game Go. It is influenced by govsgo.com, and wants to do better."
-  manifesto_p2: "I hope you can enjoy playing. Please feel free to contact me via links given below."
+  introduce_go: "Go ('weiqi' in Chinese, 'igo' in Japanese, 'baduk' in Korean), is an ancient board game for two players that originated in China over 2,000 years ago. The object of the game is to use one's stones to surround a larger portion of the board than the opponent."
+  introduce_site: "Laoqipan is a website that you can play the board game go with other players around the world. There isn't any time control rules. You can think as long as you can before you make a move. You can play with different players simultaneously, or play different games with one player simultaneously. Please login first to play a game."
   about: "Acknowledgment"
   microblog: "Twitter"
   feedback: "Feedback"
@@ -14,7 +14,7 @@ en:
   game_type: "game type:"
   main_page: "Main"
   back: "back"
-  game_duel: "Duel"
+  game_duel: "New Game"
   sign_in: "Login"
   sign_out: "Logout"
   register: "Register"
@@ -56,7 +56,7 @@ en:
   password_length_msg: "Password length should between 6 and 20"
   learn_more: "More"
   login_to_proceed: "Please login to proceed"
-  signup_msg: "Doesn't have an account"
+  signup_msg: "Doesn't have an account? "
   signup_now: "Signup Now"
   password: "Password"
   name_length_msg: "Name should be 2 to 9 characters"
@@ -103,6 +103,7 @@ en:
   analyse_tips: "(experimental, draggable, click board to make a move)"
   show_steps: "Steps"
   step: "step(s)"
+  active_games: "My Games"
   layouts:
     header:
       more: "More >"
@@ -164,8 +165,8 @@ en:
       
       click_to_confirm: "Confirm"
       score: "Score"
-    show:
-      active_games: "My Games"
+    new:
+      back_to_select: "Back"
   users:
     form:
       username: ""
@@ -186,6 +187,7 @@ en:
       close_for_play: "Close for play"
       create: "submit"
     show:
+      
       wait_for: ""
       to_move: "you turn"
       other_games: "other games"

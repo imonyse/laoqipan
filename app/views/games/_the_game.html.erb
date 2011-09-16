@@ -4,7 +4,7 @@
 		<% if current_user == @game.black_player %>
 			<%= avatar_image_tag(@game.white_player) if @game.mode != 0 %>
 			<span id="white_player" class="game_player">
-				<%= link_to @game.white_player.name, '#' if @game.mode != 0 %>
+				<%= link_to @game.white_player.name, @game.white_player if @game.mode != 0 %>
 				<%= t :play_as_white %>
 			</span>
 			<img class="white_turn">
@@ -13,7 +13,7 @@
 		<% else%>
 			<%= avatar_image_tag(@game.black_player) if @game.mode != 0 %>
 			<span id="black_player" class="game_player">
-				<%= link_to @game.black_player.name, '#' if @game.mode != 0 %>
+				<%= link_to @game.black_player.name, @game.black_player if @game.mode != 0 %>
 				<%= t :play_as_black %>
 			</span>
 			<img class="black_turn">
@@ -73,7 +73,7 @@
 				<img class="black_turn">
 				<%= avatar_image_tag(@game.black_player) if @game.mode != 0 %>
 				<span id="black_player" class="game_player">
-					<%= link_to @game.black_player.name, '#' if @game.mode != 0 %>
+					<%= link_to @game.black_player.name, @game.black_player if @game.mode != 0 %>
 					<%= t :play_as_black %>
 				</span>
 				<div class="play_as black"></div>
@@ -82,7 +82,7 @@
 				<img class="white_turn">
 				<%= avatar_image_tag(@game.white_player) if @game.mode != 0 %>
 				<span id="white_player" class="game_player">
-					<%= link_to @game.white_player.name, '#' if @game.mode != 0 %>
+					<%= link_to @game.white_player.name, @game.white_player if @game.mode != 0 %>
 					<%= t :play_as_white %>
 				</span>
 				<div class="play_as white"></div>

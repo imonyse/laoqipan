@@ -1,8 +1,6 @@
 <% object.each do |game| %>
 <div class="game_item game_<%= game.id %>">
-	<% if game.thumbnail %>
-		<%= image_tag game.thumbnail, :class => "game_thumbnail", :id => "#{game.id}" %>
-	<% end %>
+	<%= link_to image_tag(game.thumbnail, :class => "game_thumbnail"), game %>
 	<div class="game_details <%= game.display_color(current_user) %>">
 		<% if game.current_player == game.black_player %>
 			<div class="game_player">

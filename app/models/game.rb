@@ -28,7 +28,7 @@ class Game < ActiveRecord::Base
   belongs_to :current_player, :class_name => "User"
   belongs_to :black_player, :class_name => "User"
   belongs_to :white_player, :class_name => "User"
-  has_many :comments, :order => "created_at"
+  has_many :comments, :order => "created_at DESC"
 
   validates_inclusion_of :mode, :in => [0, 1 ,2]
   validates_inclusion_of :status, :in => [0, 1]

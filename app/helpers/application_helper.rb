@@ -10,4 +10,5 @@ module ApplicationHelper
       image_tag "offline.png", :class => "user_#{user.id}"
     end
   end
+  
 end

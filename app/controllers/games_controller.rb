@@ -23,14 +23,22 @@ class GamesController < ApplicationController
     begin
       @game = Game.find(params[:id])
       @comments = @game.comments.page(params[:comment_page]).per(7)
+      
+      if user_signed_in?
+        @current_games = Game.where("black_player_id = '#{current_user.id}' or white_player_id = '#{current_user.id}'").order("case when current_player_id = '#{current_user.id}' then 0 else 1 end, status, updated_at DESC").page(params[:current_games_page]).per(4)
+        @users = User.where("id != #{current_user.id} and open_for_play = true").order("last_request_at DESC").page(params[:page]).per(19)
+        @games = Game.where("mode != 0 and access = 0 and current_player_id != #{current_user.id}").order("updated_at DESC").page(params[:game_page]).per(4)
+      else
+        @users = User.where("open_for_play = true").order("last_request_at DESC").page(params[:page]).per(19)
+        @games = Game.where("mode != 0 and access = 0").order("updated_at DESC").page(params[:game_page]).per(10)
+      end
     rescue ActiveRecord::RecordNotFound
       redirect_to root_url
       return
     end
     
     respond_to do |format|
-      format.js
-      format.html { redirect_to root_url }
+      format.html
     end
   end
 
@@ -41,12 +49,12 @@ class GamesController < ApplicationController
         @opponent_name = params[:opponent]
         @game.opponent = @opponent_name
         if current_user == User.find_by_name(@opponent_name)
-          format.js {render :text => I18n.t(:cannot_duel_with_yourself), :status => 403}
+          format.html {render :text => I18n.t(:cannot_duel_with_yourself), :status => 403}
         else
-          format.js
+          format.html
         end
       else
-        format.js { render :text => I18n.t(:chose_opponent_msg), :status => 500 }
+        format.html { render :text => I18n.t(:chose_opponent_msg), :status => 500 }
       end
     end
   end
@@ -83,7 +91,7 @@ class GamesController < ApplicationController
       if @pw == @pb
         flash[:error] = I18n.t(:cannot_duel_with_yourself)
         respond_to do |format|
-          format.js { render :text => "can't duel with yourself", :status => 403 }
+          format.html { render :text => "can't duel with yourself", :status => 403 }
         end
         return
       end
@@ -103,9 +111,9 @@ class GamesController < ApplicationController
             color = @game.current_player == @game.black_player ? 'black' : 'white'
             Stalker.enqueue("ai_move", :game_id => @game.id, :game_sgf => @game.sgf, :color => color)
           end
-          format.js
+          format.html { redirect_to game_url(@game) }
         else
-          format.js { render :text => "failed to create game", :status => 500 }
+          format.html { render :text => "failed to create game", :status => 500 }
         end
       end
     end
@@ -151,7 +159,7 @@ class GamesController < ApplicationController
     end
     
     respond_to do |format|
-      format.js
+      format.html
     end
   end
   

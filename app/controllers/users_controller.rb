@@ -23,6 +23,16 @@ class UsersController < ApplicationController
   
   def show
     @user = User.find(params[:id])
+    
+    if user_signed_in?
+      @current_games = Game.where("black_player_id = '#{@user.id}' or white_player_id = '#{@user.id}'").order("case when current_player_id = '#{@user.id}' then 0 else 1 end, status, updated_at DESC").page(params[:current_games_page]).per(4)
+      @users = User.where("id != #{current_user.id} and open_for_play = true").order("last_request_at DESC").page(params[:page]).per(19)
+      @games = Game.where("mode != 0 and access = 0 and current_player_id != #{current_user.id}").order("updated_at DESC").page(params[:game_page]).per(4)
+    else
+      @users = User.where("open_for_play = true").order("last_request_at DESC").page(params[:page]).per(19)
+      @games = Game.where("mode != 0 and access = 0").order("updated_at DESC").page(params[:game_page]).per(10)
+    end
+
   end
   
   def index

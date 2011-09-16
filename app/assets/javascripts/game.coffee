@@ -1,7 +1,5 @@
 window.waiting_score = false
-window.board_game_id = null
 window.jug = null
-window.my_jug = null
 
 window.prepare_game = ->
   if $("#game").length
@@ -32,14 +30,16 @@ window.prepare_game = ->
 
 $(document).ready ->
   prepare_game()
-  $(".notify_content").hide() if $(".notify_content").length
-  $('#side_bar').hide()
   
 window.showLoader = (obj) ->
-  obj.html("<img src=\"/assets/current_games_loader.gif\" style=\"margin-left:10px\">")
+  obj.css({"background":"url(/assets/current_games_loader.gif) no-repeat"})
+  
+window.hideLoader = (obj) ->
+  obj.css({"background-image":"none"})
   
 window.init_game = ->
   if $('#game').attr('sgf')
+    $('#loader').show()
     init_board()
     player.pre_stones()
     player.end()
@@ -59,7 +59,7 @@ window.init_game = ->
     subscribe_game()
     if $('#game').attr('status') is "0"
       if $('#game').attr('requester') isnt "0"
-        $.getScript('http://' + window.location.host + '/games/' + window.board_game_id + '/moves')
+        $.getScript(window.location.pathname + '/moves')
 
 $(window).load ->
   if window.unsupported
@@ -75,97 +75,23 @@ $(window).load ->
     $('#browser_check').fadeIn("slow")
     return
     
-  $("#active_games").children('.collapse').click ->
-    if $("#notified_games").is(":visible")
-      $("#notified_games").hide()
-      $(this).css({'background':"url(/assets/expand_alt.png)"})
-      $('#active_games').children('.refresh').hide()
-    else if $("#notified_games").is(":hidden")
-      $("#notified_games").show()
-      $(this).css({'background':"url(/assets/collapse_alt.png)"})
-      $('#active_games').children('.refresh').show()
-      $('#active_games').children('.refresh').click ->
-        showLoader($("#notified_games"))
-        $.getScript('http://' + window.location.host + '/current_games' + window.location.search)
-      showLoader($("#notified_games"))
-      $.getScript('http://' + window.location.host + '/current_games' + window.location.search)
-      
-  $('#game_info').children('.collapse').click ->
-    if $('#comment_box').is(':visible')
-      $('#comment_box').hide()
-      $(this).css({'background':"url(/assets/expand_alt.png)"})
-    else
-      $('#comment_box').show()
-      $(this).css({'background':"url(/assets/collapse_alt.png)"})
-        
-  $('#duel_list').children('.collapse').click ->
-    if $('#player_list').is(':visible')
-      $('#player_list').hide()
-      $(this).css({'background':"url(/assets/expand_alt.png)"})
-      $('#duel_list').children('.refresh').hide()
-    else
-      $('#player_list').show()
-      $(this).css({'background':"url(/assets/collapse_alt.png)"})
-      $('#duel_list').children('.refresh').show()
-      $('#duel_list').children('.refresh').click ->
-        showLoader($('#player_list'))
-        $.getScript('http://' + window.location.host + '/duel' + window.location.search)
-      showLoader($('#player_list'))
-      $.getScript('http://' + window.location.host + '/duel' + window.location.search)
-      
-  $('#help_widget').children('.collapse').click ->
-    if $('#help_text').is(':visible')
-      $('#help_text').hide()
-      $(this).css({'background':"url(/assets/expand_alt.png)"})
-    else
-      $('#help_text').show()
-      $(this).css({'background':"url(/assets/collapse_alt.png)"})
-    
-  $('#games_widget').children('.collapse').click ->
-    if $('#games_list').is(':visible')
-      $('#games_list').hide()
-      $(this).css({'background':"url(/assets/expand_alt.png)"})
-      $("#games_widget").children('.refresh').hide()
-    else
-      $('#games_list').show()
-      $(this).css({'background':"url(/assets/collapse_alt.png)"})
-      $("#games_widget").children('.refresh').show()
-      $("#games_widget").children('.refresh').click ->
-        showLoader($('#games_list'))
-        $.getScript('http://' + window.location.host + '/watch' + window.location.search)
-      showLoader($('#games_list'))
-      $.getScript('http://' + window.location.host + '/watch' + window.location.search)
-
   if $('#game').length 
     init_game()
-    $('#side_bar').show()
-    $('#active_games').children('.collapse').trigger('click')
-    # $('#duel_list').children('.collapse').trigger('click')
-    $('#game_info').children('.collapse').trigger('click')
-  
-  if $('#intro').length
-    $('.game_thumbnail').click ->
-      $('#game_nav').show()
-      $('#loader').show();
-      width = document.documentElement.clientWidth
-      height = document.documentElement.clientHeight
-      pop_width = $('#game_nav').width()
-      pop_height = $('#game_nav').height()
-      $('#game_nav').css({"position":"absolute", "top":height/2-pop_height/2,"left":width/2-pop_width/2})
-      $('#close_game_nav').show()
-      $('#close_game_nav').position({of:$('#game_nav'), my:'left bottom', at:'right top', offset:'-21 34'})
-      $('#close_game_nav').click ->
-        $('#game_nav').hide()
-        $('#close_game_nav').hide()
-      $.getScript('http://' + window.location.host + '/games/' + $(this).attr('id') + window.location.search)
-      
+    init_review()
+    
+  $('#active_games div.refresh').click ->
+    showLoader($('#notified_games'))
+    $.getScript('http://' + window.location.host + '/current_games' + window.location.search)
+    
+  $('#games_widget div.refresh').click ->
+    showLoader($('#games_list'))
+    $.getScript('http://' + window.location.host + '/watch' + window.location.search)
       
 window.subscribe_game = ->
   if $('#game').attr('status') is '1'
     $('#start_info').hide()
     return
     
-  window.jug.unsubscribe window.board_game_id if window.jug?
   window.jug = new Juggernaut
 
   window.jug.subscribe $('#game').attr('channel'), (data) ->
@@ -192,9 +118,9 @@ window.subscribe_game = ->
           pop_score_request()
 
     else if data['type'] is 'comment'
-      $.getScript('http://' + window.location.host + '/games/' + window.board_game_id + '/comments')
+      $.getScript(window.location.pathname + '/comments')
     else if data['type'] is 'update'
-      $.getScript('http://' + window.location.host + '/games/' + window.board_game_id + '/moves')
+      $.getScript(window.location.pathname + '/moves')
     return
 
   window.jug.on "connect", ->
@@ -204,7 +130,7 @@ window.subscribe_game = ->
     else
       $('#connection').html("connected")
     if window.jug_connected is false
-      $.getScript('http://' + window.location.host + '/games/' + window.board_game_id + '/moves')
+      $.getScript(window.location.pathname + '/moves')
     window.jug_connected = true
 
     access = $('#game').attr('access')
@@ -260,7 +186,7 @@ window.init_board = ->
   $("#clock").click ->
     if clock_status is 1
       stop_clock()
-      pendding_move()
+      window.pendding_move()
       
   $('#analyse').click ->
     $('#game_review').dialog({
@@ -379,7 +305,7 @@ window.pop_score_notify = ->
   $("#board_info").html(msg)
   $("#confirm_ok").click ->
     please_wait()
-    $.post('http://' + window.location.host + '/games/' + window.board_game_id + "/moves", {"score":"1"})
+    $.post(window.location.pathname + "/moves", {"score":"1"})
   $("#confirm_cancel").click -> $("#board_info").hide()
 
 window.pop_score_request = ->
@@ -391,9 +317,9 @@ window.pop_score_request = ->
   $("#board_info").html(msg)
   $("#confirm_ok").click ->
     please_wait()
-    $.post('http://' + window.location.host + '/games/' + window.board_game_id + "/moves", {"score":"1"})
+    $.post(window.location.pathname + "/moves", {"score":"1"})
   $("#confirm_cancel").click ->
-    $.post('http://' + window.location.host + '/games/' + window.board_game_id + "/moves", {"score":"0"})
+    $.post(window.location.pathname + "/moves", {"score":"0"})
     $("#board_info").hide()
 
 window.pop_score_rejected = ->

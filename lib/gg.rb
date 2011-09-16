@@ -126,7 +126,6 @@ def ai_move(game_id, game_sgf, color)
   File.open(filepath, "w") do |f|
     f.write game_sgf
   end
-  sleep 3
   
   if color == 'black'
     # fuego looks weird

@@ -1,0 +1,10 @@
+<div class="show">
+	<%= t :select_player %>
+	<div class="select_player">
+		<%= render "users/list", :object => @users %>
+
+		<div class="pagination">
+			<%= paginate @users %>
+		</div>
+	</div>
+</div>

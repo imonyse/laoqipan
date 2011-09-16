@@ -2,13 +2,13 @@
 	<span class="notify_none"><%= t :none %></span>
 <% else %>
 	<div class="paginate" id="current_games_pagination">
-		<%= paginate @current_games, :param_name => "current_games_page", :remote => true %>
+		<%= paginate @current_games, :params => {:controller => 'games', :action => 'current_games'}, :param_name => "current_games_page", :remote => true %>
 	</div>
 	<div class="game_ladder">
 	<% object.each do |game| %>
 	<div class="notified_games_list game_<%= game.id %>">
 		<% if game.thumbnail %>
-			<%= image_tag(game.thumbnail, :class => "game_thumbnail", :id => "#{game.id}") %>
+			<%= link_to image_tag(game.thumbnail, :class => "game_thumbnail"), game_path(game) %>
 		<% end %>
 		<div class="game_details <%= game.display_color(current_user) %>">
 			<% if game.current_player == game.black_player %>
