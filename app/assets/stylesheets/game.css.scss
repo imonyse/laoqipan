@@ -577,17 +577,16 @@ span {
       height:24px;
       background:url(/assets/button_reload.png) no-repeat;
     }
-    &#game_duel {
-      padding:3px;
-      background-color:#008040;
-      position:absolute;
-      top:0;
-      right:0;
-      z-index:1;
-      a {
-        color:#fff;
-      }
-    }
+  }
+}
+
+#game_duel {
+  position:absolute;
+  padding:3px;
+  background-color:#408000;
+  @include border-radius(3px);
+  a {
+    color:#fff;
   }
 }
 
