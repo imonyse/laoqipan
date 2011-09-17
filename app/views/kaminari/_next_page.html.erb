@@ -1,0 +1,2 @@
+<% raquo = raw('&raquo;') %>
+<%= link_to_unless current_page.last?, t(".older"), url, :remote => remote do |name| -%><span class="disabled"><%= name %></span><% end -%>

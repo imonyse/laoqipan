@@ -1,0 +1,20 @@
+<%= form_for @broadcast do |f| %>
+  <div class="field">
+		<%= f.label :title %>
+		<%= f.text_field :title %>
+	</div>
+	
+	<div class="field">
+		<%= f.label :brief %>
+		<%= f.text_field :brief %>
+	</div>
+	
+	<div class="field">
+		<%= f.label :body %>
+		<%= f.text_area :body %>
+	</div>
+	
+	<div class="field">
+		<%= f.submit %>
+	</div>
+<% end %>

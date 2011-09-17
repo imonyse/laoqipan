@@ -131,6 +131,11 @@ zh:
       truncate: "..."
       last: "尾页"
       first: "首页"
+  kaminari:
+    next_page:
+      older: "后一页"
+    prev_page:
+      newer: "前一页"
   pages:
     index:
       no_time_limit: "随时随地下棋"

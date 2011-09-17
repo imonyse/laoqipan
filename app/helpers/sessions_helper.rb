@@ -48,6 +48,13 @@ module SessionsHelper
     end
   end
   
+  def authenticate_admin(back_url)
+    user = current_user
+    if not (user and user.admin?)
+      redirect_to(back_url)
+    end
+  end
+  
   def redirect_back_or(default)
     redirect_to(session[:return_to] || default)
     clear_return_to

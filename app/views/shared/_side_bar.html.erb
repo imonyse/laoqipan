@@ -1,4 +1,19 @@
 <div class="notify_wrapper" id="side_bar">
+	<% if @user %>
+	<div class="notifications">
+		<div class="message">
+			<% broadcast = Broadcast.last %>
+			<% if broadcast.nil? %>
+				<h3>broadcasting...</h3>
+			<% else %>
+				<h3>
+				<%= link_to broadcast.title, broadcast %>
+				</h3>
+				broadcast.brief
+			<% end %>
+		</div>
+	</div>
+	<% end %>
 	<% if user_signed_in? %>
 	<div class="top_bar" id="active_games">
 		<div class="refresh"></div>

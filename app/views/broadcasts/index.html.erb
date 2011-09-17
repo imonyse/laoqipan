@@ -1,0 +1,16 @@
+<% if user_signed_in? and current_user.admin? %>
+	<%= link_to 'new broadcast', new_broadcast_path %>
+<% end %>
+
+<div class="broadcasts">
+	<% @broadcasts.each do |b|%>
+		<div class="blog">
+			<h1><%= link_to b.title, b %></h1>
+			<div class="brief"><%= b.brief %></div>
+			<div class="blog_body">
+				<%= b.body %>
+			</div>
+		</div>
+	<% end %>
+	<%= paginate @broadcasts %>
+</div>

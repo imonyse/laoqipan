@@ -1,0 +1,45 @@
+/*
+  Place all the styles related to the matching controller here.
+  They will automatically be included in application.css.
+*/
+@mixin clear {
+  padding:5px;
+  background-color:#DCF7DD;
+  border:1px solid #BBD2BC;
+  margin-bottom:15px;
+  margin-top:10px;
+}
+
+@mixin notice {
+  color: #1B3650;
+  padding:10px 18px;
+  border:1px solid #CEE0E7;
+  background-color:#E4F0FF;
+}
+
+.message {
+  @include clear;
+}
+
+.broadcasts {
+  width:550px;
+  overflow:hidden;
+  margin:10px auto 10px 0;
+}
+
+.blog {
+  width:550px;
+  margin:10px auto 10px 0;
+  font-size:1.2em;
+  line-height:25px;
+  padding:10px;
+  h1 {
+    margin-bottom:15px;
+  }
+}
+
+.side_nav {
+  float:right !important;
+  width:150px;
+  @include notice;
+}

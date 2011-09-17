@@ -19,3 +19,10 @@ Factory.define :notice do |notice|
   notice.lang "zh"
   notice.body "system messages"
 end
+
+Factory.define :broadcast do |broadcast|
+  broadcast.title  'first blog'
+  broadcast.body   'Hello, blog'
+  broadcast.brief  '1st'
+  broadcast.association(:author, :factory => :user)
+end
