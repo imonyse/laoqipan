@@ -26,6 +26,7 @@
 }
 
 .message {
+  min-height:50px;
   background:url(/assets/broadcasts.png) no-repeat;
   @include clear;
   h3 {
