@@ -4,10 +4,17 @@
 
 <div class="blog">
 	<h1><%= @broadcast.title %></h1>
-	<% if user_signed_in? and current_user.admin? %>
-		<%= link_to 'edit', edit_broadcast_path(@broadcast) %>
-		<%= link_to 'delete', @broadcast, :method => :delete, :confirm => "continue?" %>
-	<% end %>
+	<div class="blog_meta">
+		<span>
+			<%= image_tag 'pen.png' %>
+			<%= @broadcast.user.name %>
+		</span>
+		<%= @broadcast.created_at %>
+		<% if user_signed_in? and current_user.admin? %>
+			<%= link_to 'edit', edit_broadcast_path(@broadcast) %>
+			<%= link_to 'delete', @broadcast, :method => :delete, :confirm => "continue?" %>
+		<% end %>
+	</div>
 	<div class="brief"><%= @broadcast.brief %></div>
 	<div class="blog_body">
 		<%= @broadcast.body %>

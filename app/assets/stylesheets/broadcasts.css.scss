@@ -4,10 +4,18 @@
 */
 @mixin clear {
   padding:5px;
+  color:#008040;
   background-color:#DCF7DD;
   border:1px solid #BBD2BC;
   margin-bottom:15px;
   margin-top:10px;
+  a {
+    padding:3px;
+    &:hover {
+      color:#fff;
+      background-color:#000080;
+    }
+  }
 }
 
 @mixin notice {
@@ -18,7 +26,15 @@
 }
 
 .message {
+  background:url(/assets/broadcasts.png) no-repeat;
   @include clear;
+  h3 {
+    margin-left:64px;
+  }
+  p {
+    margin-left:64px;
+    padding-left:8px;
+  }
 }
 
 .broadcasts {
@@ -36,6 +52,28 @@
   h1 {
     margin-bottom:15px;
   }
+}
+
+.blog_meta {
+  font-size:0.9em;
+  background-color:#eee;
+  color:#999;
+  padding:6px;
+  span {
+    color:#333;
+    font-weight:bold;
+    margin-right:10px;
+  }
+}
+
+.brief {
+  font-size:0.9em;
+  padding:5px;
+  color:#004080;
+}
+
+.blog_body {
+
 }
 
 .side_nav {

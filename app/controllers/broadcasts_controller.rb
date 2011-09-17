@@ -26,6 +26,8 @@ class BroadcastsController < ApplicationController
   end
   
   def create
+    @attr = params[:broadcast]
+    @attr.merge!(:author => current_user.id)
     @broadcast = Broadcast.new(params[:broadcast])
     
     respond_to do |format|
