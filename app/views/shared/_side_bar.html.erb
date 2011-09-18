@@ -20,9 +20,9 @@
 	<div class="top_bar" id="active_games">
 		<div class="refresh"></div>
 		<%= t("active_games") %>
-	</div>
-	<div id="game_duel">
-		<%= link_to t(:game_duel), duel_path %>
+		<div id="game_duel">
+			<%= link_to t(:game_duel), duel_path %>
+		</div>
 	</div>
 	<div id="notified_games" class="notify_content">
 		<%= render('shared/notified_games', :object => @current_games) %>

@@ -582,7 +582,9 @@ span {
 
 #game_duel {
   position:absolute;
-  padding:3px;
+  top:0;
+  right:0;
+  padding:4px;
   background-color:#408000;
   @include border-radius(3px);
   a {

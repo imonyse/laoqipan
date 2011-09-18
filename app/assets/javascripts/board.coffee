@@ -21,25 +21,25 @@ class Board
     @dots             = []
     @dots_checked     = []
     @to_be_captured   = []
-    
+
     @dead_black_count = 0
     @dead_white_count = 0
     @fake_stone       = null
-    
+
     @draw_game()
-    
+
   draw_game: ->
     if @status == 0
       @init_dots()
     else if @status == 1
       @draw_dots()
-      
+
   draw_black_stone: (dot) ->
     dot.jquery_target.attr('class', 'b')
-    
+
   draw_white_stone: (dot) ->
     dot.jquery_target.attr('class', 'w')
-    
+
   draw_last_mark: (dot) ->
     if not @draw_last_move then return
 
@@ -48,25 +48,25 @@ class Board
       dot.jquery_target.text(@step_count)
     else
       dot.jquery_target.addClass('last')
-    
+
     @last_move = dot
-    
+
   block_last_mark: -> @draw_last_move = false
-  
+
   dredge_last_mark: -> @draw_last_move = true
-  
+
   pass: -> @color_in_turn = if @color_in_turn is "b" then "w" else "b"
-      
+
   init_dots: ->
     alphabet = "abcdefghijklmnopqrs".split ""
     for i in [0...alphabet.length]
       for j in [0...alphabet.length]
         dot = new BoardDot alphabet[i]+alphabet[j], @board_edge + @board_square*i, @board_edge + @board_square*j, @
-          
+
         @dots[@dots.length] = dot
-        
+
     @status = 1
-    
+
   draw_dots: ->
     for dot in @dots
       if dot.owner == "b"
@@ -76,7 +76,7 @@ class Board
       if @show_step and dot.owner isnt 'e'
         dot.show_dot_step()
     return
-    
+
   draw_fake_stone: (dot) ->
     if @fake_stone
       @fake_stone.jquery_target.removeClass('last')
@@ -84,9 +84,9 @@ class Board
 
     if @last_move?
       @draw_last_mark @last_move
-    
+
     dot.jquery_target.attr('class', @color_in_turn + " fake")
-    
+
   on_dot_click: (dot) ->
     if dot?
       if @ko_dot?
@@ -103,47 +103,49 @@ class Board
           dot.check_nearby_dots false
           if @captured_color is dot.owner or @captured_color is 'e'
             @to_be_captured[@to_be_captured.length] = dot
-            
+
         @capture_stones()
         @captured_color = 'e'
-        
+
         if dot.step != -1
           @step_count++
           dot.step = @step_count
 
         if @last_move
           target = @last_move.jquery_target
-          target.removeClass('last')   
+          target.removeClass('last')
+          target.removeClass('last_text')
+
         @draw_last_mark dot
 
       return true
-    
+
     return false
-  
+
   find_stone_by_name: (name) ->
     for dot in @dots
       if name is dot.name
         return dot
     return null
-    
+
   find_stone_by_coordinates: (co) ->
     if co.length > 3 or co.length < 2
       throw "invalid coordinates"
-      
+
     name_set = "abcdefghijklmnopqrs"
     x = "ABCDEFGHJKLMNOPQRST".indexOf co.charAt(0).toUpperCase()
     y = @board_size - parseInt co.charAt(1)+co.charAt(2), 10
-    
+
     @find_stone_by_name name_set.charAt(x) + name_set.charAt(y)
-    
+
   add_examined: (name) ->
     for e in @dots_checked
       if e is name
         return false
-        
+
     @dots_checked[@dots_checked.length] = name
     return true
-  
+
   # add stone to the capture list
   # return true on success, false if dot is already in the list
   add_captured: (dot) ->
@@ -155,15 +157,15 @@ class Board
     else
       for dead in @to_be_captured
         if dead.name is dot.name
-          rc = false 
+          rc = false
           break
-    
+
     if rc
       @to_be_captured[@to_be_captured.length] = dot
       @captured_color = dot.owner
-      
+
     return rc
-  
+
   capture_stones: ->
     for dot in @to_be_captured
       if dot.owner is 'b'
@@ -172,23 +174,23 @@ class Board
         @dead_white_count++
       dot.owner = "e"
       dot.step = 0
-      
+
       target = dot.jquery_target
       target.attr('class', 'e')
       target.text('')
-    
+
     # update stone capture status
     $('#black_captured').text(@dead_black_count)
     $('#white_captured').text(@dead_white_count)
     @to_be_captured = []
-    
+
   # @flag: true => same color survive, false => same color has no liberties, too
   check_with_capture: (examinee, examiner, flag) ->
     @add_examined examiner.name
-    
+
     if typeof examinee isnt "undefined"
       if examinee.owner is "e" then return
-      
+
       if flag
         if examinee.owner isnt examiner.owner and examinee.owner isnt "e"
           if not @is_alive examinee
@@ -210,20 +212,20 @@ class Board
     else
       if examinee.owner isnt examiner.owner
         @capture_stones()
-    
+
   is_alive: (dot) ->
     rc = false
     if dot.owner is "e" then return false
     @add_examined dot.name
     dots_nearby = dot.get_nearby_dots()
-    
+
     for e in dots_nearby
       if e.owner is "e"
         # at least one liberty
         if e.name not in @dots_checked
           rc = true
           break
-    
+
     # dot has no liberties, check nearby stones
     if rc isnt true
       for e in dots_nearby
@@ -237,18 +239,18 @@ class Board
             else
               # ally has no liberty too, time to die...
               @add_captured e
-              
+
     if rc is true
       @dots_checked = []
     return rc
-    
+
   refresh : ->
     if window.refresh
       for dot in @dots
         dot.refresh()
-    
+
     @draw_game()
-    
+
   reset : ->
     @step_count = 0
     for dot in @dots
@@ -257,24 +259,24 @@ class Board
     @dead_black_count = 0
     @dead_white_count = 0
     @refresh()
-    
+
   click_via_coordinates: (coordinates, color) ->
     if color?
       @color_in_turn = color
     if coordinates.length > 3 or coordinates.length < 2
       throw 'invalid coordinates'
-    
+
     dot = @find_stone_by_coordinates coordinates
     @on_dot_click dot
-    
+
   click_via_name: (name, color) ->
     if color?
       @color_in_turn = color
-      
+
     if name.length != 2
       if name.length != 0
         throw 'invalid sgf move name'
-        
+
     if name is ''
       if @color_in_turn is "b"
         @color_in_turn = 'w'
@@ -283,22 +285,22 @@ class Board
     else
       dot = @find_stone_by_name name.toLowerCase()
       @on_dot_click dot
-      
+
   set_text : (dot_name, text) ->
     if dot_name.length != 2 then throw 'invalid sgf move name'
     dot = @find_stone_by_name dot_name.toLowerCase()
     dot.set_text text
-    
+
   click : (click_fn) ->
     for dot in @dots
       if dot.owner is 'e'
         dot.bind_click(click_fn)
-    
+
   remove_click_fn : (click_fn) ->
     for dot in @dots
       if dot.owner is 'e'
         dot.unbind_click(click_fn)
-      
+
 class BoardDot
 
   constructor: (@name, @x, @y, @parent) ->
@@ -310,47 +312,47 @@ class BoardDot
         break
     @owner = "e"
     @jquery_target = $('#' + @parent.game_id + '-' + @name)
-  
+
   occupy: (color) ->
-    if @owner isnt "e" 
+    if @owner isnt "e"
       return false
-      
+
     if @parent.color_in_turn is "b"
       @parent.draw_black_stone @
       @parent.color_in_turn = "w"
     else if @parent.color_in_turn is "w"
       @parent.draw_white_stone @
       @parent.color_in_turn = "b"
-      
+
     @owner = color
     return true
-    
+
   bind_click : (click_fn) ->
     @jquery_target.bind('click', click_fn)
-    
+
   unbind_click : (click_fn) ->
     @jquery_target.unbind('click', click_fn)
-  
+
   reset: ->
     @owner = "e"
     @step = 0
     @refresh()
-    
+
   refresh : ->
     @jquery_target.attr('class', 'e')
     @jquery_target.text('')
-    
+
   set_text: (text) ->
     @jquery_target.text(text)
-    @jquery_target.css({"background-color":'#FFCC66';})
-    
+    # @jquery_target.css({'background-color':'#B3B3B3'})
+
   show_dot_step: ->
     return if @step is -1
     if @step is 0
       @step = @parent.step_count + 1
-      
+
     @jquery_target.text(@step)
-    
+
   get_dot_from: (pos) ->
     alphabet = 'abcdefghijklmnopqrs'
     my_x_index = alphabet.indexOf @name.charAt(0)
@@ -371,12 +373,12 @@ class BoardDot
       if my_y_index < 18
         x = my_x_index
         y = my_y_index + 1
-        
+
     if typeof x isnt 'undefined' and typeof y isnt 'undefined'
       return @parent.find_stone_by_name(alphabet.charAt(x) + alphabet.charAt(y))
     else
       return null
-  
+
   get_nearby_dots: ->
     dots = []
     for w in ["left", "right", "top", "bottom"]
@@ -385,14 +387,14 @@ class BoardDot
         dots[dots.length] = dot
       else
         continue
-        
+
     return dots
-     
+
   # @flag: true => sibling dots of same color live
   #        false => sibling dots of same color die
   check_nearby_dots: (flag) ->
     dots = @get_nearby_dots()
-    
+
     if not flag
       # this dot has no liberties, check ko status first
       if not @has_ally()
@@ -406,22 +408,29 @@ class BoardDot
               break
             else
               @parent.ko_dot = dot.name
-              
+
     for dot in dots
       @parent.check_with_capture dot, @, flag
     @parent.capture_stones()
-          
+
   has_ally: ->
     dots = @get_nearby_dots()
-    
+
     for dot in dots
       if dot.owner is @owner or dot.owner is 'e'
         return true
-    
+
     return false
-    
+
 window.bind_review = ->
-  on_review_click
+  on_review_alert
+  # on_review_click
+
+window.on_review_alert = (e) ->
+  if window.get_locale() is 'zh'
+    alert('点击棋盘落子的功能暂时关闭，此功能稳定后再开放。')
+  else
+    alert('Board click is disable currently, I will open this function when it becomes more stable.')
 
 window.on_review_click = (e) ->
   move = {}
@@ -432,11 +441,11 @@ window.on_review_click = (e) ->
     if review.board.on_dot_click(dot) is true
       key = dot.owner.toUpperCase()
       value = dot.name
-      
+
       branch = review.branch_start_with(key, value)
-      if !review.master.property[review.step+1] 
+      if !review.master.property[review.step+1]
         # at the end of master node
-        if branch? 
+        if branch?
           # and clicked dot included in branches
           # track node path
           if review.track[review.track.length-1] isnt branch
@@ -476,7 +485,7 @@ window.on_review_click = (e) ->
             review.track.push(new_branch)
           review.master = new_branch
           review.step   = 1
-        
+
       review.sgf_json = review.track[0]
       $('#game_review').attr('sgf', to_sgf(review.sgf_json))
 
@@ -520,13 +529,12 @@ window.post_comments = ->
     if e.keyCode is 13
       if e.ctrlKey
         $('#post_button').trigger('click')
-        
+
 window.Board = Board
 window.BoardDot = BoardDot
 window.refresh = true
 window.sound_enabled = true
 window.loaded_sounds = new Array()
 window.pendding_move = null
-    
 
-    
+

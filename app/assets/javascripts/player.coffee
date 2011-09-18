@@ -169,11 +169,11 @@ class Player
     else
       # this is the last master node, branch append to branches property
       @track[@track.length-1].branches.push(new_branch)
-
+      
   # @return: 2 => stone, 1 => pass, 0 => others
   next : ->
     rc = 0
-    @branch_head_nodes = []
+    
     @master = @sgf_json if @master is null
     if typeof @master isnt 'undefined'
       cur = @master.property[@step]
