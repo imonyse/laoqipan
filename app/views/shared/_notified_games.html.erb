@@ -4,6 +4,7 @@
 	<div class="paginate" id="current_games_pagination">
 		<%= paginate @current_games, :params => {:controller => 'games', :action => 'current_games'}, :param_name => "current_games_page", :remote => true %>
 	</div>
+	<div class="divider"></div>
 	<div class="game_ladder">
 	<% object.each do |game| %>
 	<div class="notified_games_list game_<%= game.id %>">

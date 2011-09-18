@@ -32,20 +32,24 @@ h3 {
 
 ul {
   list-style-type:none;
-  &.inline {
+}
+
+div.inline {
+  display:inline;
+  position:absolute;
+  padding:5px 0 5px 0;
+  a {
+    color:black;
+    &:hover {
+      color:white;
+    }
+  }
+  span.control_button {
     display:inline;
-    position:absolute;
-    padding:5px 0 5px 0;
-    a {
-      color:black;
-    }
-    li {
-      display:inline;
-      padding:4px 8px 4px 8px;
-      @include border-radius;
-      margin-left:2px;
-      border:1px solid #aaa;
-    }
+    padding:4px 8px 4px 8px;
+    @include border-radius;
+    margin-left:2px;
+    border:1px solid #aaa;
   }
 }
 

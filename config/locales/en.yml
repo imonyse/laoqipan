@@ -101,7 +101,7 @@ en:
   your_turn_to_move_at_laoqipan: "It's your turn to move at Laoqipan, click the link below to reach the game page:"
   notify_me_when_I_need_move: "Email me if it's my turn and I didn't move for an hour"
   analyse: "Analyse"
-  analyse_tips: "(experimental, draggable, click board to make a move)"
+  analyse_tips: "(experimental, draggable)"
   show_steps: "Steps"
   step: "step(s)"
   active_games: "My Games"

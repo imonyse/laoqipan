@@ -40,14 +40,15 @@ class Board
   draw_white_stone: (dot) ->
     dot.jquery_target.attr('class', 'w')
 
-  draw_last_mark: (dot) ->
+  draw_last_mark: (dot, draw_flag) ->
     if not @draw_last_move then return
 
-    if @show_step
-      dot.jquery_target.addClass('last_text')
-      dot.jquery_target.text(@step_count)
-    else
-      dot.jquery_target.addClass('last')
+    if !draw_flag
+      if @show_step
+        dot.jquery_target.addClass('last_text')
+        dot.jquery_target.text(@step_count)
+      else
+        dot.jquery_target.addClass('last')
 
     @last_move = dot
 
@@ -87,7 +88,7 @@ class Board
 
     dot.jquery_target.attr('class', @color_in_turn + " fake")
 
-  on_dot_click: (dot) ->
+  on_dot_click: (dot, draw_flag) ->
     if dot?
       if @ko_dot?
         if dot.name is @ko_dot
@@ -95,7 +96,7 @@ class Board
         else
           @ko_dot = null
       # add stone, then check liberties
-      if dot.occupy @color_in_turn
+      if dot.occupy(@color_in_turn, draw_flag)
         @dots_checked = []
         if @is_alive dot
           dot.check_nearby_dots true
@@ -111,12 +112,12 @@ class Board
           @step_count++
           dot.step = @step_count
 
-        if @last_move
+        if @last_move and !draw_flag
           target = @last_move.jquery_target
           target.removeClass('last')
           target.removeClass('last_text')
 
-        @draw_last_mark dot
+        @draw_last_mark dot, draw_flag
 
       return true
 
@@ -269,7 +270,7 @@ class Board
     dot = @find_stone_by_coordinates coordinates
     @on_dot_click dot
 
-  click_via_name: (name, color) ->
+  click_via_name: (name, color, draw_flag) ->
     if color?
       @color_in_turn = color
 
@@ -284,8 +285,8 @@ class Board
         @color_in_turn = 'b'
     else
       dot = @find_stone_by_name name.toLowerCase()
-      @on_dot_click dot
-
+      @on_dot_click(dot, draw_flag)
+      
   set_text : (dot_name, text) ->
     if dot_name.length != 2 then throw 'invalid sgf move name'
     dot = @find_stone_by_name dot_name.toLowerCase()
@@ -313,15 +314,15 @@ class BoardDot
     @owner = "e"
     @jquery_target = $('#' + @parent.game_id + '-' + @name)
 
-  occupy: (color) ->
+  occupy: (color, draw_flag) ->
     if @owner isnt "e"
       return false
 
     if @parent.color_in_turn is "b"
-      @parent.draw_black_stone @
+      @parent.draw_black_stone @ if !draw_flag
       @parent.color_in_turn = "w"
     else if @parent.color_in_turn is "w"
-      @parent.draw_white_stone @
+      @parent.draw_white_stone @ if !draw_flag
       @parent.color_in_turn = "b"
 
     @owner = color

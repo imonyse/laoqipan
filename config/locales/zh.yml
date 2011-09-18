@@ -105,7 +105,7 @@ zh:
   your_turn_to_move_at_laoqipan: "你在老棋盘的对局轮到你落子了，你可以点击下面的链接直接进入对局页面:"
   notify_me_when_I_need_move: "发邮件提醒，若轮我落子且我在1小时内未落子"
   analyse: "对局研究"
-  analyse_tips: "(测试版, 以后将对当前对局者有功能限制，可拖动，点击棋盘落子)"
+  analyse_tips: "(测试版 可拖动)"
   show_steps: "手数"
   step: "手"
   active_games: "我的对局"

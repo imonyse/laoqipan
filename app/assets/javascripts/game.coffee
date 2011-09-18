@@ -168,13 +168,6 @@ window.init_review = ->
     else
       review.show_steps()
         
-  $('#game_review').attr('sgf', $('#game').attr('sgf'))
-  parser = new SGF $('#game_review')
-  window.review = new Player(parser, 'board_review'+'-'+$('#game').attr('channel'), true) if parser
-  
-  review.pre_stones()
-  review.end()
-
 window.init_board = ->
   parser = new SGF $('#game')
   window.player = new Player(parser, 'board'+'-'+$('#game').attr('channel'))
@@ -191,16 +184,15 @@ window.init_board = ->
   $('#analyse').click ->
     $('#game_review').dialog({
       width:535,
-      height:586,
-      position:"center",
+      height:600,
       draggable:true,
-      resizable:false,
-      dialogClass:"woody wood_shaodw round_board"
+      dialogClass:"woody wood_shadow"
     })
     $('#game_review').attr('sgf', $('#game').attr('sgf'))
-    # make sure 'update' works
-    review.parser.data = ""
-    review.update($('#game_review'))
+    parser = new SGF $('#game_review')
+    window.review = new Player(parser, 'board_review'+'-'+$('#game').attr('channel'), true) if parser
+    review.pre_stones()
+    review.end()
 
 window.get_locale = ->
   locale = 'zh'

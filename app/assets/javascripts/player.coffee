@@ -134,7 +134,7 @@ class Player
       else
         hide_clock()
 
-      show_player_turn()
+      @show_player_turn()
       
   # This function should be called before fork_branches
   # @key : 'B' or 'W', @value : 'xx'
@@ -171,31 +171,30 @@ class Player
       @track[@track.length-1].branches.push(new_branch)
       
   # @return: 2 => stone, 1 => pass, 0 => others
-  next : ->
-    rc = 0
-    
+  next : (flag)->
     @master = @sgf_json if @master is null
     if typeof @master isnt 'undefined'
       cur = @master.property[@step]
       if typeof cur isnt 'undefined'
         if typeof cur.B isnt 'undefined'
-          @board.click_via_name cur.B
-          show_player_turn()
-          if cur.B is '' then rc = 1
-          else rc = 2
+          if flag
+            @board.click_via_name cur.B
+          else
+            @board.click_via_name cur.B
+            @show_player_turn()
         else if typeof cur.W isnt 'undefined'
-          @board.click_via_name cur.W
-          show_player_turn()
-          if cur.W is '' then rc = 1
-          else rc = 2
+          if flag
+            @board.click_via_name cur.W
+          else
+            @board.click_via_name cur.W
+            @show_player_turn()
         if typeof cur.C isnt 'undefined'
           @show_comments cur.C
         if typeof cur.LB isnt 'undefined'
           for vt in cur.LB
             mark = vt.split ':'
             @board.set_text(mark[0], mark[1])
-        if !@flag
-          $('#swap').html(@step)
+          
         @step++
     
     # this will mark all branches' first node on the board
@@ -212,7 +211,7 @@ class Player
           @branch_head_nodes.push([head_node, branch])
         count++    
 
-    return rc
+    return
 
   prev : ->
     current_path = @master
@@ -229,9 +228,8 @@ class Player
       while @master.property[@step]
         if @master is current_path and @step is current_steps - 2
           break
-        @next()
+        @next(true)
       
-    @board.refresh()
     window.refresh = true
     @next()
 
@@ -251,9 +249,8 @@ class Player
       if typeof cur isnt 'undefined'
         window.refresh = false
         while typeof cur[step] isnt 'undefined'
-          @next()
+          @next(true)
           step++
-        @board.refresh()
       
         # end stops when master branch meets child branch
         # and show them on the board as numbers
@@ -269,7 +266,6 @@ class Player
             count++
           
     window.refresh = true
-    @board.refresh()
     if @step > 1
       @board.draw_last_mark @board.last_move
     
@@ -320,16 +316,17 @@ class Player
     @parser.add_winner winner
     $.post(window.location.pathname + '/moves', {"sgf":$("#game").attr("sgf"), "moves":move})
 
+  show_player_turn : ->
+    if !@flag
+      $('#swap').html(@step)
+      if @board.color_in_turn is 'b'
+        $('.black_turn').attr("src", "/assets/turn.png")
+        $('.white_turn').attr('src', '/assets/stop.png')
+      else if @board.color_in_turn is 'w'
+        $('.black_turn').attr('src', '/assets/stop.png')
+        $('.white_turn').attr('src', '/assets/turn.png')
 
 window.Player = Player
-
-window.show_player_turn = ->
-  if player.board.color_in_turn is 'b'
-    $('.black_turn').attr("src", "/assets/turn.png")
-    $('.white_turn').attr('src', '/assets/stop.png')
-  else if player.board.color_in_turn is 'w'
-    $('.black_turn').attr('src', '/assets/stop.png')
-    $('.white_turn').attr('src', '/assets/turn.png')
 
 
 

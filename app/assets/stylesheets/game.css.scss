@@ -206,7 +206,7 @@ $board_width: 531px;
 }
 
 .divider{
-  height:8px;
+  height:5px;
   clear:both;
 }
 
@@ -240,7 +240,7 @@ $board_width: 531px;
 .opponent {
   width:$board_width;
   margin:0 0 0 auto;
-  ul.inline {
+  div.inline {
     top:5px;
     left:250px;
   }
@@ -249,7 +249,7 @@ $board_width: 531px;
 .me {
   width:$board_width;
   margin:0px auto auto 0px;
-  ul.inline {
+  div.inline {
     top:575px;
     left:75px;
   }
@@ -664,34 +664,6 @@ span {
   height:200px;
   overflow:auto;
   width:100%;
-}
-
-.ui-dialog {
-  background-color:#FAF0E6;
-  @include box-shadow;
-}
-.ui-dialog-title {
-  font-weight:bold;
-  color:green;
-}
-
-.ui-dialog-titlebar {
-  text-align:center;
-  padding:4px;
-  cursor:move;
-}
-
-.ui-dialog-titlebar-close {
-  float:right;
-}
-
-.ui-icon-closethick {
-  display:block;
-  height:18px;
-  width:18px;
-  overflow:hidden;
-  text-indent:-9999px;
-  background:url(/assets/dialog_close.png);
 }
 
 #game_area {

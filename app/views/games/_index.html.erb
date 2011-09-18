@@ -1,6 +1,7 @@
 <div class="paginate" id="index_pagination">
    <%= paginate @games, :params => {:controller => 'games', :action => 'index'}, :param_name => "game_page", :remote => true %>
 </div>
+<div class="divider"></div>
 <div class="game_ladder">
    <%= render "shared/game_item", :object => @games %>
 </div>

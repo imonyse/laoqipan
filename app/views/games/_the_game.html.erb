@@ -20,11 +20,11 @@
 			<div class="play_as black"></div>
 			<div class="captured" id="white_captured"></div>
 		<% end %>
-		<ul class="inline">
-			<li><%= link_to "SGF", game_sgf_path(@game) %></li>
-			<li id="analyse" class="control_button"><%= t("analyse") %></li>
+		<div class="inline">
+			<span class="control_button"><%= link_to "SGF", game_sgf_path(@game) %></span>
+			<span id="analyse" class="control_button"><%= t("analyse") %></span>
 			<span id="connection"></span>
-		</ul>
+		</div>
 	<% end %>
 </div>
 
@@ -44,30 +44,31 @@
 	<div class="bottom_profile">
 		<% if !@game.nil? %>
 			<div id="bottom_turn"></div>
-			<ul class="inline">
+			<div class="inline">
 				<% if @game.mode != 0 and @game.status == 0 %>
 					<% if (current_user == @game.black_player or current_user == @game.white_player) %>
 						<% if !@game.vs_ai? %>
-							<li id="score" class="control_button"><%= t(".score") %></li>
+							<span id="score" class="control_button"><%= t(".score") %></span>
 						<% end %>
 					<% end %>
 				<% end %>
 
 				<% if @game.mode != 0 and @game.status == 0 %>
 					<% if (current_user == @game.black_player) || (current_user == @game.white_player) %>
-						<li id="resign" class="control_button"><%= t(".resign") %></li>
+						<span id="resign" class="control_button"><%= t(".resign") %></span>
 					<% end %>
 				<% end %>
 
 				<% if @game.mode != 0 and @game.status != 1 %>
-					<li id="pass" class="control_button"><%= t(".pass") %></li>
-					<li id="clock" class="control_button"><%= t(".click_to_confirm") %></li>
+					<span id="pass" class="control_button"><%= t(".pass") %></span>
+					<span id="clock" class="control_button"><%= t(".click_to_confirm") %></span>
 				<% end %>
-				<span>
-					<span id="swap">0</span> <%= t "step" %>
-					<span id="dt"></span> <span id="re"></span>
-				</span>
-			</ul>
+					<span>
+						<span id="swap">0</span> <%= t "step" %>
+						<span id="dt"></span> 
+						<span id="re"></span>
+					</span>
+			</div>
 		
 			<% if (current_user == @game.black_player) %>
 				<img class="black_turn">
