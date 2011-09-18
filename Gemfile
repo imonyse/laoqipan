@@ -11,6 +11,7 @@ gem 'paperclip'
 gem 'god', :require => false
 gem 'juggernaut'
 gem 'oily_png'
+gem 'redcarpet'
 
 # Gems used only for assets and not required
 # in production environments by default.
