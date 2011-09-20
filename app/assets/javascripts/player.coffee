@@ -57,15 +57,19 @@ class Player
     # property line and start step count
     @track     = [@sgf_json]
     @basic_info = @sgf_json.property[0]
+    ev = @basic_info.EV || ''
     pb = @basic_info.PB || ''
     br = @basic_info.BR || ''
     pw = @basic_info.PW || ''
     wr = @basic_info.WR || ''
     dt = @basic_info.DT || ''
-    if $('#game').attr('mode') is 0
-      $('#black_player').html(pb+' '+br)
-      $('#white_player').html(pw+' '+wr)
-      $('#dt').html dt
+    re = @basic_info.RE || ''
+    if $('#game_review').length and $('#game_review').attr('mode') is "0"
+      $('#progame_ev').html(ev)
+      $('#progame_black').html(pb+' '+br)
+      $('#progame_white').html(pw+' '+wr)
+      $('#progame_date').html dt
+      $('#progame_result').html re
 
     first_move = 'b'
     handicap = @basic_info.HA
@@ -85,13 +89,14 @@ class Player
         first_turn = 'b'
 
     @board = new Board 19, first_turn, @target_board_id
-    mode = $('#game').attr('mode')
-    status = $('#game').attr('status')
-    if mode isnt 0 and status isnt 0
-      if @flag
-        @board.click(bind_review())
-      else
-        @board.click(bind_click())
+    if $('#game')
+      mode = $('#game').attr('mode')
+      status = $('#game').attr('status')
+      if mode isnt 0 and status isnt 0
+        if @flag
+          @board.click(bind_review())
+        else
+          @board.click(bind_click())
 
   pre_stones : ->
     ab = @basic_info.AB
@@ -170,7 +175,6 @@ class Player
       # this is the last master node, branch append to branches property
       @track[@track.length-1].branches.push(new_branch)
       
-  # @return: 2 => stone, 1 => pass, 0 => others
   next : (flag)->
     @master = @sgf_json if @master is null
     if typeof @master isnt 'undefined'
@@ -194,7 +198,8 @@ class Player
           for vt in cur.LB
             mark = vt.split ':'
             @board.set_text(mark[0], mark[1])
-          
+        $('#swap').html(@step)
+        $('#review_steps').html(@step)
         @step++
     
     # this will mark all branches' first node on the board
@@ -285,7 +290,7 @@ class Player
 
   show_comments : (comment) ->
     c = comment.replace /\n/g, '</p><p>'
-    $('#post_out').html('<p>'+c+'</p>')
+    $('#sgf_comments').html('<p>'+c+'</p>')
 
   pass : ->
     current_user = $('#game').attr('current_user')

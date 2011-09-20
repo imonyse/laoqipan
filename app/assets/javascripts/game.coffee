@@ -77,6 +77,7 @@ $(window).load ->
     
   if $('#game').length 
     init_game()
+  if $('#game_review').length
     init_review()
     
   $('#active_games div.refresh').click ->
@@ -153,7 +154,6 @@ window.subscribe_game = ->
       $('#connection').html("reconnecting")
 
 window.init_review = ->
-  # if typeof window.review is 'undefined' or $('#game_nav').length
   $("#next").click ->
     review.next();
   $("#prev").click ->
@@ -167,6 +167,13 @@ window.init_review = ->
       review.hide_steps()
     else
       review.show_steps()
+      
+  if $('#game_review').attr('sgf')
+    $('#game_review').show()
+    parser = new SGF $('#game_review')
+    window.review = new Player(parser, 'board_review' + '-' + $('#game_review').attr('channel'), true) if parser
+    review.pre_stones()
+    review.end()
         
 window.init_board = ->
   parser = new SGF $('#game')

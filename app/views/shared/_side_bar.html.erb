@@ -13,6 +13,7 @@
 				<%= broadcast.brief %>
 				</p>
 			<% end %>
+			<div id="all_messages"><%= link_to t('.view') + ' ' + Broadcast.count.to_s + ' ' + t('.broadcasts'), broadcasts_path %></div>
 		</div>
 	</div>
 	<% end %>

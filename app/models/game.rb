@@ -22,13 +22,15 @@
 # @access : 0 => public, 1 => private, 3 => protected
 class Game < ActiveRecord::Base
   attr_accessible :sgf, :moves, :mode, :access, :status, :name, :score_requester,
-                  :current_player, :black_player, :white_player, :opponent
+                  :current_player, :black_player, :white_player, :opponent, :uploader,
+                  :brief
   attr_accessor :opponent
                   
   belongs_to :current_player, :class_name => "User"
   belongs_to :black_player, :class_name => "User"
   belongs_to :white_player, :class_name => "User"
   has_many :comments, :order => "created_at DESC"
+  belongs_to :uploader, :class_name => "User"
 
   validates_inclusion_of :mode, :in => [0, 1 ,2]
   validates_inclusion_of :status, :in => [0, 1]

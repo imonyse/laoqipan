@@ -1,3 +1,9 @@
+<% if @game.mode == 0 %>
+	<% @comments = @game.comments.page(params[:comments_page]).per(16) %>
+	$(".paginate").html("<%= escape_javascript(paginate(@comments, :param_name => :comment_page, :remote => true).to_s) %>");
+	$("#comments").html("<%= escape_javascript(render(:partial => 'comments/comment', :collection => @comments)) %>");
+<% end %>
+
 <% if @comment.valid? %>
   $("#new_comment")[0].reset();
 <% end %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110917030244) do
+ActiveRecord::Schema.define(:version => 20110920024258) do
 
   create_table "authentications", :force => true do |t|
     t.string   "provider"
@@ -50,6 +50,8 @@ ActiveRecord::Schema.define(:version => 20110917030244) do
     t.datetime "updated_at"
     t.integer  "access",            :default => 3
     t.integer  "score_requester",   :default => 0
+    t.integer  "uploader"
+    t.text     "brief"
   end
 
   create_table "notifications", :force => true do |t|

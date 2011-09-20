@@ -1,5 +1,5 @@
 <div class="side_nav">
-	<%= link_to 'broadcasts', broadcasts_path %>
+	<%= link_to t('.view') + ' ' + Broadcast.count.to_s + ' ' + t('.broadcasts'), broadcasts_path %>
 </div>
 
 <div class="blog">
@@ -9,7 +9,7 @@
 			<%= image_tag 'pen.png' %>
 			<%= @broadcast.user.name %>
 		</span>
-		<%= @broadcast.created_at %>
+		<%= @broadcast.created_at.to_s(:db) %>
 		<% if user_signed_in? and current_user.admin? %>
 			<%= link_to 'edit', edit_broadcast_path(@broadcast) %>
 			<%= link_to 'delete', @broadcast, :method => :delete, :confirm => "continue?" %>

@@ -1,0 +1,26 @@
+<div id="progame_board">
+	<div id="game_review" sgf="<%= @game.sgf %>" channel="<%= @game.id %>" mode="<%= @game.mode %>">
+  <%= render "games/analyse_board" %>
+	</div>
+	<div class="divider"></div>
+	<%= render 'tab_info' %>
+</div>
+<div id="progame_info">
+	<div id="progame_ev"></div>
+	<div>
+		<%= image_tag('black_stone.png') %>
+		<div id="progame_black"></div>
+	</div>
+	<div>
+		<%= image_tag('white_stone.png') %>
+		<div id="progame_white"></div>
+	</div>
+	<div>
+		<span id="progame_date"></span><span id="progame_result"></span>
+	</div>
+	<div id="sgf_comments"></div>
+	<div class="reference"><%= t :sgf_from_tom_weiqi %></div>
+	<% if user_signed_in? and current_user.admin? %>
+		<%= link_to 'EDIT', edit_game_path(@game) %>
+	<% end %>
+</div>

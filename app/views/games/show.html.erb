@@ -1,8 +1,12 @@
 <div class="relative">
+	<% if @game.mode != 0 %>
 	<div id="game_area"><%= render "games/the_game" %></div>
 	<div id="discussion"><%= render "games/tab_info" %></div>
 	<div id="game_review" title="<%= t(:analyse) + t(:analyse_tips) %>">
 		<%= render "games/analyse_board" %>
 	</div>
 	<%= render "shared/side_bar" %>
+	<% else %>
+		<%= render 'pro_game_show' %>
+	<% end %>
 </div>

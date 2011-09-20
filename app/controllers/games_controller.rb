@@ -1,6 +1,7 @@
 class GamesController < ApplicationController
   before_filter :authenticate_user!, :only => [:new, :create]
   before_filter :authenticate?, :only => [:destroy]
+  before_filter :only => [:edit, :update] { authenticate_admin(root_url) }
   
   def index
     if user_signed_in?
@@ -16,7 +17,11 @@ class GamesController < ApplicationController
   end
   
   def records
-    @games = Game.where("mode = 0 and access = 0").order("updated_at DESC").page(params[:page]).per(24)
+    @games = Game.where("mode = 0").order("updated_at DESC").page(params[:page]).per(24)
+    
+    respond_to do |format|
+      format.html
+    end
   end
 
   def show
@@ -66,16 +71,20 @@ class GamesController < ApplicationController
     @sgf = nil
 
     if mode == "0"
-      # TODO: need to be handled by js
-      @attr.merge!({:black_player => current_user,
-                    :white_player => current_user,
-                    :current_player => current_user,
-                    :mode => 0, :access => 3})
-      @game = Game.create(@attr)
+      require 'sgf'
+      sgf_url = params[:sgf_url]
+      fetched_sgf = fetch_tom_sgf(sgf_url)
+
+      @attr.merge!({:sgf => fetched_sgf,
+                    :mode => 0, 
+                    :access => 3})
+      @game = Game.new(@attr)
       if @game.save
+        Stalker.enqueue('generate_thumbnail', :game_id => @game.id, :game_sgf => @game.sgf, :thumb_path => @game.thumbnail_path)
         redirect_to(game_path(@game))
       else
-        redirect_to upload_sgf_path, :alert => t(:failed_to_create_game)
+        flash.now[:alert] = t(:failed_to_create_game)
+        render :action => :upload_sgf
       end
     else
       if mode == "1"
@@ -120,11 +129,20 @@ class GamesController < ApplicationController
   end
   
   def edit
-    redirect_to root_url, :alert => I18n.t(:access_denied)
+    @game = Game.find(params[:id])
   end
   
   def update
-    redirect_to root_url, :alert => I18n.t(:access_denied)
+    @game = Game.find(params[:id])
+    @attr = params[:game]
+    
+    respond_to do |format|
+      if @game.update_attributes(@attr)
+        format.html { redirect_to @game }
+      else
+        format.html { render :action => 'edit' }
+      end
+    end
   end
   
   def destroy
@@ -171,6 +189,10 @@ class GamesController < ApplicationController
   
   def upload_sgf
     @game = Game.new(:mode => 0)
+    
+    respond_to do |format|
+      format.html
+    end
   end
   
   def current_games
@@ -186,4 +208,5 @@ class GamesController < ApplicationController
       format.js
     end
   end
+  
 end

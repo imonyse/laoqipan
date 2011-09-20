@@ -21,7 +21,7 @@ class Board
     @dots             = []
     @dots_checked     = []
     @to_be_captured   = []
-
+    @dirty_dot        = []
     @dead_black_count = 0
     @dead_white_count = 0
     @fake_stone       = null
@@ -97,6 +97,11 @@ class Board
           @ko_dot = null
       # add stone, then check liberties
       if dot.occupy(@color_in_turn, draw_flag)
+        if @dirty_dot.length > 0
+          for e in @dirty_dot
+            e.jquery_target.text('')
+            e.jquery_target.removeClass('clear_text')
+          @dirty_dot = []
         @dots_checked = []
         if @is_alive dot
           dot.check_nearby_dots true
@@ -290,6 +295,7 @@ class Board
   set_text : (dot_name, text) ->
     if dot_name.length != 2 then throw 'invalid sgf move name'
     dot = @find_stone_by_name dot_name.toLowerCase()
+    @dirty_dot[@dirty_dot.length] = dot
     dot.set_text text
 
   click : (click_fn) ->
@@ -345,6 +351,7 @@ class BoardDot
 
   set_text: (text) ->
     @jquery_target.text(text)
+    @jquery_target.addClass('clear_text')
     # @jquery_target.css({'background-color':'#B3B3B3'})
 
   show_dot_step: ->

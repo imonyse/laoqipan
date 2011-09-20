@@ -11,7 +11,7 @@
 					<%= image_tag 'pen.png' %>
 					<%= b.user.name %>
 				</span>
-				<%= b.created_at %>
+				<%= b.created_at.to_s(:db) %>
 			</div>
 			<div class="brief"><%= b.brief %></div>
 			<div class="blog_body">

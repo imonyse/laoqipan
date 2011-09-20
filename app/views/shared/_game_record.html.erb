@@ -4,7 +4,9 @@
 			<%= link_to image_tag(game.thumbnail), game_path(game), :class => "record_thumbnail" %>
 		<% end %>
 		<div class="record_details">
-			<%= game.name %>
+			<%= link_to game.name, game %>
+			<p><%= game.created_at.to_formatted_s(:db) %></p>
+			<p><%= game.brief %></p>
 		</div>
 	</div>
 <% end %>

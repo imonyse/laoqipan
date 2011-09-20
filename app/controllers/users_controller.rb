@@ -32,6 +32,8 @@ class UsersController < ApplicationController
       @users = User.where("open_for_play = true").order("last_request_at DESC").page(params[:page]).per(19)
       @games = Game.where("mode != 0 and access = 0").order("updated_at DESC").page(params[:game_page]).per(10)
     end
+    
+    @pro_game = Game.where("mode = 0").order('created_at DESC').first
 
   end
   

@@ -36,6 +36,7 @@ class User < ActiveRecord::Base
   has_many :comments, :dependent => :destroy
   has_attached_file :avatar, :styles => { :small => "24x24>" }
   has_many :authentications, :dependent => :destroy
+  has_many :pro_games, :class_name => 'Game', :foreign_key => "uploader"
   
   validates_presence_of :name
   validates_length_of :name, :within => 2..9, :message => I18n.t(:name_length_msg)

@@ -38,6 +38,18 @@
   }
 }
 
+#all_messages {
+  height:18px;
+  text-align:right;
+  a {
+    color:#004080;
+    font-size:0.8em;
+    &:hover {
+      color:#fff;
+    }
+  }
+}
+
 .broadcasts {
   width:550px;
   margin:10px auto 10px 0;

@@ -44,13 +44,25 @@ class GamesControllerTest < ActionController::TestCase
       assert_response 403
     end
   end
+  
+  test "admin should get edit" do
+    fake_sign_in Factory(:user)
+    get :edit, :id => @game.to_param
+    assert_template 'edit'
+  end
 
-  test "should handle get edit" do
+  test "invalid user should not get edit" do
     get :edit, :id => @game.to_param
     assert_redirected_to root_url
   end
   
-  test "should handle update game" do
+  test "admin should be able to update game" do
+    fake_sign_in Factory(:user)
+    put :update, :id => @game.to_param, :game => @game.attributes
+    assert_redirected_to @game
+  end
+  
+  test "invalid user should not update game" do
     put :update, :id => @game.to_param, :game => @game.attributes
     assert_redirected_to root_url
   end

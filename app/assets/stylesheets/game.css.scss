@@ -51,11 +51,6 @@
   margin:5px 0px 0px 0px;
 }
 
-#side_bar {
-  width:390px;
-  margin:0;
-}
-
 $board_width: 531px;
 
 #game_info {
@@ -104,29 +99,33 @@ $board_width: 531px;
     width:25px;
     height:25px;
     float:left;
+    &.clear_text {
+      font-weight:bold;
+      background-color:#CCFF66;
+    }
     &.b {
       color:#fff;
-      background:url(/assets/black_stone.png) no-repeat;
+      background:url(/assets/black_stone.png) no-repeat center;
     }
     &.b.last {
       color:#f00;
-      background:url(/assets/last_black_stone.png) no-repeat;
+      background:url(/assets/last_black_stone.png) no-repeat center;
     }
     &.b.last_text {
       color:#f00;
-      background:url(/assets/black_stone.png) no-repeat;
+      background:url(/assets/black_stone.png) no-repeat center;
     }
     &.w {
       color:#000;
-      background:url(/assets/white_stone.png) no-repeat;
+      background:url(/assets/white_stone.png) no-repeat center;
     }
     &.w.last {
       color:#f00;
-      background:url(/assets/last_white_stone.png) no-repeat;
+      background:url(/assets/last_white_stone.png) no-repeat center;
     }
     &.w.last_text {
       color:#f00;
-      background:url(/assets/white_stone.png) no-repeat;
+      background:url(/assets/white_stone.png) no-repeat center;
     }
     &.fake {
       opacity: 0.6;
@@ -159,6 +158,34 @@ $board_width: 531px;
 .game_board {
   width:$board_width + 4px;
   height:560px;
+  margin:0;
+}
+
+#progame_board {
+  margin-top:10px;
+}
+
+#progame_info {
+  position:absolute;
+  top:0;
+  right:0;
+  margin-top:10px;
+  width:380px;
+  font-size:1.2em;
+  div {
+    margin-bottom:10px;
+  }
+  img {
+    float:left;
+  }
+  span {
+    margin-right:10px;
+  }
+}
+
+#sgf_comments {
+  padding:10px;
+  background-color:#eee;
 }
 
 #board_info, #start_info {
@@ -211,23 +238,33 @@ $board_width: 531px;
 }
 
 .record_item {
-  position:relative;
-  float:left;
-  height:160px;
-  width:150px;
+  padding:5px;
+  width:535px;
+  margin:10px auto 10px 0;
+  clear:both;
+  a.record_thumbnail{
+    float:left;
+    margin:0 10px 10px 0;
+  }
+  p {
+    margin-top:10px;
+  }
+  .record_details {
+    a {
+      padding:5px;
+      color:#004080;
+      background-color:#ccc;
+      &:hover {
+        color:#fff;
+        background-color:#004080;
+      }
+    }
+  }
+  
+  border-top:1px solid #ccc;
 }
-.record_thumbnail{
-  position:absolute;
-  top:0;
-  left:0;
-}
-.record_details {
-  position:absolute;
-  top:125px;
-  left:0;
-  height:40px;
-  width:120px;
-}
+
+
 
 .user_profile {
   margin-bottom:15px;
@@ -393,11 +430,17 @@ input[type="text"], input[type="password"], input[type="url"], input[type="email
 
 .relative {
   width:100%;
+  min-height:610px;
   position:relative;
   div#side_bar {
     position:absolute;
     top:0;
     right:0;
+  }
+  div#topic_bar {
+    position:absolute;
+    top:0;
+    left:0;
   }
 }
 
@@ -682,4 +725,9 @@ span {
   top:272px;
   left:240px;
   @include border-radius;
+}
+
+.reference {
+  font-size:0.9em;
+  color:#666666;
 }

@@ -105,6 +105,8 @@ en:
   show_steps: "Steps"
   step: "step(s)"
   active_games: "My Games"
+  pro_games_view: "Enjoy a professional game!"
+  sgf_from_tom_weiqi: "SGF source: tom.com"
   layouts:
     header:
       more: "More >"
@@ -133,6 +135,14 @@ en:
       older: "Older"
     prev_page:
       newer: "Newer"
+  shared:
+    side_bar:
+      view: "view"
+      broadcasts: "broadcasts"
+  broadcasts:
+    show:
+      view: "view"
+      broadcasts: "broadcasts"
   pages:
     index:
       no_time_limit: "Access anywhere"
@@ -154,6 +164,9 @@ en:
       helping_the_world: "Helping the World One Word at a Time"
       more: "By entering the words in the box, you are also helping to digitize texts that were written before the computer age. The words that you see were taken directly from old texts that are being scanned and stored in digital format in order to preserve them and make them more accessible to the world. Since some of the words in these texts are difficult for computers to process, we are using the results of your efforts to help decipher them."
   games:
+    pro_games:
+      go: "Go"
+      all_records: "View All"
     form:
       game_name: "Game Name"
     game_comments:
