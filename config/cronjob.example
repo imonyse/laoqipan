@@ -1,1 +1,0 @@
-0,10,20,30,40,50 * * * * /usr/bin/curl http://laoqipan.com/notify -d auth='$2a$10$9MJiTqox10Ybf6HaOjm7vO' >/dev/null 2>&1

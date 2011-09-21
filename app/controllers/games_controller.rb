@@ -113,9 +113,6 @@ class GamesController < ApplicationController
       
       respond_to do |format|
         if @game.save
-          if @pc.email.present? and @pc.email_confirmed?
-            Notification.create(:user_id => @pc.id, :game_id => @game.id, :send_time => 1.hour.from_now)
-          end
           if @game.status == 0 and @game.current_player.robot?
             color = @game.current_player == @game.black_player ? 'black' : 'white'
             Stalker.enqueue("ai_move", :game_id => @game.id, :game_sgf => @game.sgf, :color => color)

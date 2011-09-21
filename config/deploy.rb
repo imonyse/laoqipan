@@ -33,7 +33,7 @@ namespace :deploy do
     run "cd #{current_path}; rake db:seed RAILS_ENV=production"
   end
   task :symlink_extras do
-    run "ln -nfs #{shared_path}/config/private.yml #{release_path}/config/private.yml && ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml && ln -nfs #{shared_path}/config/cronjob #{release_path}/config/cronjob"
+    run "ln -nfs #{shared_path}/config/private.yml #{release_path}/config/private.yml && ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml"
   end
 end
 
@@ -44,7 +44,7 @@ end
 
 before "deploy:restart", :precompile
 task :precompile, :roles => :app do
-  run "cd #{release_path} && rake assets:precompile && crontab config/cronjob"
+  run "cd #{release_path} && rake assets:precompile"
 end
 
 after "deploy:restart", :restart_worker

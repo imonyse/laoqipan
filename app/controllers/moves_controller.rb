@@ -48,20 +48,7 @@ class MovesController < ApplicationController
         @attr.merge!(:access => 0)
       end
       
-      Game.transaction do
-        @game.update_attributes(@attr)
-        
-        expired_notification = Notification.find_by_user_id_and_game_id(@current_player_id, @game.id)
-        if expired_notification
-          expired_notification.destroy
-        end
-      
-        if @next_player and @next_player.notify_pendding_move
-          if @next_player.email.present? and @next_player.email_confirmed
-            Notification.create(:user_id => @next_player.id, :game_id => @game.id, :send_time => 1.hour.from_now)
-          end
-        end
-      end
+      @game.update_attributes(@attr)
       
       Stalker.enqueue('generate_thumbnail', :game_id => @game.id, :game_sgf => @game.sgf, :thumb_path => @game.thumbnail_path)
       

@@ -34,10 +34,7 @@
 	</div>
 	
 	<div class="field">
-		<% if @user.email_confirmed %>
-			<%= f.check_box :notify_pendding_move %>
-			<%= t :notify_me_when_I_need_move %>
-		<% else %>
+		<% if !@user.email_confirmed %>
 			<%= link_to t(".confirm_email"), validate_email_url %>
 		<% end %>
 	</div>
