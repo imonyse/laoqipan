@@ -22,7 +22,6 @@ When you have all the software above installed, make some necessary changes to c
 bundle
 cp config/database.example.yml config/database.yml
 cp config/private.example.yml config/private.yml
-cp config/cronjob.example config/cronjob
 rake db:create db:migrate
 </pre>
 
