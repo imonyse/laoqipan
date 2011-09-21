@@ -49,7 +49,7 @@ end
 
 after "deploy:restart", :restart_worker
 task :restart_worker, :roles => :app do
-  run "god stop laoqipan-worker && god quit && sleep 3 && cd #{release_path} && god -c config/god.rb"
+  run "god stop laoqipan-worker && god stop unicorn-worker && god quit && sleep 3 && cd #{release_path} && god -c config/god.rb"
 end
 
 after "deploy:update_code", "deploy:symlink_extras"
