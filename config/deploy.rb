@@ -2,8 +2,8 @@
 # set :domain, 'laoqipan.com'
 set :user, 'root'
 set :domain, '199.180.254.26'
-set :application, "depot"
-set :repository,  "#{user}@#{domain}:git/#{application}.git"
+set :application, "laoqipan"
+set :repository,  "#{user}@#{domain}:/var/web/#{application}.git"
 set :deploy_to, "/var/web/laoqipan"
 set :use_sudo, false
 set :scm, :git
