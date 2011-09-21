@@ -22,6 +22,7 @@ group :assets do
 end
 
 group :production do
+  gem 'unicorn'
   gem "therubyracer"
 end
 
