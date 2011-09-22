@@ -35,4 +35,5 @@ group :development, :test do
   gem 'database_cleaner'
   gem 'launchy'
   gem 'factory_girl_rails'
+  # gem 'capybara-webkit'
 end

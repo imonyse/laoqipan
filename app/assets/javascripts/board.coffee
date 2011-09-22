@@ -80,7 +80,7 @@ class Board
 
   draw_fake_stone: (dot) ->
     if @fake_stone
-      @fake_stone.jquery_target.removeClass('last')
+      @fake_stone.jquery_target.attr('class', 'e')
     @fake_stone = dot
 
     if @last_move?
@@ -97,6 +97,7 @@ class Board
           @ko_dot = null
       # add stone, then check liberties
       if dot.occupy(@color_in_turn, draw_flag)
+        @fake_stone = null
         if @dirty_dot.length > 0
           for e in @dirty_dot
             e.jquery_target.text('')
