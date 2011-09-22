@@ -37,7 +37,7 @@
 	</div>
 	<div id="browser_check_bg"></div>
 	
-	<% if Rails.env.production? %>
+	<% if Rails.env.production? and I18n.locale == :zh %>
 	<!--start of feedback code powered by geekui-->
 	<script type="text/javascript" src="http://geekui.com/static/js/widgets.js"></script>
 	<script type="text/javascript" charset="utf-8">
