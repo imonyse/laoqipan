@@ -1,6 +1,4 @@
-# set :user, 'webuser'
-# set :domain, 'laoqipan.com'
-set :user, 'root'
+set :user, 'webuser'
 set :domain, '199.180.254.26'
 set :application, "laoqipan"
 set :repository,  "#{user}@#{domain}:/git/#{application}.git"
