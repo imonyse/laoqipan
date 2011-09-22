@@ -4,6 +4,7 @@ set :application, "laoqipan"
 set :repository,  "#{user}@#{domain}:/git/#{application}.git"
 set :deploy_to, "/home/webuser/laoqipan"
 set :use_sudo, true
+default_run_options[:pty] = true
 set :scm, :git
 set :branch, :master
 # Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
