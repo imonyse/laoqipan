@@ -93,3 +93,16 @@
   width:150px;
   @include notice;
 }
+
+.meta {
+  margin:10px;
+  a {
+    padding:5px;
+    color:#000;
+    background-color:#ddd;
+    &:hover {
+      color:#fff;
+      background-color:#333;
+    }
+  }
+}

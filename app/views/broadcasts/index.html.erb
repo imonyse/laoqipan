@@ -1,6 +1,8 @@
+<div class="meta">
 <% if user_signed_in? and current_user.admin? %>
-	<%= link_to 'new broadcast', new_broadcast_path %>
+	<%= link_to t('.new_broadcast'), new_broadcast_path %>
 <% end %>
+</div>
 
 <div class="broadcasts">
 	<% @broadcasts.each do |b|%>

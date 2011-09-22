@@ -143,6 +143,8 @@ en:
     show:
       view: "view"
       broadcasts: "broadcasts"
+    index:
+      new_broadcast: "New Broadcast"
   pages:
     index:
       login_to_play: "Please login to play"
@@ -161,6 +163,9 @@ en:
     pro_games:
       go: "Go"
       all_records: "View All"
+      new_sgf_game: "Add New SGF Game"
+    pro_game_show:
+      edit: "Edit SGF"
     form:
       game_name: "Game Name"
     game_comments:
@@ -175,11 +180,14 @@ en:
       full_comments: "comment(s)"
       pass: "PASS"
       resign: "Resign"
-      
       click_to_confirm: "Confirm"
       score: "Score"
     new:
       back_to_select: "Back"
+    upload_sgf:
+      sgf_url: "TOM SGF URL"
+      name: "SGF Title"
+      brief: "Brief Description"
   users:
     form:
       username: ""

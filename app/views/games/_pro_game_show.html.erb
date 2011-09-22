@@ -21,6 +21,6 @@
 	<div id="sgf_comments"></div>
 	<div class="reference"><%= t :sgf_from_tom_weiqi %></div>
 	<% if user_signed_in? and current_user.admin? %>
-		<%= link_to 'EDIT', edit_game_path(@game) %>
+		<%= link_to t('.edit'), edit_game_path(@game) %>
 	<% end %>
 </div>

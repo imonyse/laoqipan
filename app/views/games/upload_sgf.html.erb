@@ -3,17 +3,17 @@
 	
 	<%= form_for @game do |f| %>
 		<div class="field">
-			<%= f.label :sgf_url %><br>
+			<%= f.label :sgf_url, t('.sgf_url') %><br>
 			<%= text_field_tag :sgf_url %>
 		</div>
 		
 		<div class="field">
-			<%= f.label :name %><br>
+			<%= f.label :name, t('.name') %><br>
 			<%= f.text_field :name %>
 		</div>
 		
 		<div class="field">
-			<%= f.label :brief %><br>
+			<%= f.label :brief, t('.brief') %><br>
 			<%= f.text_area :brief %>
 		</div>
 
