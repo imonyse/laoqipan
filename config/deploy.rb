@@ -1,7 +1,7 @@
 set :user, 'webuser'
 set :domain, '199.180.254.26'
 set :application, "laoqipan"
-set :repository,  "#{user}@#{domain}:/git/#{application}.git"
+set :repository,  "#{user}@#{domain}:git/#{application}.git"
 set :deploy_to, "/home/webuser/laoqipan"
 set :use_sudo, false
 set :scm, :git
