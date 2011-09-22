@@ -661,25 +661,28 @@ span {
 
 #intro_video {
   width:480px;
-  height:400px;
+  height:300px;
   font-size:1.2em;
   padding:5px;
-  a {
-    margin:0;
-    padding:0;
+  p {
+    font-size:1.5em;
+    font-weight:bold;
+    color:#408000;
   }
-  img {
-    float:left !important;
-  }
-  div {
-    clear:both;
-    padding:10px;
+  ul {
+    margin:10px;
+    li {
+      padding:5px;
+      font-size:1.3em;
+      font-weight:bold;
+      color:#408000;
+    }
   }
 }
 
 .top {
   position:relative;
-  height:500px;
+  height:400px;
 }
 .bottom {
   clear:both;
