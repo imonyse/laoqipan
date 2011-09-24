@@ -37,6 +37,8 @@ class User < ActiveRecord::Base
   has_attached_file :avatar, :styles => { :small => "24x24>" }
   has_many :authentications, :dependent => :destroy
   has_many :pro_games, :class_name => 'Game', :foreign_key => "uploader"
+  has_many :relationships, :foreign_key => "follower_id", :dependent => :destroy
+  has_many :following, :through => :relationships, :source => :followed
   
   validates_presence_of :name
   validates_length_of :name, :within => 2..9, :message => I18n.t(:name_length_msg)
@@ -60,6 +62,22 @@ class User < ActiveRecord::Base
   
   def has_password?(pass)
     self.encrypted_password == encrypt_password(pass)
+  end
+  
+  def following?(followed)
+    if relationships.find_by_followed_id(followed)
+      return true
+    else
+      return false
+    end
+  end
+  
+  def follow!(followed)
+    relationships.create!(:followed_id => followed.id)
+  end
+  
+  def unfollow!(followed)
+    relationships.find_by_followed_id(followed).destroy
   end
   
   def win_rate

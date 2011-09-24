@@ -86,4 +86,28 @@ class UserTest < ActiveSupport::TestCase
     @user = users(:one)
     assert_equal(@user.win_rate, 0.43)
   end
+  
+  test "should have a relationships method" do
+    @user = Factory(:user)
+    @followed = Factory(:user)
+    
+    assert(@user.relationships)
+    assert(@user.following)
+  end
+  
+  test "follow! method" do
+    @user = Factory(:user)
+    @followed = Factory(:user)
+    @user.follow!(@followed)
+    assert_equal(@user.following?(@followed), true)
+    assert_equal(@user.following.include?(@followed), true)
+  end
+  
+  test "unfollow! method" do
+    @user = Factory(:user)
+    @followed = Factory(:user)
+    @user.follow!(@followed)
+    @user.unfollow!(@followed)
+    assert_equal(@user.following?(@followed), false)
+  end
 end
