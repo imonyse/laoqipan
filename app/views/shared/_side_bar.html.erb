@@ -16,6 +16,7 @@
 			<div id="all_messages"><%= link_to t('.view') + ' ' + Broadcast.count.to_s + ' ' + t('.broadcasts'), broadcasts_path %></div>
 		</div>
 	</div>
+	<%= render 'games/pro_games' %>
 	<% end %>
 	<% if user_signed_in? %>
 	<div class="top_bar" id="active_games">

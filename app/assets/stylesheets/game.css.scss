@@ -267,8 +267,20 @@ $board_width: 531px;
 
 
 .user_profile {
-  margin-bottom:15px;
   font-size:1.2em;
+  margin:10px auto 10px 0;
+  padding:5px;
+  position:absolute;
+  top:0;
+  left:0;
+  display:inline;
+  background-color:#eee;
+  @include border-radius;
+  border:1px solid #bbb;
+  a {
+    padding-left:10px;
+    padding-right:10px;
+  }
 }
 .bottom_profile {
   text-align:right;
@@ -434,7 +446,7 @@ input[type="text"], input[type="password"], input[type="url"], input[type="email
 
 .relative {
   width:100%;
-  min-height:610px;
+  min-height:750px;
   position:relative;
   div#side_bar {
     position:absolute;
@@ -442,9 +454,11 @@ input[type="text"], input[type="password"], input[type="url"], input[type="email
     right:0;
   }
   div#topic_bar {
-    position:absolute;
-    top:0;
-    left:0;
+    padding:0;
+    width:100%;
+    p.info {
+      line-height:24px;
+    }
   }
 }
 

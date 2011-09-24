@@ -139,6 +139,8 @@ window.subscribe_game = ->
     current_player = $("#game").attr("current_player")
     if $('#start_info').is(':visible') and (access isnt '3' or current_player is current_user)
       $('#start_info').hide()
+    # make sure we doesn't miss anything before connected
+    $.getScript(window.location.pathname + '/moves')
   window.jug.on "disconnect", ->
     $('#connection').attr("class", "alert small")
     if window.get_locale() is 'zh'

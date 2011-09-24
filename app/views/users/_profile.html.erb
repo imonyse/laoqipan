@@ -1,4 +1,4 @@
-<div class="user_profile game_player">
+<div class="user_profile">
 	<%= avatar_image_tag(@user) %>
 	<%= @user.name %>
 	<% if correct_user?(@user) %>
@@ -7,6 +7,7 @@
 	<% else %>
 		<% if user_signed_in? and current_user != @user %>
 		  <%= link_to t(:start_duel), new_game_path(:opponent => @user.name) %>
+			<%= link_to t(:follow), '#', :id => 'follow_button' %>
 		<% end %>
 	<% end %>
 </div>
