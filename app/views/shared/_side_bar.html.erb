@@ -20,7 +20,11 @@
 	<% if user_signed_in? %>
 	<div class="top_bar" id="active_games">
 		<div class="refresh"></div>
-		<%= t("active_games") %>
+		<% if @user and @user != current_user %>
+			<%= @user.name + t("game_of") %>
+		<% else %>
+			<%= t("active_games") %>
+		<% end %>
 		<div id="game_duel">
 			<%= link_to t(:game_duel), duel_path %>
 		</div>
@@ -36,5 +40,7 @@
 	<div id="games_list" class="notify_content">
 		<%= render('games/index') %>
 	</div>
+	<% else %>
+	  <%= render 'shared/signin' %>
 	<% end %>
 </div>

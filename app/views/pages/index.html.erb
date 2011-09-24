@@ -9,18 +9,10 @@
 				<li><%= t(".no_download") %></li>
 				<li><%= t(".support_zuozi") %></li>
 				<li><%= t(".confirm_to_move") %></li>
-				<li><%= t(".login_to_play") %></li>
 			</ul>
 		</div>
 	</div>
-	<div id="sign_in" class="notify_wrapper">
-		<div class="top_bar">
-			<%= t("sign_in") %>
-		</div>
-		<div id="sign_in_text">
-			<%= render 'sessions/new' %>
-		</div>
-	</div>
+	<%= render 'shared/signin' %>
 </div>
 <div class="bottom">
 	<h3><%= t(:watch_game) %></h3>

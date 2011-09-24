@@ -1,4 +1,5 @@
 en:
+  game_of: "'s Games"
   English: "English Version"
   Chinese: "汉语版"
   none: "none"
@@ -107,6 +108,7 @@ en:
   active_games: "My Games"
   pro_games_view: "Enjoy a professional game!"
   sgf_from_tom_weiqi: "SGF source: tom.com"
+  login_to_play: "Please login to play"
   layouts:
     header:
       more: "More >"
@@ -147,7 +149,7 @@ en:
       new_broadcast: "New Broadcast"
   pages:
     index:
-      login_to_play: "Please login to play"
+      
       free_to_go: "100% FREE"
       no_download: "Open web page to play, no client software download needed"
       support_zuozi: "Support Ancient Chinese rules(hard to explain right now, will try later...)"

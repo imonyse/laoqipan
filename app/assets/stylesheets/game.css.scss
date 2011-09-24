@@ -411,6 +411,10 @@ input[type="text"], input[type="password"], input[type="url"], input[type="email
   top:0;
   right:0;
   border: 1px solid #ccc;
+  div.top_bar {
+    font-size:1.2em;
+    color:#FF8000;
+  }
 }
 
 .tips {

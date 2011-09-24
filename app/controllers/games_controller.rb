@@ -4,9 +4,9 @@ class GamesController < ApplicationController
   before_filter :only => [:edit, :update] { authenticate_admin(root_url) }
   
   def index
-    if user_signed_in?
-      user = current_user
-      @games = Game.where("mode != 0 and access = 0 and current_player_id != #{user.id}").order("updated_at DESC").page(params[:game_page]).per(4)
+    if params[:id]
+      user = User.find(params[:id])
+      @games = Game.where("mode != 0 and access = 0 and black_player_id != #{user.id} and white_player_id != #{user.id}").order("updated_at DESC").page(params[:game_page]).per(4)
     else
       @games = Game.where("mode != 0 and access = 0").order("updated_at DESC").page(params[:game_page]).per(10)
     end
@@ -193,8 +193,8 @@ class GamesController < ApplicationController
   end
   
   def current_games
-    if user_signed_in?
-      user = current_user
+    if params[:id]
+      user = User.find(params[:id])
       @current_games = Game.where("black_player_id = '#{user.id}' or white_player_id = '#{user.id}'").order("case when current_player_id = '#{user.id}' then 0 else 1 end, status, updated_at DESC").page(params[:current_games_page]).per(4)
     else
       redirect_to root_url

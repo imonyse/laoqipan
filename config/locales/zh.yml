@@ -1,4 +1,5 @@
 zh:
+  game_of: "的对局"
   English: "English Version"
   Chinese: "汉语版"
   none: "无"
@@ -111,6 +112,7 @@ zh:
   active_games: "我的对局"
   pro_games_view: "精彩时局欣赏"
   sgf_from_tom_weiqi: "SGF棋谱来源:TOM棋圣道场"
+  login_to_play: "登录后可下棋"
   layouts:
     header:
       more: "查看更多 >"
@@ -150,7 +152,7 @@ zh:
       new_broadcast: "添加新广播"
   pages:
     index:
-      login_to_play: "登录后可下棋"
+      
       free_to_go: "完全免费"
       no_download: "打开网页即可下棋，无需下载任何客户端软件"
       support_zuozi: "支持中国古代座子棋开局"
