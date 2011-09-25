@@ -1,24 +1,24 @@
 <div class="notify_wrapper" id="side_bar">
-	<% if @user %>
-	<div class="notifications">
-		<div class="message">
-			<% broadcast = Broadcast.last %>
-			<% if broadcast.nil? %>
-				<h3>broadcasting...</h3>
-			<% else %>
-				<h3>
-				<%= link_to broadcast.title, broadcast %>
-				</h3>
-				<p>
-				<%= broadcast.brief %>
-				</p>
-			<% end %>
-			<div id="all_messages"><%= link_to t('.view') + ' ' + Broadcast.count.to_s + ' ' + t('.broadcasts'), broadcasts_path %></div>
-		</div>
-	</div>
-	<%= render 'games/pro_games' %>
-	<% end %>
 	<% if user_signed_in? %>
+		<% if @user %>
+		<div class="notifications">
+			<div class="message">
+				<% broadcast = Broadcast.last %>
+				<% if broadcast.nil? %>
+					<h3>broadcasting...</h3>
+				<% else %>
+					<h3>
+					<%= link_to broadcast.title, broadcast %>
+					</h3>
+					<p>
+					<%= broadcast.brief %>
+					</p>
+				<% end %>
+				<div id="all_messages"><%= link_to t('.view') + ' ' + Broadcast.count.to_s + ' ' + t('.broadcasts'), broadcasts_path %></div>
+			</div>
+		</div>
+		<%= render 'games/pro_games' %>
+		<% end %>
 	<div class="top_bar" id="active_games">
 		<div class="refresh"></div>
 		<% if @user and @user != current_user %>

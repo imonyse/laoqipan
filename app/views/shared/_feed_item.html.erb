@@ -1,0 +1,22 @@
+<div class="feed_show">
+	<span class="feed_player">
+		<% black = feed_item.black_player %>
+		<%= avatar_image_tag black %>
+		<%= link_to black.name, black %>
+	</span>
+	<%= t("and") %>
+	<span class="feed_player">
+		<% white = feed_item.white_player %>
+		<%= avatar_image_tag white %>
+		<%= link_to white.name, white %>
+	</span>
+	<% if feed_item.status == 0 %>
+		<%= t("playing_game") %>
+	<% else %>
+	  <%= t("finished_game") %>
+	<% end %>
+	<%= link_to feed_item.id, feed_item %>
+	<div class="update_time">
+		<%= time_ago_in_words feed_item.updated_at %>
+	</div>
+</div>

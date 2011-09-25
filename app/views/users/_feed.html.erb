@@ -1,0 +1,8 @@
+<% unless @feed_items.empty? %>
+	<div class="user_feeds">
+		<%= render :partial => 'shared/feed_item', :collection => @feed_items %>
+		<div class="paginate">
+			<%= paginate @feed_items %>
+		</div>
+	</div>
+<% end %>

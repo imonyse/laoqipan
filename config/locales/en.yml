@@ -109,6 +109,11 @@ en:
   pro_games_view: "Enjoy a professional game!"
   sgf_from_tom_weiqi: "SGF source: tom.com"
   login_to_play: "Please login to play"
+  s_followers: "'s followers"
+  is_following: "is following"
+  and: "And"
+  playing_game: "are playing Game"
+  finished_game: "finished Game"
   layouts:
     header:
       more: "More >"

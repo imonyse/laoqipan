@@ -24,6 +24,33 @@ h3 {
   }
 }
 
+table {
+  width:100%;
+  tbody {
+    tr {
+      th {
+        text-align:left;
+        padding:5px;
+        border-bottom:2px solid #bbb;
+      }
+      td {
+        padding:5px;
+        border-bottom:1px solid #ccc;
+        a {
+          padding:3px;
+          text-align:center;
+          background-color:#ddd;
+          border:1px solid #ccc;
+          &:hover {
+            color:#fff;
+            background-color:#000;
+          }
+        }
+      }
+    }
+  }
+}
+
 @mixin border-radius($radius: 5px) {
   border-radius:$radius;
   -webkit-border-radius:$radius;

@@ -1,8 +1,8 @@
-<div class="paginate">
-	<%= paginate @users %>
-</div>
-
 <div class="show_follow">
+	<h3>
+		<%= @user.name %>
+		<%= @action %>
+	</h3>
 	<ul>
 	<% unless @users.empty? %>
 		<% for user in @users %>
@@ -13,4 +13,8 @@
 		<% end %>
 	<% end %>
 	</ul>
+</div>
+
+<div class="paginate">
+	<%= paginate @users %>
 </div>

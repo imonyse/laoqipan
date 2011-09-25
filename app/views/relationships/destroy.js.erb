@@ -1,2 +1,2 @@
-$('#followers').update(<%= @user.followers.count %>);
-$('#follow_form').update(<%= escape_javascript(render('users/follow')) %>);
+$('#follower').html("<%= escape_javascript(link_to(@user.followers.count, followers_user_path(@user))) %>");
+$('#follow_form').html("<%= escape_javascript(render('users/follow')) %>");

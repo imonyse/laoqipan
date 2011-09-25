@@ -58,6 +58,10 @@ class User < ActiveRecord::Base
     relationships.find_by_followed_id(followed).destroy
   end
   
+  def feed
+    Game.from_users_followed_by(self)
+  end
+  
   def win_rate
     r = sprintf("%.2f", wins.to_f/(wins+loses))
     r.to_f

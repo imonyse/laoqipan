@@ -1,0 +1,38 @@
+.show_follow {
+  margin:5px 25px 5px 25px;
+  h3 {
+    border-bottom:1px solid #bbb;
+    padding:10px;
+  }
+  ul {
+    padding:0;
+    li {
+      padding:5px;
+      border-bottom:1px solid #bbb;
+    }
+  }
+}
+
+.user_feeds {
+  position:absolute;
+  top:60px;
+  width:450px;
+  padding:10px;
+  div {
+    &.feed_show {
+      padding:5px;
+      border-bottom:1px solid #aaa;
+      span.feed_player {
+        img {
+          margin:0;
+        }
+        margin:0 10px 0 10px;
+      }
+      div.update_time {
+        display:inline;
+        color:#666;
+        background-color:#ddd;
+      }
+    }
+  }
+}

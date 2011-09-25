@@ -67,6 +67,16 @@ class Game < ActiveRecord::Base
   def gnugo_vs_fuego
     
   end
+  
+  default_scope :order => "games.created_at DESC"
+  scope :from_users_followed_by, lambda { |user| followed_by(user) }
+  
+  private
+  
+    def self.followed_by(user)
+      followed_ids = %(SELECT followed_id FROM relationships WHERE follower_id = :user_id)
+      where("black_player_id IN (#{followed_ids}) OR white_player_id IN (#{followed_ids})", {:user_id => user})
+    end
 end
 
 # == Schema Information

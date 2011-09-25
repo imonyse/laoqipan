@@ -1,13 +1,13 @@
 <div class="show">
 	<div id="gnugo">
-		<%= t :select_gnugo %>
+		<h3><%= t :select_gnugo %></h3>
 		<div class="select_player">
 			<%= avatar_image_tag @robot %><%= @robot.name %>
 			<%= link_to t(:start_duel), new_game_path(:opponent => @robot.name) %>
 		</div>
 	</div>
 	<div id="human">
-		<%= t :select_player %>
+		<h3><%= t :select_player %></h3>
 		<div class="select_player">
 			<%= render "users/list", :object => @users %>
 
