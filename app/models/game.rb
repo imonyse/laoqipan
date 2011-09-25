@@ -68,7 +68,7 @@ class Game < ActiveRecord::Base
     
   end
   
-  default_scope :order => "games.created_at DESC"
+  default_scope :order => "games.updated_at DESC"
   scope :from_users_followed_by, lambda { |user| followed_by(user) }
   
   private
