@@ -26,3 +26,15 @@ class RelationshipTest < ActiveSupport::TestCase
     assert_equal(@relationship.valid?, false)
   end
 end
+
+# == Schema Information
+#
+# Table name: relationships
+#
+#  id          :integer         not null, primary key
+#  follower_id :integer
+#  followed_id :integer
+#  created_at  :datetime
+#  updated_at  :datetime
+#
+

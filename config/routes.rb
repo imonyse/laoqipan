@@ -30,10 +30,14 @@ Html5Weiqi::Application.routes.draw do
 
   resources :sessions
   resources :notices
+  resources :relationships, :only => [:create, :destroy]
   
   resources :users do
     resources :invitations
     resources :authentications
+    member do
+      get :following, :followers
+    end
   end
   
   resources :games do

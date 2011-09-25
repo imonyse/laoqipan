@@ -1,29 +1,3 @@
-# == Schema Information
-# Schema version: 20110709084329
-#
-# Table name: users
-#
-#  id                  :integer         not null, primary key
-#  name                :string(255)
-#  email               :string(255)
-#  encrypted_password  :string(255)
-#  rank                :string(255)     default("0")
-#  salt                :string(255)
-#  created_at          :datetime
-#  updated_at          :datetime
-#  wins                :integer         default(0)
-#  loses               :integer         default(0)
-#  points              :integer         default(0)
-#  open_for_play       :boolean         default(TRUE)
-#  avatar_file_name    :string(255)
-#  avatar_content_type :string(255)
-#  avatar_file_size    :integer
-#  avatar_updated_at   :datetime
-#  last_request_at     :datetime
-#  role                :integer         default(0)
-#  email_confirmed     :boolean
-#
-
 class User < ActiveRecord::Base
   attr_accessible :name, :email, :password, :password_confirmation, :guest, :rank, :wins, :loses, 
                   :open_for_play, :avatar, :salt, :role, :last_request_at, :email_confirmed, 
@@ -39,6 +13,10 @@ class User < ActiveRecord::Base
   has_many :pro_games, :class_name => 'Game', :foreign_key => "uploader"
   has_many :relationships, :foreign_key => "follower_id", :dependent => :destroy
   has_many :following, :through => :relationships, :source => :followed
+  has_many :reverse_relationships, :foreign_key => "followed_id", 
+                                   :class_name => "Relationship",
+                                   :dependent => :destroy
+  has_many :followers, :through => :reverse_relationships, :source => :follower
   
   validates_presence_of :name
   validates_length_of :name, :within => 2..9, :message => I18n.t(:name_length_msg)
@@ -117,3 +95,31 @@ class User < ActiveRecord::Base
       BCrypt::Engine.hash_secret(pass, salt)
     end
 end
+
+# == Schema Information
+#
+# Table name: users
+#
+#  id                   :integer         not null, primary key
+#  name                 :string(255)
+#  email                :string(255)
+#  encrypted_password   :string(255)
+#  rank                 :string(255)     default("0")
+#  salt                 :string(255)
+#  created_at           :datetime
+#  updated_at           :datetime
+#  wins                 :integer         default(0)
+#  loses                :integer         default(0)
+#  points               :integer         default(0)
+#  open_for_play        :boolean         default(TRUE)
+#  avatar_file_name     :string(255)
+#  avatar_content_type  :string(255)
+#  avatar_file_size     :integer
+#  avatar_updated_at    :datetime
+#  last_request_at      :datetime
+#  role                 :integer         default(0)
+#  email_confirmed      :boolean         default(FALSE)
+#  notify_pendding_move :boolean         default(FALSE)
+#  connected            :integer         default(0)
+#
+

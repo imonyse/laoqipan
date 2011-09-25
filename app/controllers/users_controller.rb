@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :login_required, :only => [:edit, :update, :validate_email]
+  before_filter :login_required, :only => [:edit, :update, :validate_email, :following, :followers]
   before_filter :ensure_not_logged_in, :only => [:reset_password, :recover_password]
   
   def new
@@ -90,4 +90,21 @@ class UsersController < ApplicationController
     end
   end
   
+  def following
+    @user = User.find(params[:id])
+    @users = @user.following.page
+    
+    respond_to do |format|
+      format.html { render 'show_follow' }
+    end
+  end
+  
+  def followers
+    @user = User.find(params[:id])
+    @users = @user.followers.page
+    
+    respond_to do |format|
+      format.html { render 'show_follow' }
+    end
+  end
 end

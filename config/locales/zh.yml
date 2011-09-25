@@ -224,7 +224,6 @@ zh:
       close_for_play: "拒绝对局邀请"
       create: "提交"
     show:
-      
       wait_for: "等待"
       to_move: "落子"
       other_games: "其他棋局"
@@ -233,6 +232,13 @@ zh:
       active_connections: "登录服务"
       add_connections: "测试用户可以添加登录服务: "
       go_to_add: "合作方列表"
+    profile:
+      following: "关注"
+      followers: "观众"
+    follow:
+      follow: "加关注"
+    unfollow:
+      unfollow: "取消关注"
   authentications:
     index:
       available_connections: "测试用户可以绑定账号到下列服务，直接登录老棋盘的网站下棋。「非测试用户请勿操作，会出错」"

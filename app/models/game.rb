@@ -1,22 +1,3 @@
-# == Schema Information
-# Schema version: 20110622093124
-#
-# Table name: games
-#
-#  id                :integer         not null, primary key
-#  sgf               :text
-#  name              :string(255)
-#  mode              :integer         default(0)
-#  current_player_id :integer
-#  status            :integer         default(0)
-#  black_player_id   :integer
-#  white_player_id   :integer
-#  created_at        :datetime
-#  updated_at        :datetime
-#  access            :integer         default(3)
-#  score_requester   :integer         default(0)
-#
-
 # @mode : 0 => uploads, 1 => modern style game, 2 => traditional style game
 # @status : 0 => on going game, 1 => finished game
 # @access : 0 => public, 1 => private, 3 => protected
@@ -87,3 +68,24 @@ class Game < ActiveRecord::Base
     
   end
 end
+
+# == Schema Information
+#
+# Table name: games
+#
+#  id                :integer         not null, primary key
+#  sgf               :text
+#  name              :string(255)
+#  mode              :integer         default(0)
+#  current_player_id :integer
+#  status            :integer         default(0)
+#  black_player_id   :integer
+#  white_player_id   :integer
+#  created_at        :datetime
+#  updated_at        :datetime
+#  access            :integer         default(3)
+#  score_requester   :integer         default(0)
+#  uploader          :integer
+#  brief             :text
+#
+

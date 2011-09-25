@@ -264,24 +264,6 @@ $board_width: 531px;
   border-top:1px solid #ccc;
 }
 
-
-
-.user_profile {
-  font-size:1.2em;
-  margin:10px auto 10px 0;
-  padding:5px;
-  position:absolute;
-  top:0;
-  left:0;
-  display:inline;
-  background-color:#eee;
-  @include border-radius;
-  border:1px solid #bbb;
-  a {
-    padding-left:10px;
-    padding-right:10px;
-  }
-}
 .bottom_profile {
   text-align:right;
 }

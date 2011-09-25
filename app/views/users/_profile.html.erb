@@ -7,7 +7,28 @@
 	<% else %>
 		<% if user_signed_in? and current_user != @user %>
 		  <%= link_to t(:start_duel), new_game_path(:opponent => @user.name) %>
-			<%= link_to t(:follow), '#', :id => 'follow_button' %>
+			<div id="follow_form">
+			<% if current_user.following?(@user) %>
+				<%= render 'unfollow' %>
+			<% else %>
+				<%= render 'follow' %>
+		  <% end %>
+			</div>
 		<% end %>
 	<% end %>
+</div>
+
+<div class="user_social">
+	<span class="stat">
+		<%= t(".following") %>
+		<span id="following">
+			<%= link_to @user.following.count, following_user_path(@user) %>
+		</span>
+	</span>
+	<span class="stat">
+		<%= t(".followers") %>
+		<span id="follower">
+			<%= link_to @user.followers.count, followers_user_path(@user) %>
+		</span>
+	</span>
 </div>

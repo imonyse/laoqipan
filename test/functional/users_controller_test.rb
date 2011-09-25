@@ -65,4 +65,24 @@ class UsersControllerTest < ActionController::TestCase
     put :update, :id => @user.to_param, :user => @attr
     assert_redirected_to user_path(@user)
   end
+  
+  test "login user follower/following count" do
+    @user = Factory(:user)
+    fake_sign_in @user
+    other_user = Factory(:user)
+    other_user.follow! @user
+    
+    get :show, :id => @user.id
+    assert_select '#follower', :text => '1'
+    assert_select '#following', :text => '0'
+  end
+  
+  test "guest follower/following protect" do
+    get :following, :id => 1
+    assert_redirected_to signin_url
+    
+    get :followers, :id => 1
+    assert_redirected_to signin_url
+  end
+  
 end

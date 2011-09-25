@@ -6,3 +6,16 @@ class NotificationTest < ActiveSupport::TestCase
     assert true
   end
 end
+
+# == Schema Information
+#
+# Table name: notifications
+#
+#  id         :integer         not null, primary key
+#  user_id    :integer
+#  game_id    :integer
+#  send_time  :datetime
+#  created_at :datetime
+#  updated_at :datetime
+#
+

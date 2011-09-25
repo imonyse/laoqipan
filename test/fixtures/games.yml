@@ -1,22 +1,3 @@
-# == Schema Information
-# Schema version: 20110622093124
-#
-# Table name: games
-#
-#  id                :integer         not null, primary key
-#  sgf               :text
-#  name              :string(255)
-#  mode              :integer         default(0)
-#  current_player_id :integer
-#  status            :integer         default(0)
-#  black_player_id   :integer
-#  white_player_id   :integer
-#  created_at        :datetime
-#  updated_at        :datetime
-#  access            :integer         default(3)
-#  score_requester   :integer         default(0)
-#
-
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 one:
@@ -38,3 +19,24 @@ two:
   black_player_id: 2
   current_player_id: 2
   access: 0
+
+# == Schema Information
+#
+# Table name: games
+#
+#  id                :integer         not null, primary key
+#  sgf               :text
+#  name              :string(255)
+#  mode              :integer         default(0)
+#  current_player_id :integer
+#  status            :integer         default(0)
+#  black_player_id   :integer
+#  white_player_id   :integer
+#  created_at        :datetime
+#  updated_at        :datetime
+#  access            :integer         default(3)
+#  score_requester   :integer         default(0)
+#  uploader          :integer
+#  brief             :text
+#
+

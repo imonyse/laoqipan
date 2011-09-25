@@ -1,0 +1,16 @@
+<div class="paginate">
+	<%= paginate @users %>
+</div>
+
+<div class="show_follow">
+	<ul>
+	<% unless @users.empty? %>
+		<% for user in @users %>
+		<li>
+			<%= avatar_image_tag user %>
+			<%= link_to user.name, user %>
+		</li>
+		<% end %>
+	<% end %>
+	</ul>
+</div>

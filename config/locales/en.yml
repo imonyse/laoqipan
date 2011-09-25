@@ -112,7 +112,6 @@ en:
   layouts:
     header:
       more: "More >"
-      
       join_chat: "Chat Channel"
     application:
       no_canvas_api: "Sorry, your browser is not supported atm."
@@ -149,7 +148,6 @@ en:
       new_broadcast: "New Broadcast"
   pages:
     index:
-      
       free_to_go: "100% FREE"
       no_download: "Open web page to play, no client software download needed"
       support_zuozi: "Support Ancient Chinese rules(hard to explain right now, will try later...)"
@@ -177,7 +175,6 @@ en:
     tab_info:
       discussion: "Discussion"
     the_game:
-      
       mute: "mute"
       full_comments: "comment(s)"
       pass: "PASS"
@@ -210,7 +207,6 @@ en:
       close_for_play: "Close for play"
       create: "submit"
     show:
-      
       wait_for: ""
       to_move: "you turn"
       other_games: "other games"
@@ -219,6 +215,13 @@ en:
       active_connections: "Login Services"
       add_connections: "Add connections: "
       go_to_add: "Service providers"
+    profile:
+      following: "Following"
+      followers: "Followers"
+    follow:
+      follow: "Follow"
+    unfollow:
+      unfollow: "Unfollow"
   authentications:
     index:
       available_connections: "Available connections"

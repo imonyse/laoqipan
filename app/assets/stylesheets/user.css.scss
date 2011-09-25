@@ -4,6 +4,12 @@
   color:#fff;
 }
 
+@mixin border-radius($radius: 5px) {
+  border-radius:$radius;
+  -webkit-border-radius:$radius;
+  -moz-border-radius:$radius;
+}
+
 #side_bar {
   width:390px;
   margin:0;
@@ -37,12 +43,44 @@
     a {
       @include clear_link;
     }
-    &.info {
-      padding:3px;
+  }
+}
+
+.user_profile {
+  font-size:1.2em;
+  margin:10px auto 10px 0;
+  padding:5px;
+  position:absolute;
+  top:0;
+  left:0;
+  display:inline;
+  background-color:#eee;
+  @include border-radius;
+  border:1px solid #bbb;
+  a {
+    padding-left:10px;
+    padding-right:10px;
+  }
+  div#follow_form {
+    display:inline;
+    form {
       display:inline;
-      color:#000;
-      background-color:#ccc;
-      border:1px solid #999;
+      div {
+        display:inline;
+      }
     }
+  }
+}
+
+.user_social {
+  width:300px;
+  position:absolute;
+  top:0;
+  left:220px;
+  margin:10px;
+  font-size:1.2em;
+  padding:5px;
+  span.stat {
+    margin-left:15px;
   }
 }

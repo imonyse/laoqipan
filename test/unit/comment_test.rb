@@ -9,3 +9,16 @@ class CommentTest < ActiveSupport::TestCase
     assert(game.comments.last.content, comment.content)
   end
 end
+
+# == Schema Information
+#
+# Table name: comments
+#
+#  id         :integer         not null, primary key
+#  user_id    :integer
+#  game_id    :integer
+#  content    :text
+#  created_at :datetime
+#  updated_at :datetime
+#
+
