@@ -189,11 +189,11 @@ class GamesController < ApplicationController
   def current_games
     if params[:id]
       user = User.find(params[:id])
-      @current_games = Game.where("black_player_id = '#{user.id}' or white_player_id = '#{user.id}'").order("case when current_player_id = '#{user.id}' then 0 else 1 end, status, updated_at DESC").page(params[:current_games_page]).per(4)
     else
-      redirect_to root_url
-      return
+      user = current_user
     end
+    
+    @current_games = Game.where("black_player_id = '#{user.id}' or white_player_id = '#{user.id}'").order("case when current_player_id = '#{user.id}' then 0 else 1 end, status, updated_at DESC").page(params[:current_games_page]).per(4)
     
     respond_to do |format|
       format.js

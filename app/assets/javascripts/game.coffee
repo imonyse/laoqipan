@@ -84,10 +84,6 @@ $(window).load ->
     showLoader($('#notified_games'))
     $.getScript('http://' + window.location.host + '/current_games' + window.location.search)
     
-  $('#games_widget div.refresh').click ->
-    showLoader($('#games_list'))
-    $.getScript('http://' + window.location.host + '/watch' + window.location.search)
-      
 window.subscribe_game = ->
   if $('#game').attr('status') is '1'
     $('#start_info').hide()
