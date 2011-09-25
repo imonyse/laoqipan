@@ -20,6 +20,7 @@ zh:
   game_records: "棋谱"
   game_problems: "死活题"
   game_duel: "开始新的对局"
+  game_all: "观看全部对局"
   sign_in: "登录"
   sign_out: "登出"
   register: "注册"
@@ -118,6 +119,7 @@ zh:
   and: "和"
   playing_game: "进行着对局"
   finished_game: "完成了对局"
+  says: "说: "
   layouts:
     header:
       more: "查看更多 >"

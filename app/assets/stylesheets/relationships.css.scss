@@ -13,26 +13,37 @@
   }
 }
 
-.user_feeds {
-  position:absolute;
-  top:60px;
+@mixin lock_index {
   width:450px;
-  padding:10px;
   div {
     &.feed_show {
+      height:80px;
+      clear:both;
+      img {
+        float:left;
+      }
       padding:5px;
       border-bottom:1px solid #aaa;
       span.feed_player {
-        img {
-          margin:0;
-        }
-        margin:0 10px 0 10px;
+
       }
-      div.update_time {
+      span.update_time {
         display:inline;
         color:#666;
         background-color:#ddd;
       }
     }
   }
+}
+
+.user_feeds {
+  position:absolute;
+  top:60px;
+  padding:10px;
+  @include lock_index;
+}
+
+.game_index {
+  margin:15px;
+  @include lock_index;
 }

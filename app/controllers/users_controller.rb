@@ -26,12 +26,11 @@ class UsersController < ApplicationController
     @user_games = Game.where("black_player_id = '#{@user.id}' or white_player_id = '#{@user.id}'").order("case when current_player_id = '#{@user.id}' then 0 else 1 end, status, updated_at DESC")
     
     @current_games = @user_games.page(params[:current_games_page]).per(4)
-    @games = Game.where("mode != 0 and access = 0 and black_player_id != #{@user.id} and white_player_id != #{@user.id}").order("updated_at DESC").page(params[:game_page]).per(4)
     
     if user_signed_in? and current_user == @user
-      @feed_items = current_user.feed.page(params[:page]).per(19)
+      @feed_items = current_user.feed.page(params[:page]).per(7)
     else
-      @feed_items = @user_games.page(params[:page]).per(19)
+      @feed_items = @user_games.page(params[:page]).per(7)
     end
     
     @pro_game = Game.where("mode = 0").order('created_at DESC').first

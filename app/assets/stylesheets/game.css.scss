@@ -634,11 +634,10 @@ span {
   }
 }
 
-#game_duel {
-  position:absolute;
-  top:0;
-  right:0;
+#game_duel, #game_all {
+  display:inline;
   padding:4px;
+  margin-right:100px;
   background-color:#408000;
   @include border-radius(3px);
   a {

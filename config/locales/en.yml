@@ -16,6 +16,7 @@ en:
   main_page: "Main"
   back: "back"
   game_duel: "New Game"
+  game_all: "Watch All Games"
   sign_in: "Login"
   sign_out: "Logout"
   register: "Register"
@@ -114,6 +115,7 @@ en:
   and: "And"
   playing_game: "are playing Game"
   finished_game: "finished Game"
+  says: "says: "
   layouts:
     header:
       more: "More >"

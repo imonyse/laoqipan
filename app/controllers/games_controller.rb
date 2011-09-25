@@ -4,15 +4,9 @@ class GamesController < ApplicationController
   before_filter :only => [:edit, :update] { authenticate_admin(root_url) }
   
   def index
-    if params[:id]
-      user = User.find(params[:id])
-      @games = Game.where("mode != 0 and access = 0 and black_player_id != #{user.id} and white_player_id != #{user.id}").order("updated_at DESC").page(params[:game_page]).per(4)
-    else
-      @games = Game.where("mode != 0 and access = 0").order("updated_at DESC").page(params[:game_page]).per(10)
-    end
-    
     respond_to do |format|
-      format.js
+      format.html { @feed_items = Game.where("mode != 0 and access = 0").order("updated_at DESC").page(params[:page]).per(9) }
+      format.js { @games = Game.where("mode != 0 and access = 0").order("updated_at DESC").page(params[:game_page]).per(9) }
     end
   end
   
