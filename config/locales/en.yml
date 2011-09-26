@@ -48,7 +48,7 @@ en:
   your_opponent: "Your opponent will be: "
   chose_opponent_msg: "You need to choose an opponent!"
   cannot_duel_with_yourself: "You can't chanllenge yourself, please choose again."
-  start_duel: "Challenge"
+  start_duel: "Invite to Play"
   send: "send"
   watch_games: "Watch a game"
   win_rate: "win rate"

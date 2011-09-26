@@ -23,7 +23,7 @@ class UsersController < ApplicationController
   
   def show
     @user = User.find(params[:id])
-    @user_games = Game.where("black_player_id = '#{@user.id}' or white_player_id = '#{@user.id}'").order("case when current_player_id = '#{@user.id}' then 0 else 1 end, status, updated_at DESC")
+    @user_games = Game.where("black_player_id = '#{@user.id}' or white_player_id = '#{@user.id}'").order("case when status = 3 then 0 when status = 0 then 1 else 2 end, case when current_player_id = '#{@user.id}' then 0 else 1 end, status, updated_at DESC")
     
     @current_games = @user_games.page(params[:current_games_page]).per(4)
     

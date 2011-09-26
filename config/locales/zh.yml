@@ -52,7 +52,7 @@ zh:
   your_opponent: "你的对手将是: "
   chose_opponent_msg: "请选择你的对手!"
   cannot_duel_with_yourself: "对手不能是自己，请重新选择对手"
-  start_duel: "选择"
+  start_duel: "邀请下棋"
   send: "发出对局邀请"
   watch_games: "观棋"
   win_rate: "胜率"

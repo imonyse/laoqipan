@@ -193,7 +193,7 @@ class GamesController < ApplicationController
       user = current_user
     end
     
-    @current_games = Game.where("black_player_id = '#{user.id}' or white_player_id = '#{user.id}'").order("case when current_player_id = '#{user.id}' then 0 else 1 end, status, updated_at DESC").page(params[:current_games_page]).per(4)
+    @current_games = Game.where("black_player_id = '#{user.id}' or white_player_id = '#{user.id}'").order("case when status = 3 then 0 when status = 0 then 1 else 2 end, case when current_player_id = '#{user.id}' then 0 else 1 end, updated_at DESC").page(params[:current_games_page]).per(4)
     
     respond_to do |format|
       format.js
