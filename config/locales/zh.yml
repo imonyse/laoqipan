@@ -111,7 +111,7 @@ zh:
   show_steps: "手数"
   step: "手"
   active_games: "我的对局"
-  pro_games_view: "精彩时局欣赏"
+  pro_games_view: "精彩对局欣赏"
   sgf_from_tom_weiqi: "SGF棋谱来源:TOM棋圣道场"
   login_to_play: "登录后可下棋"
   s_followers: "的观众"
@@ -175,20 +175,9 @@ zh:
     pro_games:
       go: "观看"
       all_records: "查看全部"
-      new_sgf_game: "添加新的时局"
+      new_sgf_game: "添加新的对局"
     pro_game_show:
       edit: "编辑SGF棋谱"
-    upload_sgf:
-      have: "是的，我有"
-      have_not: "否，我没有"
-      parse_result: "请确认以下信息是否正确:"
-      black: "黑方: "
-      white: "白方: "
-      event: "赛事信息: "
-      date: "日期: "
-      total_step: "手数统计: "
-      result: "结果: "
-      sgf_name: "棋谱名称: "
     form:
       game_name: "棋谱名称"
     game_comments:
@@ -209,8 +198,9 @@ zh:
       back_to_select: "重新选择对手"
     upload_sgf:
       sgf_url: "TOM SGF 地址"
-      name: "时局标题"
+      name: "对局标题"
       brief: "简短描述"    
+      raw_sgf: "SGF文本"
   users:
     form:
       username: "名号(2到9个汉字或字母)"

@@ -65,13 +65,20 @@ class GamesController < ApplicationController
     @sgf = nil
 
     if mode == "0"
-      require 'sgf'
-      sgf_url = params[:sgf_url]
-      fetched_sgf = fetch_tom_sgf(sgf_url)
+      if params[:sgf_url] != ""
+        require 'sgf'
+        sgf_url = params[:sgf_url]
+        fetched_sgf = fetch_tom_sgf(sgf_url)
 
-      @attr.merge!({:sgf => fetched_sgf,
-                    :mode => 0, 
-                    :access => 3})
+        @attr.merge!({:sgf => fetched_sgf,
+                      :mode => 0, 
+                      :access => 3})
+      elsif params[:raw_sgf] != ""
+        @attr.merge!({:sgf => params[:raw_sgf],
+                      :mode => 0,
+                      :access => 3})
+      end
+      
       @game = Game.new(@attr)
       if @game.save
         Stalker.enqueue('generate_thumbnail', :game_id => @game.id, :game_sgf => @game.sgf, :thumb_path => @game.thumbnail_path)

@@ -194,6 +194,7 @@ en:
       sgf_url: "TOM SGF URL"
       name: "SGF Title"
       brief: "Brief Description"
+      raw_sgf: "RAW SGF Text"
   users:
     form:
       username: ""

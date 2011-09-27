@@ -71,20 +71,16 @@ class Player
       $('#progame_date').html dt
       $('#progame_result').html re
 
-    first_move = 'b'
     handicap = @basic_info.HA
-    if typeof handicap isnt 'undefined'
+    first_move = @sgf_json.property[1]
+    if typeof first_move isnt 'undefined'
+      if typeof first_move.B isnt 'undefined'
+        first_turn = 'b'
+      else if typeof first_move.W isnt 'undefined'
+        first_turn = 'w'
+    else if typeof handicap isnt 'undefined'
       if handicap > "1"
         first_turn = 'w'
-      else
-        first_turn = 'b'
-    else
-      first_move = @sgf_json.property[1]
-      if typeof first_move isnt 'undefined'
-        if typeof first_move.B isnt 'undefined'
-          first_turn = 'b'
-        else if typeof first_move.W isnt 'undefined'
-          first_turn = 'w'
       else
         first_turn = 'b'
 

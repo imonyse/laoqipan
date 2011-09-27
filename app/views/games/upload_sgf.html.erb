@@ -6,6 +6,11 @@
 			<%= f.label :sgf_url, t('.sgf_url') %><br>
 			<%= text_field_tag :sgf_url %>
 		</div>
+
+    <div class="field">
+			<%= f.label :raw_sgf, t('.raw_sgf') %><br>
+			<%= text_area_tag :raw_sgf, nil, :size => "40x20" %>
+    </div>
 		
 		<div class="field">
 			<%= f.label :name, t('.name') %><br>
