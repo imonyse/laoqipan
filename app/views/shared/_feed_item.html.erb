@@ -21,7 +21,7 @@
 		</span>
 	</p>
 	<p>
-		<% comment = feed_item.comments.last %>
+		<% comment = feed_item.comments.first %>
 		<% if comment %>
 			<% player = User.find(comment.user_id).name %>
 			<%= player %>
