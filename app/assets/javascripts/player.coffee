@@ -83,6 +83,8 @@ class Player
         first_turn = 'w'
       else
         first_turn = 'b'
+    else
+      first_turn = 'b'
 
     @board = new Board 19, first_turn, @target_board_id
     if $('#game')

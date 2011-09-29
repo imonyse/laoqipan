@@ -14,5 +14,7 @@
 	<% end %>
 	<% if user_signed_in? and current_user.admin? %>
 		<div class="clear"><%= link_to t('.new_sgf_game'), upload_sgf_path %></div>
+	<% else %>
+		<div class="divider"></div>
 	<% end %>
 </div>
