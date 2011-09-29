@@ -1,4 +1,7 @@
 //= require jquery
 //= require jquery_ujs
-//= require_self
+//= require jquery-ui-custom.min
+//= require jquery.titlealert
+//= require json2
+//= require juggernaut
 //= require_tree .

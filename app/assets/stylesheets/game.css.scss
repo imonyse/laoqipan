@@ -635,9 +635,10 @@ span {
 }
 
 #game_duel, #game_all {
-  display:inline;
   padding:4px;
-  margin-right:100px;
+  width:130px;
+  margin:5px auto 5px 0;
+  text-align:center;
   background-color:#408000;
   @include border-radius(3px);
   a {

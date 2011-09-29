@@ -97,7 +97,7 @@ GEM
     json (1.5.4)
     json_pure (1.5.4)
       spruz (~> 0.2.8)
-    juggernaut (2.0.3)
+    juggernaut (2.0.4)
       redis
     kaminari (0.12.4)
       rails (>= 3.0.0)
