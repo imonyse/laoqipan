@@ -9,7 +9,7 @@ gem 'stalker'
 gem 'capistrano'
 gem 'paperclip'
 gem 'god', :require => false
-gem 'juggernaut'
+gem 'juggernaut', '2.0.4'
 gem 'oily_png'
 gem 'redcarpet'
 
@@ -22,7 +22,7 @@ group :assets do
 end
 
 group :production do
-  gem 'unicorn'
+  gem 'unicorn', '4.1.1'
   gem "therubyracer"
 end
 
@@ -31,10 +31,10 @@ group :development, :test do
   gem 'turn', :require => false
   gem 'pry'
   gem 'jasminerice'
-  gem 'cucumber-rails'
+  gem 'cucumber-rails', '1.0.2'
   gem 'database_cleaner'
   gem 'launchy'
   gem 'factory_girl_rails'
-  gem 'annotate'
-  # gem 'capybara-webkit'
+  gem 'annotate', '2.4.0'
+  gem 'capybara-webkit', '0.7.0'
 end

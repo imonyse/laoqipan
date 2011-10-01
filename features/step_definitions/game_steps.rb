@@ -1,8 +1,4 @@
 # -*- coding: utf-8 -*-
-Before do
-  page.driver.options[:resynchronize] = false
-end
-
 Given /^a game created by white_player "([^"]*)" and black_player "([^"]*)" and current_player "([^"]*)" with sgf:$/ do |arg1, arg2, arg3, string|
   Game.create({ :black_player => User.find_by_name(arg2), 
                 :white_player => User.find_by_name(arg1), 
@@ -63,3 +59,6 @@ When /^I click_li "([^"]*)"$/ do |arg1|
   item.click
 end
 
+When /^I on the rails (.+) page$/ do |arg1|
+  eval("visit #{arg1}_path")
+end

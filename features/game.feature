@@ -31,8 +31,6 @@ Feature: Game
 
 		When I logout
 		And I login as "foo" with password "foobar"
-		And I click_div "#games_widget div.collapse"
-		And I wait until ".game_thumbnail" is visible
 		And I click_game_item
 		And I wait until ended game finished loading
 		Then I should see "中盘胜"
