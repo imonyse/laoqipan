@@ -54,7 +54,7 @@ God.watch do |w|
   
   w.restart_if do |restart|
     restart.condition(:memory_usage) do |c|
-      c.above = 50.megabytes
+      c.above = 100.megabytes
       c.times = [3, 5]
     end
     
