@@ -37,4 +37,6 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'annotate', '2.4.0'
   gem 'capybara-webkit', '0.7.0'
+  gem 'foreman'
+  gem 'thin'
 end

@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 
-rvm --create 1.9.2-p290@rails31
+rvm --create 1.9.2-p290@laoqipan
 
