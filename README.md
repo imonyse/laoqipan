@@ -7,14 +7,14 @@ If you have suggestions or questions, please post them on the [Issue Tracker](ht
 ## Setup
 
 ### Software Requirements
-+ A HTML5 canvas api supported browser 
++ A fairly nice browser (doesn't support IE6 currently)
 + ruby 1.9.2
 + [rvm](http://beginrescueend.com/) (optional)
-+ postgresql >= 8.3 (Make sure your current user have the createdb privilege)
-+ [redis](http://redis.io/) (needed by juggernaut)
-+ [juggernaut](https://github.com/maccman/juggernaut) (make sure redis-server is started before you run juggernaut)
-+ [beanstalk](http://kr.github.com/beanstalkd/) (make sure beanstalkd is started, if not, run 'beanstalkd -d')
-+ [gnugo](http://www.gnu.org/s/gnugo/download.html) (Gnugo is used for calculate final score and playing with computer)
++ postgresql
++ [redis](http://redis.io/) (required by juggernaut)
++ [juggernaut](https://github.com/maccman/juggernaut) 
++ [beanstalk](http://kr.github.com/beanstalkd/) 
++ [gnugo](http://www.gnu.org/s/gnugo/download.html) 
 
 When you have all the software above installed, make some necessary changes to config/database.example.yml, then follow the instructions below:
 
@@ -25,12 +25,20 @@ cp config/private.example.yml config/private.yml
 rake db:create db:migrate
 </pre>
 
-Type 'script/worker development' to start a gnugo worker(so you can play with gnugo and calculate final score), then type 'juggernaut' to start juggernaut server. Then start the development server with 'rails s'. 
+Type 
+<pre>
+juggernaut
+</pre>
+to start the juggernaut push server. Then type
+<pre>
+foreman start
+</pre>
+That's it! Now you use your browser navigating to the address provided by thin.
 
 Chinese is the default language, but you can easily switch to English by clicking the 'English Version' link on the website.
 
 ## Contributing
-I maintain this site for my personal hobby and entertainment. So, currently I *DO NOT* accept features pull request except language correction to 'config/local/en.yml', as English is not my native speaking language.
+I maintain this site for my personal hobby and entertainment. I warmly welcome language YAML file fixing under 'config/locale', as English is not my native speaking language.
 
 If you feel really necessary to submit a patch to me, please follow the instructions below:
 
