@@ -514,6 +514,9 @@ window.on_player_click = (e) ->
 
   name = e.target.id.split('-')[2]
   dot = player.board.find_stone_by_name name
+  if dot.owner isnt 'e'
+    return
+    
   player.board.draw_fake_stone dot
   if clock_status is 0
     rattle_clock()
