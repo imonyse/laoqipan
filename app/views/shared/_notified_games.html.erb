@@ -2,7 +2,7 @@
 	<span class="notify_none"><%= t :none %></span>
 <% else %>
 	<div class="paginate" id="current_games_pagination">
-		<%= paginate @current_games, :params => {:controller => 'games', :action => 'current_games'}, :param_name => "current_games_page", :remote => true %>
+		<%= paginate @current_games, :params => {:controller => 'games', :action => 'current_games', :user_id => (@user||current_user).id }, :param_name => "current_games_page", :remote => true %>
 	</div>
 	<div class="divider"></div>
 	<div class="game_ladder">

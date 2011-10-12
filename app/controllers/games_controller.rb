@@ -24,7 +24,7 @@ class GamesController < ApplicationController
       @comments = @game.comments.page(params[:comment_page]).per(7)
       
       if user_signed_in?
-        @current_games = Game.where("black_player_id = '#{current_user.id}' or white_player_id = '#{current_user.id}'").order("case when current_player_id = '#{current_user.id}' then 0 else 1 end, status, updated_at DESC").page(params[:current_games_page]).per(4)
+        @current_games = Game.where("black_player_id = '#{current_user.id}' or white_player_id = '#{current_user.id}'").order("case when status = 3 then 0 when status = 0 then 1 else 2 end, case when current_player_id = '#{current_user.id}' then 0 else 1 end, status, updated_at DESC").page(params[:current_games_page]).per(4)
         @users = User.where("id != #{current_user.id} and open_for_play = true").order("last_request_at DESC").page(params[:page]).per(19)
         @games = Game.where("mode != 0 and access = 0 and current_player_id != #{current_user.id}").order("updated_at DESC").page(params[:game_page]).per(4)
       else
@@ -194,8 +194,8 @@ class GamesController < ApplicationController
   end
   
   def current_games
-    if params[:id]
-      user = User.find(params[:id])
+    if params[:user_id]
+      user = User.find(params[:user_id])
     else
       user = current_user
     end
