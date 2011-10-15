@@ -1,5 +1,5 @@
 set :user, 'webuser'
-set :domain, '199.180.254.26'
+set :domain, '66.85.155.109'
 set :application, "laoqipan"
 set :repository,  "#{user}@#{domain}:git/#{application}.git"
 set :deploy_to, "/home/webuser/laoqipan"
@@ -42,7 +42,7 @@ end
 
 before "deploy:restart", :precompile
 task :precompile, :roles => :app do
-  run "cd #{release_path} && rake assets:precompile"
+  run "cd #{release_path} && rake assets:precompile RAILS_ENV=production"
 end
 
 after "deploy:restart", :restart_worker
