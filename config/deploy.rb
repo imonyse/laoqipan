@@ -42,12 +42,12 @@ end
 
 before "deploy:restart", :precompile
 task :precompile, :roles => :app do
-  run "cd #{release_path} && rake assets:precompile RAILS_ENV=production"
+  run "cd #{release_path} && bundle exec rake assets:precompile RAILS_ENV=production"
 end
 
 after "deploy:restart", :restart_worker
 task :restart_worker, :roles => :app do
-  run "god stop laoqipan-worker && god stop unicorn-worker && god stop juggernaut-worker && god quit && sleep 3 && cd #{release_path} && god -c config/god.rb"
+  run "god stop laoqipan-worker ; god stop unicorn-worker ; god stop juggernaut-worker ; god quit ; sleep 3 ; cd #{release_path} && god -c config/god.rb"
 end
 
 after "deploy:update_code", "deploy:symlink_extras"
