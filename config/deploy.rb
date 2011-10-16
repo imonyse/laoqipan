@@ -6,6 +6,7 @@ set :deploy_to, "/home/webuser/laoqipan"
 set :use_sudo, false
 set :scm, :git
 set :branch, :master
+set :normalize_asset_timestamps, false
 # Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
 
 role :web, domain                        # Your HTTP server, Apache/etc
