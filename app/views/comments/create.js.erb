@@ -1,6 +1,5 @@
 <% if @game.mode == 0 %>
-	<% @comments = @game.comments.page(params[:comments_page]).per(16) %>
-	$(".paginate").html("<%= escape_javascript(paginate(@comments, :param_name => :comment_page, :remote => true).to_s) %>");
+	$(".paginate").html("<%= escape_javascript(paginate(@comments, :params => { :controller => :comments, :action => 'index', :game_id => @game.id }, :param_name => :comments_page, :remote => true).to_s) %>");
 	$("#comments").html("<%= escape_javascript(render(:partial => 'comments/comment', :collection => @comments)) %>");
 <% end %>
 

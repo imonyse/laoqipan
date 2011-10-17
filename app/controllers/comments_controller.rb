@@ -3,7 +3,7 @@ class CommentsController < ApplicationController
   
   def index
     @game = Game.find(params[:game_id])
-    @comments = @game.comments.page(params[:comments_page]).per(16)
+    @comments = @game.comments.page(params[:comments_page]).per(9)
     respond_to do |format|
       format.js
     end
@@ -11,8 +11,8 @@ class CommentsController < ApplicationController
   
   def create
     @game = Game.find(params[:game_id])
-    @old_comments = @game.comments
     @attr = params[:comment]
+    @comments = @game.comments.page(params[:comments_page]).per(9)
     @comment = @game.comments.build(@attr.merge(:user_id => current_user.id))
     
     @comment.save

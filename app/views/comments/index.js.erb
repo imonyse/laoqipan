@@ -1,4 +1,4 @@
 <% if not @comments.blank? %>
-	$(".paginate").html("<%= escape_javascript(paginate(@comments, :param_name => :comment_page, :remote => true).to_s) %>")
+	$(".paginate").html("<%= escape_javascript(paginate(@comments, :params => { :controller => :comments, :action => 'index', :game_id => @game.id }, :param_name => :comments_page, :remote => true).to_s) %>")
 	$("#comments").html("<%= escape_javascript(render(:partial => 'comments/comment', :collection => @comments)) %>");
 <% end %>

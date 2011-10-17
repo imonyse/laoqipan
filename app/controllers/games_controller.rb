@@ -21,7 +21,7 @@ class GamesController < ApplicationController
   def show
     begin
       @game = Game.find(params[:id])
-      @comments = @game.comments.page(params[:comment_page]).per(7)
+      @comments = @game.comments.page(params[:comments_page]).per(9)
       
       if user_signed_in?
         @current_games = Game.where("black_player_id = '#{current_user.id}' or white_player_id = '#{current_user.id}'").order("case when status = 3 then 0 when status = 0 then 1 else 2 end, case when current_player_id = '#{current_user.id}' then 0 else 1 end, status, updated_at DESC").page(params[:current_games_page]).per(4)
