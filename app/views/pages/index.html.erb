@@ -1,15 +1,23 @@
 <div class="top">
 	<div id="intro" class="notify_wrapper">
-		<div class="top_bar">
-			<%= t("intro") %>
-		</div>
-		<div id="intro_video">
-			<ul>
-				<li><%= t(".free_to_go") %></li>
-				<li><%= t(".no_download") %></li>
-				<li><%= t(".support_zuozi") %></li>
-				<li><%= t(".confirm_to_move") %></li>
-			</ul>
+		<h2><%= t("intro") %></h2>
+		<div id="slide_show">
+			<div>
+				<%= image_tag 'shang.png' %>
+				<p><%= t(".free_to_go") %></p>
+			</div>
+			<div>
+				<%= image_tag 'qu.png' %>
+				<p><%= t(".no_download") %></p>
+			</div>
+			<div>
+				<%= image_tag 'ping.png' %>
+				<p><%= t(".support_zuozi") %></p>
+			</div>
+			<div>
+				<%= image_tag 'ru.png' %>
+				<p><%= t(".confirm_to_move") %></p>
+			</div>
 		</div>
 	</div>
 	<%= render 'shared/signin' %>

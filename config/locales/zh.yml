@@ -79,7 +79,7 @@ zh:
   last_move: "最后落子"
   game_help: "帮助"
   help: "帮助"
-  intro: "老棋盘简介"
+  intro: "一个在线下围棋的网站，基本功能有："
   wait_for_moves: "等待开始"
   duel_create_msg: "等待对手落子确认"
   profile_has_been_updated: "设置已经保存"
@@ -159,11 +159,10 @@ zh:
       new_broadcast: "添加新广播"
   pages:
     index:
-      
-      free_to_go: "完全免费"
+      free_to_go: "完全免费，不限时，对局永久保存"
       no_download: "打开网页即可下棋，无需下载任何客户端软件"
       support_zuozi: "支持中国古代座子棋开局"
-      confirm_to_move: "落子确认，方便iPad/iPhone等触摸屏用户"
+      confirm_to_move: "落子确认机制，方便iPad/iPhone等触摸屏用户"
     recapture_instruction:
       instructions: "验证码说明"
       enter_the_words: "请依次输入你在图片框中看见的词语，用空格隔开。验证码有助于防止网站的服务被机器人和爬虫滥用。"

@@ -370,7 +370,7 @@ input[type="text"], input[type="password"], input[type="url"], input[type="email
 .control_button {
   cursor:pointer;
   &:hover {
-    background-image:url(/assets/woody2.png);
+    background-color:#333;
     background-position:100% 100%;
     color:white;
   }
@@ -388,15 +388,57 @@ input[type="text"], input[type="password"], input[type="url"], input[type="email
   margin:20px auto;
   font-size:1.2em;
   width:320px;
+  input {
+    width:100%;
+    &[type="submit"] {
+      background-color:#ccc;
+      width:50%;
+      padding:5px;
+      font-size:1.1em;
+      cursor:pointer;
+      border:none;
+      border-radius:5px;
+      &:hover {
+        color:#fff;
+        background-color:#333;
+      }
+    }
+  }
 }
 
 #intro {
-  width:480px;
+  width:540px;
   position:absolute;
   margin-top:10px;
   top:0;
   left:0;
-  border:1px solid #ccc;
+  h2 {
+    text-align:center;
+    color:#004080;
+  }
+}
+
+#slide_show {
+  margin:30px auto;
+  width:95%;
+  height:300px;
+  font-size:1.1em;
+  padding:5px;
+  position:relative;
+  div {
+    float:left;
+    margin:5px;
+    width:220px;
+    height:100px;
+    background-color:#eee;
+    padding:10px;
+    img {
+      float: left;
+    }
+    p {
+      margin-top:10px;
+    }
+  }
 }
 
 #sign_in {
@@ -405,10 +447,17 @@ input[type="text"], input[type="password"], input[type="url"], input[type="email
   position:absolute;
   top:0;
   right:0;
-  border: 1px solid #ccc;
-  div.top_bar {
+  background-color:#eee;
+  h2 {
     font-size:1.2em;
-    color:#FF8000;
+    color:#004080;
+    text-align:center;
+  }
+}
+
+#sign_in_text {
+  p {
+    margin-left:30px;
   }
 }
 
@@ -665,27 +714,6 @@ span {
 
 #games_list {
   font-weight:normal;
-}
-
-#intro_video {
-  width:480px;
-  height:300px;
-  font-size:1.2em;
-  padding:5px;
-  p {
-    font-size:1.5em;
-    font-weight:bold;
-    color:#408000;
-  }
-  ul {
-    margin:10px;
-    li {
-      padding:5px;
-      font-size:1.3em;
-      font-weight:bold;
-      color:#408000;
-    }
-  }
 }
 
 .top {

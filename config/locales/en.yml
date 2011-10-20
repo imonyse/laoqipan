@@ -75,7 +75,7 @@ en:
   last_move: "Last move"
   game_help: "Help"
   help: "help"
-  intro: "Introduce Laoqipan"
+  intro: "A site for playing the board game Go. Features include:"
   wait_for_moves: "waiting"
   duel_create_msg: "Waiting for opponent"
   profile_has_been_updated: "profile has been updated"
@@ -157,7 +157,7 @@ en:
     index:
       free_to_go: "100% FREE"
       no_download: "Open web page to play, no client software download needed"
-      support_zuozi: "Support Ancient Chinese rules(hard to explain right now, will try later...)"
+      support_zuozi: "Support Ancient Chinese rules"
       confirm_to_move: "Confirm to move, well suited for iPad/iPhone users"      
     recapture_instruction:
       instructions: "Captcha instructions"
