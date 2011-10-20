@@ -79,7 +79,7 @@ zh:
   last_move: "最后落子"
   game_help: "帮助"
   help: "帮助"
-  intro: "一个在线下围棋的网站，基本功能有："
+  intro: "老棋盘是一个在线下围棋的网站，基本功能有："
   wait_for_moves: "等待开始"
   duel_create_msg: "等待对手落子确认"
   profile_has_been_updated: "设置已经保存"

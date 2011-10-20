@@ -75,7 +75,7 @@ en:
   last_move: "Last move"
   game_help: "Help"
   help: "help"
-  intro: "A site for playing the board game Go. Features include:"
+  intro: "Laoqipan is a site for playing the board game Go. Features includes:"
   wait_for_moves: "waiting"
   duel_create_msg: "Waiting for opponent"
   profile_has_been_updated: "profile has been updated"
