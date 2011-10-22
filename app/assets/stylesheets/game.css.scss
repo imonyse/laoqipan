@@ -489,9 +489,16 @@ input[type="text"], input[type="password"], input[type="url"], input[type="email
   }
 }
 
+.game_new {
+  width:600px;
+  background-color:#eee;
+  padding:10px;
+  margin:10px auto;
+}
+
 .relative {
   width:100%;
-  min-height:750px;
+  min-height:800px;
   position:relative;
   div#side_bar {
     position:absolute;
@@ -533,20 +540,6 @@ input[type="text"], input[type="password"], input[type="url"], input[type="email
   padding:5px;
   margin-top:20px;
   color:#333;
-}
-
-.select_player {
-  padding:5px;
-  a {
-    padding:3px;
-    text-align:center;
-    background-color:#ddd;
-    border:1px solid #ccc;
-    &:hover {
-      color:#fff;
-      background-color:#000;
-    }
-  }
 }
 
 .fixed_edit {
@@ -709,16 +702,6 @@ span {
       color:#fff;
       background-color:#666;
     }
-  }
-}
-
-#gnugo, #human {
-  margin-top:10px;
-  margin-bottom:10px;
-  padding:10px;
-  background-color:#eee;
-  div.select_player {
-    margin-left:5px;
   }
 }
 

@@ -1,5 +1,5 @@
 <div class="user_profile">
-	<%= avatar_image_tag(@user) %>
+	<%= player_image_tag(@user) %>
 	<%= @user.name %>
 	<% if correct_user?(@user) %>
 		<%= link_to t(:settings), edit_user_path(@user) %>

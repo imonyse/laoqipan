@@ -1,23 +1,12 @@
-<table>
-	<tr>
-		<th><%= t(:name) %></th>
-		<th><%= t(:wins) %></th>
-		<th><%= t(:loses) %></th>
-		<th><%= t(:last_online) %></th>
-	</tr>
-	<% object.each do |user|%>
-	<tr>
-		<td><%= avatar_image_tag user %><%= link_to user.name, user %></td>
-		<td>
-			<%= user.wins %>
-		</td>
-		<td>
-		  <%= user.loses %>
-		</td>
-		<td>
-			<%= time_ago_in_words user.last_request_at if user.last_request_at %>
-		</td>
-		<td><%= link_to t(:start_duel), new_game_path(:opponent => user.name) %></td>
-	</tr>
-	<% end %>
-</table>
+<% object.each do |u| %>
+	<div class="player">
+		<div class="player_avatar">
+			<%= player_image_tag u %>
+			<%= link_to t(:start_duel), new_game_path(:opponent => u.name), :class => 'select_link' %>
+		</div>
+		<div class="player_details">
+			<%= link_to u.name, u %><br/>
+			<%= time_ago_in_words u.last_request_at if u.last_request_at %>
+		</div>
+	</div>
+<% end %>

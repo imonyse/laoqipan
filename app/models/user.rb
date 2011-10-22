@@ -1,14 +1,12 @@
 class User < ActiveRecord::Base
-  attr_accessible :name, :email, :password, :password_confirmation, :guest, :rank, :wins, :loses, 
-                  :open_for_play, :avatar, :salt, :role, :last_request_at, :email_confirmed, 
-                  :notify_pendding_move, :connected
+  attr_accessible :name, :email, :password, :password_confirmation, :guest, :rank, :wins, :loses, :open_for_play, :avatar, :salt, :role, :last_request_at, :email_confirmed, :notify_pendding_move, :connected
   attr_accessor :password
   
   before_save :make_password
   
   has_many :current_games, :class_name => "Game", :foreign_key => "current_player_id", :conditions => "status != 1 and mode != 0", :order => "updated_at DESC", :limit => 4
   has_many :comments, :dependent => :destroy
-  has_attached_file :avatar, :styles => { :small => "24x24>" }
+  has_attached_file :avatar, :styles => { :small => "24x24>", :medium => "48x48>" }
   has_many :authentications, :dependent => :destroy
   has_many :pro_games, :class_name => 'Game', :foreign_key => "uploader"
   has_many :relationships, :foreign_key => "follower_id", :dependent => :destroy

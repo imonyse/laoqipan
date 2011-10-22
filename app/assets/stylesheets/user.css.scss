@@ -85,3 +85,60 @@
     margin-left:15px;
   }
 }
+
+.select_player {
+  margin-top:10px;
+  position:relative;
+  h3 {
+    font-size:1.3em;
+    color:#004080;
+  }
+}
+
+.player {
+  height:80px;
+  width:160px;
+  float:left;
+  background-color:#eee;
+  padding:10px;
+  margin:5px;
+  position:relative;
+  overflow:hidden;
+  a {
+    color:#000;
+    display:block;
+    @include border-radius;
+    &.select_link {
+      background-color:#bbb;
+      position:absolute;
+      left:0px;
+      bottom:0px;
+      &:hover {
+        color:#fff;
+        background-color:#666;
+      }
+    }
+  }
+  img {
+    margin-right:10px;
+    margin-bottom:10px;
+  }
+  div {
+    position:absolute;
+    top:10px;
+    height:80px;
+    &.player_avatar {
+      width:50px;
+      left:10px;
+      a {
+        text-align:center;
+        width:40px;
+        padding:5px;
+      }
+    }
+    &.player_details {
+      width:90px;
+      right:10px;
+    }
+  }
+}

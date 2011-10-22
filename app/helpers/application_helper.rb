@@ -3,6 +3,10 @@ module ApplicationHelper
     image_tag user.avatar.url(:small)
   end
   
+  def player_image_tag(user)
+    image_tag user.avatar.url(:medium)
+  end
+  
   def online_status_tag(user)
     if user.online?
       image_tag "online.png", :class => "user_#{user.id}"

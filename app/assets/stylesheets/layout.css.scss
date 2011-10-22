@@ -153,6 +153,11 @@ img {
   margin-top:5px;
   a {
     @include href_style;
+    &.nobg {
+      &:hover {
+        background-color:#eee;
+      }
+    }
   }
 }
 
@@ -188,3 +193,4 @@ img {
   clear:both;
   margin:10px auto 10px 0;
 }
+

@@ -2,7 +2,7 @@
 	<div class="container">
 		<div class="account">
 			<% if user_signed_in? %>
-				<%= avatar_image_tag(current_user) %>
+				<%= link_to avatar_image_tag(current_user), user_path(current_user), :class => 'nobg' %>
 				<%= link_to t("settings"), edit_user_path(current_user), :class => "shadow" %>
 				<%= link_to current_user.name, user_path(current_user), :id => "account", :class => "shadow" %>
 				<%= link_to t("sign_out"), signout_path, :class => "shadow" %>
