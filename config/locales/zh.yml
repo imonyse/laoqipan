@@ -151,6 +151,8 @@ zh:
     side_bar:
       view: "查看"
       broadcasts: "条系统广播"
+    feed_item:
+      go: "观看"
   broadcasts:
     show:
       view: "查看"

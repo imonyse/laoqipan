@@ -685,14 +685,18 @@ span {
 }
 
 #game_duel, #game_all {
-  padding:4px;
-  width:130px;
   margin:5px auto 5px 0;
   text-align:center;
-  background-color:#408000;
-  @include border-radius(3px);
   a {
-    color:#fff;
+    display:block;
+    background-color:#ccc;
+    padding:4px;
+    width:130px;
+    @include border-radius(3px);
+    &:hover {
+      color:#fff;
+      background-color:#666;
+    }
   }
 }
 

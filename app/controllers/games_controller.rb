@@ -5,8 +5,7 @@ class GamesController < ApplicationController
   
   def index
     respond_to do |format|
-      format.html { @feed_items = Game.feed_items.page(params[:page]).per(9) }
-      # format.js { @games = Game.where("mode != 0 and access = 0").order("updated_at DESC").page(params[:game_page]).per(9) }
+      format.html { @feed_items = Game.feed_items.page(params[:page]).per(10) }
     end
   end
   

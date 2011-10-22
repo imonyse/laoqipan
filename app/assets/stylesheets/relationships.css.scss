@@ -14,16 +14,18 @@
 }
 
 @mixin lock_index {
-  width:450px;
   div {
     &.feed_show {
+      float:left;
+      position:relative;
       height:80px;
-      clear:both;
+      width:450px;
+      margin:5px;
+      background-color:#eee;
       img {
         float:left;
       }
       padding:5px;
-      border-bottom:1px solid #aaa;
       span.feed_player {
 
       }
@@ -32,18 +34,41 @@
         color:#666;
         background-color:#ddd;
       }
+      div.feed_link {
+        position:absolute;
+        top:35px;
+        right:25px;
+        a {
+          padding:7px;
+          color:#000;
+          background-color:#bbb;
+          &:hover {
+            color:#fff;
+            background-color:#666;
+          }
+        }
+      }
+    }
+    &.paginate {
+      clear:both;
     }
   }
 }
 
 .user_feeds {
   position:absolute;
-  top:60px;
+  width:450px;
+  top:40px;
   padding:10px;
   @include lock_index;
+  div.paginate {
+    width:100%;
+    margin:0;
+  }
 }
 
 .game_index {
-  margin:15px;
+  margin-top:15px;
+  position:relative;
   @include lock_index;
 }

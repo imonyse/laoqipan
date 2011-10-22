@@ -16,6 +16,7 @@
 		  <%= t("finished_game") %>
 		<% end %>
 		<%= link_to feed_item.id, feed_item %>
+		<br/>
 		<span class="update_time">
 			<%= time_ago_in_words feed_item.updated_at %>
 		</span>
@@ -29,4 +30,7 @@
 			<%= comment.content %>
 		<% end %>
 	</p>
+	<div class="feed_link">
+		<%= link_to t(".go"), feed_item %>
+	</div>
 </div>

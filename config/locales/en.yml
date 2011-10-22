@@ -147,6 +147,8 @@ en:
     side_bar:
       view: "view"
       broadcasts: "broadcasts"
+    feed_item:
+      go: "GO"
   broadcasts:
     show:
       view: "view"
