@@ -69,10 +69,6 @@ class Game < ActiveRecord::Base
     Stalker.enqueue("ai_move", :game_id => id, :game_sgf => sgf, :color => color)
   end
   
-  def gnugo_vs_fuego
-    
-  end
-  
   scope :from_users_followed_by, lambda { |user| followed_by(user) }
   
   private
