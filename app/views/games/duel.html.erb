@@ -1,6 +1,7 @@
 <div class="select_player">
 	<h3><%= t :select_player %></h3>
 	<%= render "users/list", :object => @users %>
+	<div class="divider"></div>
 	<div class="pagination">
 		<%= paginate @users %>
 	</div>
