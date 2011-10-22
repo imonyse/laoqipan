@@ -21,7 +21,7 @@
 			<div class="captured" id="white_captured"></div>
 		<% end %>
 		<div class="inline">
-			<span class="control_button"><%= link_to "SGF", game_sgf_path(@game) %></span>
+			<%= link_to "SGF", game_sgf_path(@game), :class => 'control_button' %>
 			<span id="analyse" class="control_button"><%= t("analyse") %></span>
 			<span id="connection"></span>
 		</div>

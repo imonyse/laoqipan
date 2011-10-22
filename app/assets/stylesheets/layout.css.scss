@@ -71,7 +71,7 @@ div.inline {
       color:white;
     }
   }
-  span.control_button {
+  span.control_button, a.control_button {
     display:inline;
     padding:4px 8px 4px 8px;
     @include border-radius;
