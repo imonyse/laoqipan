@@ -167,9 +167,9 @@ class GamesController < ApplicationController
   def duel
     @robot = User.where('role=98').first
     if user_signed_in?
-      @users = User.where("id != #{current_user.id} and open_for_play = true and role != 98").order("last_request_at DESC").page(params[:page]).per(19)
+      @users = User.where("id != #{current_user.id} and open_for_play = true and role != 98").order("last_request_at DESC").page(params[:page]).per(20)
     else
-      @users = User.where("open_for_play = true and role != 98").order("last_request_at DESC").page(params[:page]).per(19)
+      @users = User.where("open_for_play = true and role != 98").order("last_request_at DESC").page(params[:page]).per(20)
     end
     
     respond_to do |format|
