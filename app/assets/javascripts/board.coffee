@@ -521,7 +521,7 @@ window.on_player_click = (e) ->
   name = e.target.id.split('-')[2]
   dot = player.board.find_stone_by_name name
   # TODO: solve ko status fake stone
-  if dot.owner isnt 'e'
+  if dot.owner isnt 'e' or window.player.board.ko_dot == dot.name
     return
     
   player.board.draw_fake_stone dot
