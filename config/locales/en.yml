@@ -169,6 +169,10 @@ en:
       helping_the_world: "Helping the World One Word at a Time"
       more: "By entering the words in the box, you are also helping to digitize texts that were written before the computer age. The words that you see were taken directly from old texts that are being scanned and stored in digital format in order to preserve them and make them more accessible to the world. Since some of the words in these texts are difficult for computers to process, we are using the results of your efforts to help decipher them."
   games:
+    fallback:
+      click_ok_to_confirm: "Sure to place stone here?"
+      ok: "OK"
+      cancel: "Cancel"
     pro_games:
       go: "Go"
       all_records: "View All"
@@ -188,8 +192,10 @@ en:
       full_comments: "comment(s)"
       pass: "PASS"
       resign: "Resign"
-      click_to_confirm: "Confirm"
+      click_ok_to_confirm: "Click OK to confirm"
       score: "Score"
+      ok: "OK"
+      cancel: "Cancel"
     new:
       back_to_select: "Back"
     upload_sgf:

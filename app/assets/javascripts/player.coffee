@@ -1,5 +1,4 @@
 poll_timer = 0
-window.clock_status = 0
 clock_timer = null
 
 jQuery.ajaxSetup({timeout: 30000})
@@ -18,32 +17,21 @@ window.notify_message = (current_player) ->
   $.titleAlert(alert_name+alert_msg, {requireBlur:true, stopOnFocus:true, duration:12000, interval:1000})
 
 window.show_clock = ->
-  $("#clock").show()
   $("#pass").show()
   $('#resign').show()
   $('#score').show()
 
 window.hide_clock = ->
-  $("#clock").hide()
   $("#pass").hide()
   $('#resign').hide()
   $('#score').hide()
-
-window.stop_clock = ->
-  clearTimeout(clock_timer)
-  clock_timer = null
-  window.clock_status = 0
-
-window.rattle_clock = ->
-  window.clock_status = 1
-  effects()
-
-window.effects = ->
-  $("#clock").effect("highlight", {"color":"#0F0"}, 500)
-  if clock_timer?
-    clearTimeout(clock_timer)
-
-  clock_timer = setTimeout(effects, 1000)
+  
+window.show_confirm_dialog = (dot) ->
+  dot_offset =  dot.jquery_target.position()
+  dialog_left = dot_offset.left + 30
+  dialog_top = dot_offset.top + 30
+  $('#clock').show()
+  $('#clock').css({top:dialog_top;left:dialog_left;})
 
 class Player
   # @flag: false => confirm click mode, true => review click mode

@@ -77,16 +77,22 @@ class Board
       if @show_step and dot.owner isnt 'e'
         dot.show_dot_step()
     return
-
-  draw_fake_stone: (dot) ->
+    
+  remove_fake_stone: ->
+    # remove previous fake stone
     if @fake_stone
       @fake_stone.jquery_target.attr('class', 'e')
+
+  draw_fake_stone: (dot) ->
+    @remove_fake_stone()
     @fake_stone = dot
 
     if @last_move?
       @draw_last_mark @last_move
 
     dot.jquery_target.attr('class', @color_in_turn + " fake")
+      
+    window.show_confirm_dialog(dot)
 
   on_dot_click: (dot, draw_flag) ->
     if dot?
@@ -514,12 +520,11 @@ window.on_player_click = (e) ->
 
   name = e.target.id.split('-')[2]
   dot = player.board.find_stone_by_name name
+  # TODO: solve ko status fake stone
   if dot.owner isnt 'e'
     return
     
   player.board.draw_fake_stone dot
-  if clock_status is 0
-    rattle_clock()
   window.pendding_move = ->
     if player.board.on_dot_click(dot) is true
       move[dot.owner.toUpperCase()] = dot.name
@@ -533,7 +538,6 @@ window.on_player_click = (e) ->
       $('#pass').hide()
       $('#score').hide()
       $('#resign').hide()
-      $('#clock').hide()
       $.post(window.location.pathname  + '/moves', {"sgf":$("#game").attr("sgf"), "player_id":$("#game").attr("current_user")})
 
 window.post_comments = ->

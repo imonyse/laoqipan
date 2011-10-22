@@ -22,7 +22,7 @@ window.prepare_game = ->
     $("#pass").removeAttr('onclick')
     $("#resign").removeAttr('onclick')
     $("#score").removeAttr('onclick')
-    $("#clock").removeAttr('onclick')
+    $("#clock_ok").removeAttr('onclick')
     $('#analyse').removeAttr('onclick')
     
     review.board.remove_click_fn() if review?
@@ -181,10 +181,12 @@ window.init_board = ->
   
   $("#resign").click -> resign_handle()
   $("#score").click -> score_handle()
-  $("#clock").click ->
-    if clock_status is 1
-      stop_clock()
-      window.pendding_move()
+  $("#clock_ok").click ->
+    $('#clock').hide()
+    window.pendding_move()
+  $('#clock_cancel').click ->
+    $('#clock').hide()
+    window.player.board.remove_fake_stone()
       
   $('#analyse').click ->
     $('#game_review').dialog({
@@ -253,7 +255,6 @@ window.result_notify = (res) ->
   if $("#score").length then $("#score").hide()
   if $("#resign").length then $("#resign").hide()
   if $("#pass").length then $('#pass').hide()
-  if $('#clock').length then $('#clock').hide()
 
   if window.get_locale() is 'zh'
     white_win_r      = "<p>白 中盘胜 </p>"

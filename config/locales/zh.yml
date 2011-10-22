@@ -173,6 +173,10 @@ zh:
       helping_the_world: "一次贡献一个单词"
       more: "你在输入验证码的同时，也在为计算机时代到来前出版的图书数字化做着贡献。为了更好的保存旧书籍和更容易被世界各地的读者获取，它们被扫描成电子书，这些验证码就是直接从电子书中取出来的。因为有些扫描文字难以被计算机识别，所以我们正依靠你们的努力来辨认它们。"
   games:
+    fallback:
+      click_ok_to_confirm: "是否确定落子在此处?"
+      ok: "确定"
+      cancel: "取消"
     pro_games:
       go: "观看"
       all_records: "查看全部"
@@ -193,7 +197,6 @@ zh:
       pass: "PASS"
       resign: "认输"
       kbd_control: "键盘"
-      click_to_confirm: "落子后点我"
       score: "数子"      
     new:
       back_to_select: "重新选择对手"

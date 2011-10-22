@@ -10,6 +10,18 @@
   -moz-border-radius:$radius;
 }
 
+@mixin confirm_button {
+  cursor:pointer;
+  background-color:#004080;
+  color:#fff;
+  position:absolute;
+  top:35px;
+  @include border-radius(5px);
+  display:block;
+  width:40px;
+  text-align:center;
+}
+
 .wood_shadow {
   @include box-shadow;
   a {
@@ -774,4 +786,27 @@ span {
 .reference {
   font-size:0.9em;
   color:#666666;
+}
+
+#clock {
+  background:rgba(255,255,255,0.8);
+  padding:7px;
+  height:50px;
+  width:150px;
+  border:1px solid #aaa;
+  text-align:center;
+  position:absolute;
+  @include border-radius;
+  display:none;
+  z-index:10;
+}
+
+#clock_ok {
+  left:10px;
+  @include confirm_button;
+}
+
+#clock_cancel {
+  right:10px;
+  @include confirm_button;
 }
