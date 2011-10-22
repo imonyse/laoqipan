@@ -353,6 +353,7 @@ $board_width: 531px;
 }
 
 input[type="text"], input[type="password"], input[type="url"], input[type="email"], input.text, input.title, textarea {
+  width:100%;
   font-family:monospace;
 }
 
@@ -389,7 +390,6 @@ input[type="text"], input[type="password"], input[type="url"], input[type="email
   font-size:1.2em;
   width:320px;
   input {
-    width:100%;
     &[type="submit"] {
       background-color:#ccc;
       width:50%;

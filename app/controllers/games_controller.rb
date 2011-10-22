@@ -5,13 +5,13 @@ class GamesController < ApplicationController
   
   def index
     respond_to do |format|
-      format.html { @feed_items = Game.where("mode != 0 and access = 0").order("updated_at DESC").page(params[:page]).per(9) }
-      format.js { @games = Game.where("mode != 0 and access = 0").order("updated_at DESC").page(params[:game_page]).per(9) }
+      format.html { @feed_items = Game.feed_items.page(params[:page]).per(9) }
+      # format.js { @games = Game.where("mode != 0 and access = 0").order("updated_at DESC").page(params[:game_page]).per(9) }
     end
   end
   
   def records
-    @games = Game.where("mode = 0").order("updated_at DESC").page(params[:page]).per(24)
+    @games = Game.records.page(params[:page]).per(24)
     
     respond_to do |format|
       format.html
@@ -24,12 +24,10 @@ class GamesController < ApplicationController
       @comments = @game.comments.page(params[:comments_page]).per(9)
       
       if user_signed_in?
-        @current_games = Game.where("black_player_id = '#{current_user.id}' or white_player_id = '#{current_user.id}'").order("case when status = 3 then 0 when status = 0 then 1 else 2 end, case when current_player_id = '#{current_user.id}' then 0 else 1 end, status, updated_at DESC").page(params[:current_games_page]).per(4)
-        @users = User.where("id != #{current_user.id} and open_for_play = true").order("last_request_at DESC").page(params[:page]).per(19)
-        @games = Game.where("mode != 0 and access = 0 and current_player_id != #{current_user.id}").order("updated_at DESC").page(params[:game_page]).per(4)
+        @current_games = Game.current_games(current_user.id).page(params[:current_games_page]).per(4)
+        @users = User.on_play_list(current_user.id).page(params[:page]).per(19)
       else
         @users = User.where("open_for_play = true").order("last_request_at DESC").page(params[:page]).per(19)
-        @games = Game.where("mode != 0 and access = 0").order("updated_at DESC").page(params[:game_page]).per(10)
       end
     rescue ActiveRecord::RecordNotFound
       redirect_to root_url
@@ -200,7 +198,7 @@ class GamesController < ApplicationController
       user = current_user
     end
     
-    @current_games = Game.where("black_player_id = '#{user.id}' or white_player_id = '#{user.id}'").order("case when status = 3 then 0 when status = 0 then 1 else 2 end, case when current_player_id = '#{user.id}' then 0 else 1 end, updated_at DESC").page(params[:current_games_page]).per(4)
+    @current_games = Game.current_games(user.id).page(params[:current_games_page]).per(4)
     
     respond_to do |format|
       format.js

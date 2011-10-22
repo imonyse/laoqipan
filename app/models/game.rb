@@ -19,6 +19,11 @@ class Game < ActiveRecord::Base
   validates_presence_of :sgf, :on => :create, :message => I18n.t(:no_sgf_msg)
   validates_length_of :sgf, :maximum => 1.megabyte, :on => :create, :message => I18n.t(:sgf_length_msg)
   
+  scope :feed_items, where("mode != 0 and access = 0").order("updated_at DESC")
+  scope :records, where("mode = 0").order("updated_at DESC")
+  scope :current_games, lambda { |user_id| where("black_player_id = '#{user_id}' or white_player_id = '#{user_id}'").order("case when status = 3 then 0 when status = 0 then 1 else 2 end, case when current_player_id = '#{user_id}' then 0 else 1 end, status, updated_at DESC")}
+  scope :uploads, where("mode = 0").order('created_at DESC')
+  
   def thumbnail_path
     dir = File.expand_path("public/system/thumbnails", Rails.root.to_s)
     year, month, day = self.created_at.year, self.created_at.month, self.created_at.day

@@ -28,6 +28,8 @@ class User < ActiveRecord::Base
   validates_attachment_size :avatar, :less_than => 128.kilobytes
   validates_attachment_content_type :avatar, :content_type => ['image/jpeg', 'image/png']
   
+  scope :on_play_list, lambda { |user_id| where("id != #{user_id} and open_for_play = true").order("last_request_at DESC") }
+  
   def self.authenticate(login, pass)
     @user = find(:first, :conditions => ["lower(name) = ?", login.downcase]) || find(:first, :conditions => ["lower(email) = ?", login.downcase])
     return @user if @user && @user.has_password?(pass)

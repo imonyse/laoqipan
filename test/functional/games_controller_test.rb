@@ -6,7 +6,7 @@ class GamesControllerTest < ActionController::TestCase
   end
   
   test "should get index" do
-    get :index, :format => :js
+    get :index
     assert_response :success
   end
 
