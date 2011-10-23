@@ -602,6 +602,18 @@ input[type="text"], input[type="password"], input[type="url"], input[type="email
   height:90px;
   float:left;
   position:relative;
+  div.game_details {
+    div.game_update_time {
+      a {
+        position:absolute;
+        left:85px;
+        bottom:5px;
+        margin:0;
+        padding:3px;
+        color:#9F6000;
+      }
+    }
+  }
 }
 .notify_none {
   margin-left:10px;

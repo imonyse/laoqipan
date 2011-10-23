@@ -100,6 +100,7 @@ class User < ActiveRecord::Base
     end
 end
 
+
 # == Schema Information
 #
 # Table name: users
@@ -108,7 +109,6 @@ end
 #  name                 :string(255)
 #  email                :string(255)
 #  encrypted_password   :string(255)
-#  rank                 :string(255)     default("0")
 #  salt                 :string(255)
 #  created_at           :datetime
 #  updated_at           :datetime
@@ -125,5 +125,6 @@ end
 #  email_confirmed      :boolean         default(FALSE)
 #  notify_pendding_move :boolean         default(FALSE)
 #  connected            :integer         default(0)
+#  level                :integer         default(0)
 #
 

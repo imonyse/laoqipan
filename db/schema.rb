@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110924093843) do
+ActiveRecord::Schema.define(:version => 20111023040342) do
 
   create_table "authentications", :force => true do |t|
     t.string   "provider"
@@ -77,7 +77,6 @@ ActiveRecord::Schema.define(:version => 20110924093843) do
     t.string   "name"
     t.string   "email"
     t.string   "encrypted_password"
-    t.string   "rank",                 :default => "0"
     t.string   "salt"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -94,6 +93,7 @@ ActiveRecord::Schema.define(:version => 20110924093843) do
     t.boolean  "email_confirmed",      :default => false
     t.boolean  "notify_pendding_move", :default => false
     t.integer  "connected",            :default => 0
+    t.integer  "level",                :default => 0
   end
 
 end

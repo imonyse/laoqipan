@@ -44,8 +44,7 @@
 					<% if game.access == 3 %>
 						<%= t(:wait_for_moves) %><br/>
 						<% if correct_user?(game.black_player) or correct_user?(game.white_player) %>
-							<%= link_to t(:cancel), {:controller => 'games', :action => 'destroy', :id => game.id}, 
-													{:method => :delete, :remote => true} %>
+							<%= link_to t(:cancel), {:controller => 'games', :action => 'destroy', :id => game.id}, {:method => :delete, :remote => true, :class => 'notice'} %>
 						<% end %>
 					<% else %>
 						<%= time_ago_in_words(game.updated_at) %>
