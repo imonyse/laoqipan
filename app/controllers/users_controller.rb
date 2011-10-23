@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :login_required, :only => [:edit, :update, :validate_email, :following, :followers]
+  before_filter :login_required, :only => [:edit, :update, :validate_email, :following, :followers, :index]
   before_filter :ensure_not_logged_in, :only => [:reset_password, :recover_password]
   
   def new

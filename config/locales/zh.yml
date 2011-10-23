@@ -47,7 +47,7 @@ zh:
   select_mode: "请选择一种对局风格:"
   modern_style: "现代棋"
   old_style: "座子棋"
-  select_player: "选择你的对手"
+  select_player: "接收对局邀请的棋友(点击'邀请'开始下棋):"
   your_opponent: "你的对手将是: "
   chose_opponent_msg: "请选择你的对手!"
   cannot_duel_with_yourself: "对手不能是自己，请重新选择对手"
@@ -240,6 +240,8 @@ zh:
       follow: "加关注"
     unfollow:
       unfollow: "取消关注"
+    feed:
+      following_users_feed_will_show_here: "当你关注一位棋友后，他所参与的对局将会显示在此处。"
   authentications:
     index:
       available_connections: "测试用户可以绑定账号到下列服务，直接登录老棋盘的网站下棋。「非测试用户请勿操作，会出错」"

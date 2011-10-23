@@ -1,0 +1,9 @@
+<span id="user_<%= object.id %>" class="follow_button">
+	<% if user_signed_in? %>
+		<% if current_user.following?(object) %>
+			<%= render 'users/unfollow', :object => object %>
+		<% elsif current_user != object %>
+			<%= render 'users/follow', :object => object %>
+		<% end %>
+	<% end %>
+</span>

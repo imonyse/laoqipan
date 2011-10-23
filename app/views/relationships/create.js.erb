@@ -1,2 +1,2 @@
 $('#follower').html("<%= escape_javascript(link_to(@user.followers.count, followers_user_path(@user))) %>");
-$('#follow_form').html("<%= escape_javascript(render('users/unfollow')) %>");
+$("#user_<%= @user.id %>").html("<%= escape_javascript(render('users/unfollow', :object => @user)) %>");

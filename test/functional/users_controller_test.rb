@@ -16,8 +16,14 @@ class UsersControllerTest < ActionController::TestCase
   end
   
   test "should respond to index" do
+    fake_sign_in Factory(:user)
     get :index
     assert_response :success, @response.body
+  end
+  
+  test "guest should redirect to root for index page" do
+    get :index
+    assert_redirected_to signin_url
   end
   
   test "new action should render new template" do
@@ -85,4 +91,18 @@ class UsersControllerTest < ActionController::TestCase
     assert_redirected_to signin_url
   end
   
+  test "login user should see follower/following count page" do
+    @me = Factory(:user)
+    fake_sign_in @me
+    @another = Factory(:user)
+    get :following, :id => @me.id
+    assert_response :success
+    get :followers, :id => @me.id
+    assert_response :success
+    
+    get :following, :id => @another.id
+    assert_response :success
+    get :followers, :id => @another.id
+    assert_response :success
+  end
 end

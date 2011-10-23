@@ -96,7 +96,7 @@
 }
 
 .player {
-  height:80px;
+  height:90px;
   width:160px;
   float:left;
   background-color:#eee;
@@ -104,41 +104,64 @@
   margin:5px;
   position:relative;
   overflow:hidden;
-  a {
-    color:#000;
-    display:block;
-    @include border-radius;
-    &.select_link {
-      background-color:#bbb;
-      position:absolute;
-      left:0px;
-      bottom:0px;
-      &:hover {
-        color:#fff;
-        background-color:#666;
-      }
-    }
-  }
-  img {
-    margin-right:10px;
-    margin-bottom:10px;
-  }
   div {
     position:absolute;
     top:10px;
-    height:80px;
+    height:90px;
     &.player_avatar {
       width:50px;
       left:10px;
       a {
+        color:#000;
+        @include border-radius;
+        &.select_link {
+          background-color:#bbb;
+          position:absolute;
+          left:0px;
+          bottom:0px;
+          width:38px;
+          padding:5px;
+          &:hover {
+            color:#fff;
+            background-color:#666;
+          }
+        }
+        &.select_avatar {
+          position:absolute;
+          left:0px;
+          top:0px;
+          width:48px;
+        }
         text-align:center;
-        width:40px;
-        padding:5px;
+        display:block;
       }
     }
     &.player_details {
       width:90px;
       right:10px;
+      h4 {
+        padding-left:5px;
+        font-size:1em;
+      }
+      span {
+        padding-right:5px;
+        &.follow_button {
+          position:absolute;
+          left:0px;
+          top:30px;
+        }
+      }
+      p {
+        color:#888;
+        position:absolute;
+        left:5px;
+        top:60px;
+        margin:0px;
+      }
+    }
+    &.action {
+      display:inline;
+      position:static;
     }
   }
 }

@@ -3,16 +3,9 @@
 		<%= @user.name %>
 		<%= @action %>
 	</h3>
-	<ul>
 	<% unless @users.empty? %>
-		<% for user in @users %>
-		<li>
-			<%= avatar_image_tag user %>
-			<%= link_to user.name, user %>
-		</li>
-		<% end %>
+		<%= render "users/list", :object => @users %>
 	<% end %>
-	</ul>
 </div>
 
 <div class="paginate">

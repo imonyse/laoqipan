@@ -43,7 +43,7 @@ en:
   select_mode: "Please choose a game style"
   modern_style: "Modern Rules"
   old_style: "Ancient Chinese Rules"
-  select_player: "Select your opponent"
+  select_player: "Players who accepts games (Click 'Invite' to start playing):"
   your_opponent: "Your opponent will be: "
   chose_opponent_msg: "You need to choose an opponent!"
   cannot_duel_with_yourself: "You can't chanllenge yourself, please choose again."
@@ -238,6 +238,8 @@ en:
       follow: "Follow"
     unfollow:
       unfollow: "Unfollow"
+    feed:
+      following_users_feed_will_show_here: "Games of user who you are following will show here."
   authentications:
     index:
       available_connections: "Available connections"

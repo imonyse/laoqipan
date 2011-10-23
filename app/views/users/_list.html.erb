@@ -1,12 +1,17 @@
 <% object.each do |u| %>
 	<div class="player">
 		<div class="player_avatar">
-			<%= player_image_tag u %>
+			<%= link_to player_image_tag(u), u, :class => 'select_avatar' %>
 			<%= link_to t(:start_duel), new_game_path(:opponent => u.name), :class => 'select_link' %>
 		</div>
 		<div class="player_details">
-			<%= link_to u.name, u %><br/>
-			<%= time_ago_in_words u.last_request_at if u.last_request_at %>
+			<h4><%= u.name %></h4>
+			<%= render 'users/follow_button', :object => u %>
+			<p>
+				<span><%= t :wins %><%= u.wins %></span>
+				<span><%= t :loses %><%= u.loses %></span><br/>
+				<%= time_ago_in_words u.last_request_at if u.last_request_at %>
+			</p>
 		</div>
 	</div>
 <% end %>
