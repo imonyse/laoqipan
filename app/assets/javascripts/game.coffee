@@ -28,9 +28,6 @@ window.prepare_game = ->
     review.board.remove_click_fn() if review?
     player.board.remove_click_fn() if player?
 
-$(document).ready ->
-  prepare_game()
-  
 window.showLoader = (obj) ->
   obj.css({"background":"url(/assets/current_games_loader.gif) no-repeat"})
   
@@ -61,7 +58,9 @@ window.init_game = ->
       if $('#game').attr('requester') isnt "0"
         $.getScript(window.location.pathname + '/moves')
 
-$(window).load ->
+$(document).ready ->
+  prepare_game()
+          
   if window.unsupported
     $('#browser_check_bg').css("opacity":"0.7")
     # center pop up div
@@ -200,20 +199,6 @@ window.init_board = ->
     window.review = new Player(parser, 'board_review'+'-'+$('#game').attr('channel'), true) if parser
     review.pre_stones()
     review.end()
-    
-  window.start_ga()
-  
-window.start_ga = ->
-  _gaq = _gaq || []
-  _gaq.push(['_setAccount', 'UA-22477865-2'])
-  _gaq.push(['_setDomainName', 'laoqipan.com'])
-  _gaq.push(['_trackPageview'])
-
-  (->
-    ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js'
-    s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s)
-  )()
 
 window.get_locale = ->
   locale = 'zh'
