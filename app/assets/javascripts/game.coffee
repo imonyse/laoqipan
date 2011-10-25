@@ -206,6 +206,7 @@ window.init_board = ->
 window.start_ga = ->
   _gaq = _gaq || []
   _gaq.push(['_setAccount', 'UA-22477865-2'])
+  _gaq.push(['_setDomainName', 'laoqipan.com'])
   _gaq.push(['_trackPageview'])
 
   (->
