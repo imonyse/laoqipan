@@ -565,7 +565,6 @@ input[type="text"], input[type="password"], input[type="url"], input[type="email
 }
 
 .fixed {
-  height:560px;
   @include auth_form;
 }
   
