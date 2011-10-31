@@ -1,8 +1,4 @@
 Html5Weiqi::Application.routes.draw do
-  match "/about" => 'pages#about', :action => :get, :as => :about
-  match "/feedback" => 'pages#feedback', :action => :get, :as => :feedback
-  match "/help" => 'pages#help', :action => :get, :as => :help
-
   match '/signout' => 'sessions#destroy', :as => :signout
   match '/signin' => 'sessions#new', :as => :signin
   match '/signup' => 'users#new', :as => :signup
