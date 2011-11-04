@@ -1,4 +1,11 @@
 <div class="select_player">
+	<% if user_signed_in? and current_user.level == 0 %>
+		<p class="notice">
+			<%= t(:need_qualification) %>
+		</p>
+		<%= link_to t(:take_the_challenge), challenge_path, :class => 'info' %>
+		<div class="divider"></div>
+	<% end %>
 	<h3><%= t :select_player %></h3>
 	<%= render "users/list", :object => @users %>
 	<div class="divider"></div>

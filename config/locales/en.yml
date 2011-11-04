@@ -116,7 +116,8 @@ en:
   finished_game: "finished Game"
   says: "says: "
   image_notice: "Please DO NOT upload explicit, violent images, as some users may be children."
-  need_qualification: "Before you can invite others, you need to defeat GNUGO on a 19x19 board."
+  need_qualification: "Warning! Before you can invite others, you need to defeat GNUGO on a 19x19 board."
+  take_the_challenge: "Challenge GNUGO now!"
   back_to_select: "Back"
   layouts:
     header:
