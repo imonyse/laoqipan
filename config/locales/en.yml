@@ -116,6 +116,8 @@ en:
   finished_game: "finished Game"
   says: "says: "
   image_notice: "Please DO NOT upload explicit, violent images, as some users may be children."
+  need_qualification: "Before you can invite others, you need to defeat GNUGO on a 19x19 board."
+  back_to_select: "Back"
   layouts:
     header:
       more: "More >"
@@ -196,8 +198,6 @@ en:
       score: "Score"
       ok: "OK"
       cancel: "Cancel"
-    new:
-      back_to_select: "Back"
     upload_sgf:
       sgf_url: "TOM SGF URL"
       name: "SGF Title"

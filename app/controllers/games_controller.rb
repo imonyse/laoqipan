@@ -1,6 +1,7 @@
 class GamesController < ApplicationController
-  before_filter :authenticate_user!, :only => [:new, :create]
+  before_filter :authenticate_user!, :only => [:new, :create, :gnugo_challenge]
   before_filter :authenticate?, :only => [:destroy]
+  before_filter :qualified?, :only => :new
   before_filter :only => [:edit, :update] { authenticate_admin(root_url) }
   
   def index
@@ -201,6 +202,21 @@ class GamesController < ApplicationController
     
     respond_to do |format|
       format.js
+    end
+  end
+  
+  def gnugo_challenge
+    @game = Game.new
+    opponent = User.where("role = 99 or role = 98").first
+    @opponent_name = opponent.name
+    respond_to do |format|
+      format.html
+    end
+  end
+  
+  def qualified?
+    if current_user.level == 0
+      redirect_to challenge_url, :alert => I18n.t(:need_qualification)
     end
   end
   

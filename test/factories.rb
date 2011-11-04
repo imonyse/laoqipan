@@ -4,6 +4,7 @@ Factory.define :user do |user|
   user.password "foobar"
   user.password_confirmation "foobar"
   user.role "2"
+  user.level "1"
 end
 
 Factory.define :game do |game|

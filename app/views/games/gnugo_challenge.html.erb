@@ -5,7 +5,7 @@
 	<%= form_for @game do |f| %>
 		<div class="field">
 			<%= f.label :opponent, t(:your_opponent)+@opponent_name %>
-			<%= f.hidden_field :opponent  %>
+			<%= f.hidden_field :opponent, :value => @opponent_name  %>
 		</div>
 
 		<div class="field">

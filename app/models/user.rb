@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  attr_accessible :name, :email, :password, :password_confirmation, :guest, :rank, :wins, :loses, :open_for_play, :avatar, :salt, :role, :last_request_at, :email_confirmed, :notify_pendding_move, :connected
+  attr_accessible :name, :email, :password, :password_confirmation, :guest, :rank, :wins, :loses, :open_for_play, :avatar, :salt, :role, :last_request_at, :email_confirmed, :notify_pendding_move, :connected, :level
   attr_accessor :password
   
   before_save :make_password

@@ -36,7 +36,7 @@ class UsersController < ApplicationController
   end
   
   def index
-    @users = User.order(:rank).page(params[:page]).per(19)
+    @users = User.page(params[:page]).per(19)
   end
   
   def edit

@@ -20,9 +20,12 @@ class GamesControllerTest < ActionController::TestCase
     assert_redirected_to signin_path
   end
   
-  test "when sign in, new should not choose self as opponent" do
-    fake_sign_in users(:one)
-    get :new, :opponent => users(:one).name, :format => :js
+  test "valid user create game with others" do
+    u = Factory(:user)
+    fake_sign_in u
+    o = Factory(:user)
+    get :new, :opponent => o.name
+    assert_template :new
   end
   
   test "invalid user should not create game" do
@@ -31,16 +34,19 @@ class GamesControllerTest < ActionController::TestCase
   end
   
   test "valid user should create game" do
-    fake_sign_in users(:one)
+    user = Factory(:user)
+    fake_sign_in user
+    other = Factory(:user)
     assert_difference "Game.count", +1 do
-      post :create, :game => {:mode => "1", :opponent => users(:two).name, :sgf => "fake_sgf"} 
+      post :create, :game => {:mode => "1", :opponent => other.name, :sgf => "fake_sgf"} 
     end
   end
   
   test "valid user should not duel with self" do
-    fake_sign_in users(:one)
+    user = Factory(:user)
+    fake_sign_in user
     assert_no_difference "Game.count" do
-      post :create, :game => {:mode => "1", :opponent => users(:one).name, :sgf => "fake_sgf"}
+      post :create, :game => {:mode => "1", :opponent => user.name, :sgf => "fake_sgf"}
       assert_response 403
     end
   end
@@ -67,8 +73,19 @@ class GamesControllerTest < ActionController::TestCase
     assert_redirected_to root_url
   end
   
-  test "should hanlde destroy game" do
+  test "should handle destroy game" do
     delete :destroy, :id => @game.to_param
     assert_redirected_to root_url
   end
+  
+  test "qualification before create game" do
+    user = Factory(:user)
+    user.level = 0
+    user.save
+    fake_sign_in user
+    
+    get :new, :opponent => users(:one).name
+    assert_redirected_to challenge_url
+  end
+  
 end

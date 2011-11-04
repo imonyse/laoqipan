@@ -71,10 +71,10 @@ Stalker.job "score_game" do |args|
   
     # update user's win/lose record
     if s == "W"
-      pg_conn.exec("update users set wins=wins+1 where id=(select white_player_id from games where id='#{id}')")
+      pg_conn.exec("update users set wins=wins+1, level=1 where id=(select white_player_id from games where id='#{id}')")
       pg_conn.exec("update users set loses=loses+1 where id=(select black_player_id from games where id='#{id}')")
     elsif s == "B"
-      pg_conn.exec("update users set wins=wins+1 where id=(select black_player_id from games where id='#{id}')")
+      pg_conn.exec("update users set wins=wins+1, level=1 where id=(select black_player_id from games where id='#{id}')")
       pg_conn.exec("update users set loses=loses+1 where id=(select white_player_id from games where id='#{id}')")
     end
   

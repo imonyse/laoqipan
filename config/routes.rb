@@ -21,6 +21,7 @@ Html5Weiqi::Application.routes.draw do
   match '/handle_notify', :to => 'sessions#handle_notify', :as => :handle_notify
   match '/notify', :to => 'notifications#notify'
   match '/current_games', :to => 'games#current_games'
+  match '/challenge', :to => 'games#gnugo_challenge', :as => :challenge
   
   resources :broadcasts
 

@@ -120,6 +120,8 @@ zh:
   finished_game: "完成了对局"
   says: "说: "
   image_notice: "这里可能有未成年人用户，故请勿上传情色、暴力和有政治倾向的图片，谢谢合作。"
+  need_qualification: "你需要首先战胜GNUGO，才能获得邀请他人对局的权限。"
+  back_to_select: "重新选择对手"
   layouts:
     header:
       more: "查看更多 >"
@@ -198,8 +200,6 @@ zh:
       resign: "认输"
       kbd_control: "键盘"
       score: "数子"      
-    new:
-      back_to_select: "重新选择对手"
     upload_sgf:
       sgf_url: "TOM SGF 地址"
       name: "对局标题"
