@@ -54,8 +54,7 @@ Feature: Game
 		When I login as "cas" with password "foobar"
 		And I click_game_item
 		And I wait until game finished loading
-		Then "#clock" should be visible
-		And "#pass" should be visible
+		Then "#pass" should be visible
 		When I click_li "#pass"
 		Then "#board_info" should be visible
 		When I click_div "#confirm_cancel"
@@ -68,8 +67,7 @@ Feature: Game
 		And I login as "foo" with password "foobar"
 		And I click_game_item
 		And I wait until game finished loading
-		Then "#clock" should be visible
-		And "#pass" should be visible
+		Then "#pass" should be visible
 		
 	@javascript
 	Scenario: game score

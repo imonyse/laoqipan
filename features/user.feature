@@ -21,8 +21,7 @@ Feature: user
 		And I am on the home page
 		And I login as "foo@example.com" with password "foobar"
 		When I on the rails duel page
-		Then show me the page
-		And I follow "邀请下棋"
+		And I follow "邀请"
 		And I select "现代棋" from "game_mode"
 		And I press "发出对局邀请"
 		Then I should see "等待对手落子确认"

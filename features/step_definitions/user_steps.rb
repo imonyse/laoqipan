@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 Given /^a user name "([^"]*)", email "([^"]*)" with password "([^"]*)"$/ do |arg1, arg2, arg3|
-  User.create({:name => arg1, :email => arg2, :password => arg3, :password_confirmation => arg3})
+  u = User.create({:name => arg1, :email => arg2, :password => arg3, :password_confirmation => arg3})
+  u.level = 1
+  u.save
 end
 
 Given /^I login as "([^"]*)" with password "([^"]*)"$/ do |arg1, arg2|
