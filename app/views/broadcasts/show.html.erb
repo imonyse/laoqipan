@@ -1,5 +1,6 @@
 <div class="side_nav">
-	<%= link_to t('.view') + ' ' + Broadcast.count.to_s + ' ' + t('.broadcasts'), broadcasts_path %>
+	<p><%= link_to t('.view') + ' ' + Broadcast.count.to_s + ' ' + t('.broadcasts'), broadcasts_path %></p>
+	<p><%= link_to t('.view') + ' ' + Broadcast.unscoped.count.to_s + ' ' + t('.blogs'), blogs_path %></p>
 </div>
 
 <div class="blog">

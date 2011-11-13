@@ -15,6 +15,11 @@
 	</div>
 	
 	<div class="field">
-		<%= f.submit %>
+		<%= f.label :push %>
+		<%= f.check_box :push, {}, true, false %>
+	</div>
+	
+	<div class="field">
+		<%= f.submit t(:post) %>
 	</div>
 <% end %>

@@ -123,6 +123,14 @@ zh:
   need_qualification: "注意！你需要首先战胜GNUGO，才能获得邀请他人对局的权限。"
   take_the_challenge: "开始挑战GNUGO"
   back_to_select: "重新选择对手"
+  post: "发表"
+  helpers:
+    label:
+      broadcast:
+        title: "标题"
+        brief: "摘要"
+        body: "正文"
+        push: "是否广播给所有用户"
   layouts:
     header:
       more: "查看更多 >"
@@ -154,12 +162,14 @@ zh:
     side_bar:
       view: "查看"
       broadcasts: "条系统广播"
+      blogs: "条站长BLOG"
     feed_item:
       go: "观看"
   broadcasts:
     show:
       view: "查看"
       broadcasts: "条系统广播"
+      blogs: "条站长BLOG"
     index:
       new_broadcast: "添加新广播"
   pages:

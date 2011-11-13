@@ -1,6 +1,10 @@
 class Broadcast < ActiveRecord::Base
   belongs_to :user, :foreign_key => 'author'
+  
+  default_scope where(:push => true)
+  
 end
+
 
 # == Schema Information
 #
@@ -13,5 +17,6 @@ end
 #  author     :integer
 #  created_at :datetime
 #  updated_at :datetime
+#  push       :boolean
 #
 

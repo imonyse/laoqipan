@@ -83,4 +83,12 @@ class BroadcastsControllerTest < ActionController::TestCase
     end
     assert_redirected_to broadcasts_url
   end
+  
+  test "blogs should use index template" do
+    @user = Factory(:user)
+    fake_sign_in @user
+    get :blogs
+    assert_response :success
+    assert_template :index
+  end
 end

@@ -6,6 +6,7 @@ class BroadcastTest < ActiveSupport::TestCase
   # end
 end
 
+
 # == Schema Information
 #
 # Table name: broadcasts
@@ -17,5 +18,6 @@ end
 #  author     :integer
 #  created_at :datetime
 #  updated_at :datetime
+#  push       :boolean
 #
 

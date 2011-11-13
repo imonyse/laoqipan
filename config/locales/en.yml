@@ -119,6 +119,14 @@ en:
   need_qualification: "Warning! Before you can invite others, you need to defeat GNUGO on a 19x19 board."
   take_the_challenge: "Challenge GNUGO now!"
   back_to_select: "Back"
+  post: "Post"
+  helpers:
+    label:
+      broadcast:
+        title: "Title"
+        brief: "Introduction"
+        body: "Content"
+        push: "Push to all users"
   layouts:
     header:
       more: "More >"
@@ -150,12 +158,14 @@ en:
     side_bar:
       view: "view"
       broadcasts: "broadcasts"
+      blogs: "BLOGs"
     feed_item:
       go: "GO"
   broadcasts:
     show:
       view: "view"
       broadcasts: "broadcasts"
+      blogs: "BLOGs"
     index:
       new_broadcast: "New Broadcast"
   pages:

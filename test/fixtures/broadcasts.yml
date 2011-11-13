@@ -12,6 +12,7 @@ two:
   brief: MyText
   author: 1
 
+
 # == Schema Information
 #
 # Table name: broadcasts
@@ -23,5 +24,6 @@ two:
 #  author     :integer
 #  created_at :datetime
 #  updated_at :datetime
+#  push       :boolean
 #
 

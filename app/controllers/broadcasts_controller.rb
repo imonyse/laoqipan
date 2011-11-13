@@ -66,4 +66,11 @@ class BroadcastsController < ApplicationController
     end
   end
   
+  def blogs
+    @broadcasts = Broadcast.unscoped.order('created_at DESC').page(params[:page]).per(5)
+    
+    respond_to do |format|
+      format.html { render :index }
+    end
+  end
 end
