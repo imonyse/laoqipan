@@ -3,7 +3,7 @@
 		<% if @user %>
 		<div class="notifications">
 			<div class="message">
-				<% broadcast = Broadcast.last %>
+				<% broadcast = Broadcast.push_to_all.last %>
 				<% if broadcast.nil? %>
 					<h3>broadcasting...</h3>
 				<% else %>

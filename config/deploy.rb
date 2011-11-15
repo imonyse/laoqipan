@@ -38,7 +38,7 @@ end
 
 after "deploy:update_code", :bundle_install
 task :bundle_install, :roles => :app do
-  run "cd #{release_path} && bundle install --deployment  --without development:test"
+  run "cd #{release_path} && ln -s #{shared_path}/bundle #{release_path}/vendor/bundle && bundle install --deployment  --without development:test"
 end
 
 before "deploy:restart", :precompile
