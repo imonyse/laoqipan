@@ -1,12 +1,14 @@
+require 'code_formatter'
+
 module BroadcastsHelper
   def markdown(text)
-    options = [:hard_wrap, :filter_html, :autolink, :gh_blockcode, :fenced_code]
-    syntax_on(Redcarpet.new(text, *options).to_html).html_safe
+    CodeFormatter.new(text).to_html.html_safe
+    # syntax_on(content).html_safe
   end
   
   def syntax_on(html)
-    html.gsub(/\<pre( lang="(.+?)")?\>\<code\>(.+?)\<\/code\>\<\/pre\>/m) do
-          CodeRay.scan($3, $2).div(:css => :class)
+    html.gsub(/\<code( class="(.+?)")?\>(.+?)\<\/code\>/m) do
+          CodeRay.scan($3, $2).div(:line_numbers => :table)
     end
   end
 end
