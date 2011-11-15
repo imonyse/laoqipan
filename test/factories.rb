@@ -25,5 +25,6 @@ Factory.define :broadcast do |broadcast|
   broadcast.title  'first blog'
   broadcast.body   'Hello, blog'
   broadcast.brief  '1st'
+  broadcast.push   false
   broadcast.association(:author, :factory => :user)
 end

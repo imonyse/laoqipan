@@ -1,8 +1,7 @@
 class Broadcast < ActiveRecord::Base
   belongs_to :user, :foreign_key => 'author'
   
-  default_scope where(:push => true)
-  
+  scope :push_to_all, where(:push => true)
 end
 
 

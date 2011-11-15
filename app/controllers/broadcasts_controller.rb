@@ -2,7 +2,7 @@ class BroadcastsController < ApplicationController
   before_filter :except => [:index, :show] { authenticate_admin(broadcasts_url) }
   
   def index
-    @broadcasts = Broadcast.order('created_at DESC').page(params[:page]).per(5)
+    @broadcasts = Broadcast.push_to_all.order('created_at DESC').page(params[:page]).per(5)
     
     respond_to do |format|
       format.html
@@ -67,7 +67,7 @@ class BroadcastsController < ApplicationController
   end
   
   def blogs
-    @broadcasts = Broadcast.unscoped.order('created_at DESC').page(params[:page]).per(5)
+    @broadcasts = Broadcast.order('created_at DESC').page(params[:page]).per(5)
     
     respond_to do |format|
       format.html { render :index }
