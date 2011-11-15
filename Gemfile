@@ -13,6 +13,7 @@ gem 'juggernaut', '2.0.4'
 gem 'rake', '0.9.2'
 gem 'oily_png'
 gem 'redcarpet'
+gem 'coderay'
 
 # Gems used only for assets and not required
 # in production environments by default.
