@@ -31,7 +31,6 @@ end
 group :development, :test do
   # Pretty printed test output
   gem 'turn', :require => false
-  gem 'pry'
   gem 'jasminerice'
   gem 'cucumber-rails', '1.0.2'
   gem 'database_cleaner'
