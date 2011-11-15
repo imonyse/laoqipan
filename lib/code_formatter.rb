@@ -18,7 +18,7 @@ class CodeFormatter
   def to_html
     text = @text.clone
     codes = []
-    text.gsub!(/^``` ?(.*?)\r?\n(.+?)\r?\n```\r?$/m) do |match|
+    text.gsub!(/^``` ?(.*?)\r?\n(.+?)\r?\n``` ?\r?$/m) do |match|
       code = { 
         :id => "CODE#{codes.size}ENDCODE", 
         :name => ($1.empty? ? nil : $1), 
