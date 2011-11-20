@@ -5,11 +5,11 @@
 			<div class="message">
 				<% broadcast = Broadcast.push_to_all.last %>
 				<% if broadcast.nil? %>
-					<h3>broadcasting...</h3>
+					<h4>broadcasting...</h4>
 				<% else %>
-					<h3>
+					<h4>
 					<%= link_to broadcast.title, broadcast %>
-					</h3>
+					</h4>
 					<p>
 					<%= broadcast.brief %>
 					</p>
