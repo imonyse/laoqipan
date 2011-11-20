@@ -1,9 +1,11 @@
 <div class="select_player">
 	<% if user_signed_in? and current_user.level == 0 %>
-		<p class="notice">
-			<%= t(:need_qualification) %>
-		</p>
-		<%= link_to t(:take_the_challenge), challenge_path, :class => 'info' %>
+		<div class="alert-box warning">
+		<%= t(:need_qualification) %>
+		</div>
+		<div class="alert-box">
+		<%= link_to t(:take_the_challenge), challenge_path %>
+		</div>
 		<div class="divider"></div>
 	<% end %>
 	<h3><%= t :select_player %></h3>

@@ -12,28 +12,28 @@ window.prepare_game = ->
         $('#start_info').html('请等待<br/>与实时服务器建立连接中 ...')
       else
         $('#start_info').html('Please wait<br/>connecting to realtime server ...')
-    
+
     $("#next").removeAttr('onclick')
     $("#prev").removeAttr('onclick')
     $("#start").removeAttr('onclick')
     $("#end").removeAttr('onclick')
     $("#show_steps").removeAttr('onclick')
-    
+
     $("#pass").removeAttr('onclick')
     $("#resign").removeAttr('onclick')
     $("#score").removeAttr('onclick')
     $("#clock_ok").removeAttr('onclick')
     $('#analyse').removeAttr('onclick')
-    
+
     review.board.remove_click_fn() if review?
     player.board.remove_click_fn() if player?
 
 window.showLoader = (obj) ->
   obj.css({"background":"url(/assets/current_games_loader.gif) no-repeat"})
-  
+
 window.hideLoader = (obj) ->
   obj.css({"background-image":"none"})
-  
+
 window.init_game = ->
   if $('#game').attr('sgf')
     $('#loader').show()
@@ -60,7 +60,7 @@ window.init_game = ->
 
 $(document).ready ->
   prepare_game()
-          
+
   if window.unsupported
     $('#browser_check_bg').css("opacity":"0.7")
     # center pop up div
@@ -69,25 +69,25 @@ $(document).ready ->
     pop_width = $('#browser_check').width()
     pop_height = $('#browser_check').height()
     $('#browser_check').css({"position":"absolute", "top":height/2-pop_height/2,"left":width/2-pop_width/2})
-    
+
     $('#browser_check_bg').fadeIn("slow")
     $('#browser_check').fadeIn("slow")
     return
-    
-  if $('#game').length 
+
+  if $('#game').length
     init_game()
   if $('#game_review').length
     init_review()
-    
+
   $('#active_games div.refresh').click ->
     showLoader($('#notified_games'))
     $.getScript('http://' + window.location.host + '/current_games' + window.location.search)
-    
+
 window.subscribe_game = ->
   if $('#game').attr('status') is '1'
     $('#start_info').hide()
     return
-    
+
   window.jug = new Juggernaut
 
   window.jug.subscribe $('#game').attr('channel'), (data) ->
@@ -120,7 +120,7 @@ window.subscribe_game = ->
     return
 
   window.jug.on "connect", ->
-    $('#connection').attr("class", "success small")
+    $('#connection').attr("class", "alert-box success")
     if window.get_locale() is 'zh'
       $('#connection').html("已连接")
     else
@@ -137,14 +137,14 @@ window.subscribe_game = ->
     # make sure we doesn't miss anything before connected
     $.getScript(window.location.pathname + '/moves')
   window.jug.on "disconnect", ->
-    $('#connection').attr("class", "alert small")
+    $('#connection').attr("class", "alert-box error")
     if window.get_locale() is 'zh'
       $('#connection').html("失去连接")
     else
       $('#connection').html("connection lost")
     window.jug_connected = false
   window.jug.on "reconnect", ->
-    $('#connection').attr("class", "notice small")
+    $('#connection').attr("class", "alert-box warning")
     if window.get_locale() is 'zh'
       $('#connection').html("重连中")
     else
@@ -164,20 +164,20 @@ window.init_review = ->
       review.hide_steps()
     else
       review.show_steps()
-      
+
   if $('#game_review').attr('sgf')
     $('#game_review').show()
     parser = new SGF $('#game_review')
     window.review = new Player(parser, 'board_review' + '-' + $('#game_review').attr('channel'), true) if parser
     review.pre_stones()
     review.end()
-        
+
 window.init_board = ->
   parser = new SGF $('#game')
   window.player = new Player(parser, 'board'+'-'+$('#game').attr('channel'))
-  
+
   $("#pass").click -> pass_notify()
-  
+
   $("#resign").click -> resign_handle()
   $("#score").click -> score_handle()
   $("#clock_ok").click ->
@@ -186,13 +186,12 @@ window.init_board = ->
   $('#clock_cancel').click ->
     $('#clock').hide()
     window.player.board.remove_fake_stone()
-      
+
   $('#analyse').click ->
     $('#game_review').dialog({
       width:535,
-      height:600,
-      draggable:true,
-      dialogClass:"woody wood_shadow"
+      height:610,
+      draggable:true
     })
     $('#game_review').attr('sgf', $('#game').attr('sgf'))
     parser = new SGF $('#game_review')

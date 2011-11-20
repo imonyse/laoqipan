@@ -37,15 +37,6 @@
         position:absolute;
         top:35px;
         right:25px;
-        a {
-          padding:7px;
-          color:#000;
-          background-color:#bbb;
-          &:hover {
-            color:#fff;
-            background-color:#666;
-          }
-        }
       }
     }
     &.paginate {

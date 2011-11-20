@@ -4,4 +4,5 @@
 //= require jquery.titlealert
 //= require json2
 //= require juggernaut
+//= require foundation
 //= require_tree .

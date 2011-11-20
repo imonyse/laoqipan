@@ -65,19 +65,6 @@ div.inline {
   display:inline;
   position:absolute;
   padding:5px 0 5px 0;
-  a {
-    color:black;
-    &:hover {
-      color:white;
-    }
-  }
-  span.control_button, a.control_button {
-    display:inline;
-    padding:4px 8px 4px 8px;
-    @include border-radius;
-    margin-left:2px;
-    border:1px solid #aaa;
-  }
 }
 
 a {
@@ -99,32 +86,6 @@ form {
 img {
   vertical-align:middle;
   margin:0 5px 0 0;
-}
-
-.info, .success, .notice, .error, .validation, .alert {
-    border: 1px solid;
-    margin: 10px 0px;
-    padding:5px;
-}
-
-.info {
-    color: #00529B;
-    background-color: #BDE5F8;
-}
-
-.success {
-    color: #4F8A10;
-    background-color: #DFF2BF;
-}
-
-.notice {
-    color: #9F6000;
-    background-color: #FEEFB3;
-}
-
-.error, .alert {
-    color: #D8000C;
-    background-color: #FFBABA;
 }
 
 .left {

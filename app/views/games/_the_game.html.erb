@@ -21,8 +21,8 @@
 			<div class="captured" id="white_captured"></div>
 		<% end %>
 		<div class="inline">
-			<%= link_to "SGF", game_sgf_path(@game), :class => 'control_button' %>
-			<span id="analyse" class="control_button"><%= t("analyse") %></span>
+			<%= link_to "SGF", game_sgf_path(@game), :class => 'nice black radius button' %>
+			<span id="analyse" class="nice black radius button"><%= t("analyse") %></span>
 			<span id="connection"></span>
 		</div>
 	<% end %>
@@ -48,19 +48,19 @@
 				<% if @game.mode != 0 and @game.status == 0 %>
 					<% if (current_user == @game.black_player or current_user == @game.white_player) %>
 						<% if !@game.vs_ai? %>
-							<span id="score" class="control_button"><%= t(".score") %></span>
+							<span id="score" class="nice black button"><%= t(".score") %></span>
 						<% end %>
 					<% end %>
 				<% end %>
 
 				<% if @game.mode != 0 and @game.status == 0 %>
 					<% if (current_user == @game.black_player) || (current_user == @game.white_player) %>
-						<span id="resign" class="control_button"><%= t(".resign") %></span>
+						<span id="resign" class="nice black button"><%= t(".resign") %></span>
 					<% end %>
 				<% end %>
 
 				<% if @game.mode != 0 and @game.status != 1 %>
-					<span id="pass" class="control_button"><%= t(".pass") %></span>
+					<span id="pass" class="nice black button"><%= t(".pass") %></span>
 				<% end %>
 					<span>
 						<span id="swap">0</span> <%= t "step" %>

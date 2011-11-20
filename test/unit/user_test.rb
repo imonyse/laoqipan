@@ -21,6 +21,11 @@ class UserTest < ActiveSupport::TestCase
     @user = User.new(@attr.merge(:name => ''))
     assert(!@user.valid?, "no name user is valid")
   end
+
+  test "user should have an email" do
+    @user = User.new(@attr.merge(:email => ''))
+    assert(!@user.valid?, "user without an email is valid")
+  end
   
   test "user should have an well formed email" do
     @user = User.new(@attr.merge(:email => "s@s@.com"))

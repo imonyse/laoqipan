@@ -365,14 +365,12 @@ $board_width: 531px;
 }
 
 input[type="text"], input[type="password"], input[type="url"], input[type="email"], input.text, input.title, textarea {
-  width:100%;
   font-family:monospace;
 }
 
 .button {
   cursor: pointer;
-  margin-left:10px;
-  margin-right:10px;
+  margin-right:5px;
   padding:5px;
   border:1px solid #000;
   display:inline;
@@ -401,21 +399,6 @@ input[type="text"], input[type="password"], input[type="url"], input[type="email
   margin:20px auto;
   font-size:1.2em;
   width:320px;
-  input {
-    &[type="submit"] {
-      background-color:#ccc;
-      width:50%;
-      padding:5px;
-      font-size:1.1em;
-      cursor:pointer;
-      border:none;
-      border-radius:5px;
-      &:hover {
-        color:#fff;
-        background-color:#333;
-      }
-    }
-  }
 }
 
 #intro {
@@ -454,7 +437,7 @@ input[type="text"], input[type="password"], input[type="url"], input[type="email
 }
 
 #sign_in {
-  margin-top:10px;
+  margin-top:20px;
   z-index:1;
   position:absolute;
   top:0;
@@ -469,9 +452,7 @@ input[type="text"], input[type="password"], input[type="url"], input[type="email
 }
 
 #sign_in_text {
-  p {
-    margin-left:30px;
-  }
+  width: 300px;
 }
 
 .tips {
@@ -490,7 +471,7 @@ input[type="text"], input[type="password"], input[type="url"], input[type="email
 }
 
 .game_new {
-  width:600px;
+  width:300px;
   background-color:#eee;
   padding:10px;
   margin:10px auto;
@@ -587,10 +568,7 @@ input[type="text"], input[type="password"], input[type="url"], input[type="email
   }
 }
 .woody {
-  background:url(/assets/head_bg.png);
-}
-.woody2 {
-  background:url(/assets/woody2.png);
+  background-color: #000;
 }
 
 #notified_games {
@@ -701,18 +679,12 @@ span {
 }
 
 #game_duel, #game_all {
-  margin:5px auto 5px 0;
+  margin:5px auto 5px -10px;
   text-align:center;
+  width: 140px;
   a {
     display:block;
-    background-color:#ccc;
-    padding:4px;
-    width:130px;
-    @include border-radius(3px);
-    &:hover {
-      color:#fff;
-      background-color:#666;
-    }
+    color: white;
   }
 }
 
@@ -804,3 +776,4 @@ span {
   right:10px;
   @include confirm_button;
 }
+

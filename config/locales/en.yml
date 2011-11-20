@@ -3,8 +3,6 @@ en:
   English: "English Version"
   Chinese: "汉语版"
   none: "none"
-  introduce_go: "Go ('weiqi' in Chinese, 'igo' in Japanese, 'baduk' in Korean), is an ancient board game for two players that originated in China over 2,000 years ago. The object of the game is to use one's stones to surround a larger portion of the board than the opponent."
-  introduce_site: "Laoqipan is a website that you can play the board game go with other players around the world. There isn't any time control rules. You can think as long as you can before you make a move. You can play with different players simultaneously, or play different games with one player simultaneously. Please login first to play a game."
   about: "Acknowledgment"
   microblog: "Twitter"
   feedback: "Feedback"
@@ -74,7 +72,7 @@ en:
   last_move: "Last move"
   game_help: "Help"
   help: "help"
-  intro: "Laoqipan is a site for playing the board game Go. Features includes:"
+  intro: "Features:"
   wait_for_moves: "waiting"
   duel_create_msg: "Waiting for opponent"
   profile_has_been_updated: "profile has been updated"
@@ -120,6 +118,7 @@ en:
   take_the_challenge: "Challenge GNUGO now!"
   back_to_select: "Back"
   post: "Post"
+  email_to_reset: "Enter your email address:"
   helpers:
     label:
       broadcast:

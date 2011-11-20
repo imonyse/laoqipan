@@ -1,44 +1,32 @@
 <div class="fixed show">
-	<div>
-	<%= render "shared/errors_messages" %>
-	<h3><%= t ".new_user" %></h3>
-	<%= form_for @user, :html => { :multipart => true } do |f| %>
-	  <div class="field">
-	  	<%= f.label :name, t(".username") %><br>
-			<%= f.text_field :name, :autocomplete => :off %>
-	  </div>
+  <div>
+    <%= render "shared/errors_messages" %>
+    <h3><%= t ".new_user" %></h3>
+    <%= form_for @user, :html => { :multipart => true, :class => 'nice' } do |f| %>
 
-		<div class="field">
-			<%= f.label :email, t(".email") %><br>
-			<%= f.text_field :email, :autocomplete => :off %>
-		</div>
+    <%= f.label :name, t(".username") %>
+    <%= f.text_field :name, :class => 'input-text', :autocomplete => :off %><br/>
 
-		<div class="field">
-			<%= f.label :password, t(".password") %><br>
-			<%= f.password_field :password %>
-		</div>
+    <%= f.label :email, t(".email") %>
+    <%= f.text_field :email, :class => 'input-text', :autocomplete => :off %><br/>
 
-		<div class="field">
-			<%= f.label :password_confirmation, t(".confirm") %><br>
-			<%= f.password_field :password_confirmation %>
-		</div>
+    <%= f.label :password, t(".password") %>
+    <%= f.password_field :password, :class => 'input-text' %><br/>
 
-		<div class="field">
-			<%= f.radio_button :open_for_play, "true" %>
-			<%= f.label :open_for_play, t(".open_for_play") %>
-			<%= f.radio_button :open_for_play, "false" %>
-			<%= f.label :open_for_play, t(".close_for_play") %>
-		</div>
+    <%= f.label :password_confirmation, t(".confirm") %>
+    <%= f.password_field :password_confirmation, :class => 'input-text' %><br/>
 
-		<div class="field">
-			<%= f.label t(:upload_image) %><br/>
-			<%= f.file_field :avatar %>
-			<p class="notice"><%= t(:image_notice) %></p>
-		</div>
-		
-		<div class="field">
-			<%= f.submit t(".create") %>
-		</div>
-	<% end %>
-	</div>
+    <%= f.radio_button :open_for_play, "true" %>
+    <%= t(".open_for_play") %><br/>
+    <%= f.radio_button :open_for_play, "false" %>
+    <%= t(".close_for_play") %><br/><br/>
+
+    <%= f.label t(:upload_image) %>
+    <%= f.file_field :avatar %><br/><br/>
+
+    <div class="alert-box warning"><%= t(:image_notice) %></div>
+
+    <%= f.submit t(".create") %>
+<% end %>
+</div>
 </div>

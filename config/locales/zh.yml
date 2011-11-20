@@ -3,8 +3,6 @@ zh:
   English: "English Version"
   Chinese: "汉语版"
   none: "无"
-  introduce_go: "围棋，是发源于古代中国策略性二人棋类，使用格状棋盘及黑白二色棋子进行对弈，过程中围地吃子，以所围「地」的大小决定胜负。中国古时有“弈”、“碁”（“棋”的异体字）、“手谈”等多种称谓，属琴棋书画四艺之一。"
-  introduce_site: "在老棋盘你可以和来自网络上的对手下棋。一场对局没有时间限制，你可以仔细思考后再落子。你还可以同时和多个对手下棋，也可以和一个对手同时下多个对局。下棋请先登录。"
   about: "致谢"
   microblog: "微博"
   feedback: "问题反馈"
@@ -78,7 +76,7 @@ zh:
   last_move: "最后落子"
   game_help: "帮助"
   help: "帮助"
-  intro: "老棋盘是一个在线下围棋的网站，基本功能有："
+  intro: "老棋盘主要特色："
   wait_for_moves: "等待开始"
   duel_create_msg: "等待对手落子确认"
   profile_has_been_updated: "设置已经保存"
@@ -124,6 +122,7 @@ zh:
   take_the_challenge: "开始挑战GNUGO"
   back_to_select: "重新选择对手"
   post: "发表"
+  email_to_reset: "请输入你注册时使用的Email:"
   helpers:
     label:
       broadcast:
@@ -269,6 +268,8 @@ zh:
           attributes:
             name:
               blank: "名号不能为空"
+            email:
+              blank: "邮箱不能为空"
             password:
               blank: "密码不能为空"
         comment:

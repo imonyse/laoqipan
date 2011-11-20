@@ -112,19 +112,11 @@
       width:50px;
       left:10px;
       a {
-        color:#000;
-        @include border-radius;
         &.select_link {
-          background-color:#bbb;
           position:absolute;
-          left:0px;
+          left:-10px;
           bottom:0px;
           width:38px;
-          padding:5px;
-          &:hover {
-            color:#fff;
-            background-color:#666;
-          }
         }
         &.select_avatar {
           position:absolute;

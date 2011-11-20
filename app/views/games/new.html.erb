@@ -2,20 +2,13 @@
 	<% flash.each do |name, msg| %>
 		<%= content_tag :div, msg, :class => "#{name}" if msg.is_a?(String) %>
 	<% end %>
-	<%= form_for @game do |f| %>
-		<div class="field">
-			<%= f.label :opponent, t(:your_opponent)+@opponent_name %>
-			<%= f.hidden_field :opponent  %>
-		</div>
+	<%= form_for @game, :class => "nice" do |f| %>
+	  <%= f.label :opponent, t(:your_opponent)+@opponent_name %>
+	  <%= f.hidden_field :opponent  %>
 
-		<div class="field">
-			<%= f.label :mode, t(:select_mode) %>
-			<%= f.select :mode, [[t(:modern_style), 1], [t(:old_style), 2]] %>
-		</div>
-
-		<div class="field">
-			<%= f.submit t(:send) %>
-		</div>
+	  <%= f.label :mode, t(:select_mode) %>
+	  <%= f.select :mode, [[t(:modern_style), 1], [t(:old_style), 2]] %>
+	  <%= f.submit t(:send), :class => %>
 	<% end %>
 
 	<%= link_to t("back_to_select"), duel_path %>

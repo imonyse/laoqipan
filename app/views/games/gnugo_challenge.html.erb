@@ -2,20 +2,19 @@
 	<% flash.each do |name, msg| %>
 		<%= content_tag :div, msg, :class => "#{name}" if msg.is_a?(String) %>
 	<% end %>
-	<%= form_for @game do |f| %>
-		<div class="field">
+	<%= form_for @game, :class => "nice" do |f| %>
 			<%= f.label :opponent, t(:your_opponent)+@opponent_name %>
 			<%= f.hidden_field :opponent, :value => @opponent_name  %>
-		</div>
 
-		<div class="field">
+			<p>
 			<%= f.label :mode, t(:select_mode) %>
-			<%= f.select :mode, [[t(:modern_style), 1], [t(:old_style), 2]] %>
-		</div>
 
-		<div class="field">
+			<%= f.radio_button :mode, 1, :checked => true %><span><%= t(:modern_style) %></span><br/>
+
+			<%= f.radio_button :mode, 2 %><span><%= t(:old_style) %></span><br/>
+			</p>
+
 			<%= f.submit t(:send) %>
-		</div>
 	<% end %>
 
 	<%= link_to t("back_to_select"), duel_path %>

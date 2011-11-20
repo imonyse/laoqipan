@@ -18,6 +18,7 @@ class User < ActiveRecord::Base
   
   validates_presence_of :name
   validates_length_of :name, :within => 2..9, :message => I18n.t(:name_length_msg)
+  validates_presence_of :email
   validates_uniqueness_of :name, :email, :allow_blank => true, :case_sensitive => false, :message => I18n.t(:unique_msg)
   validates_format_of :email, :with => /^[-a-z0-9_+\.]+\@([-a-z0-9]+\.)+[a-z0-9]{2,4}$/i, :allow_blank => true, :message => I18n.t(:invalid_email_msg)
   validates_presence_of :password, :on => :create

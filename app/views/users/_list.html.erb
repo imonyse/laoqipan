@@ -2,7 +2,7 @@
 	<div class="player">
 		<div class="player_avatar">
 			<%= link_to player_image_tag(u), u, :class => 'select_avatar' %>
-			<%= link_to t(:start_duel), new_game_path(:opponent => u.name), :class => 'select_link' %>
+			<%= link_to t(:start_duel), new_game_path(:opponent => u.name), :class => 'select_link nice black radius button' %>
 		</div>
 		<div class="player_details">
 			<h4><%= u.name %></h4>

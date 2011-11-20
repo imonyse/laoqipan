@@ -31,10 +31,10 @@
 		<%= render('shared/notified_games', :object => @current_games) %>
 	</div>
 	<div id="game_duel">
-		<%= link_to t(:game_duel), duel_path %>
+		<%= link_to t(:game_duel), duel_path, :class => "nice black radius button" %>
 	</div>
 	<div id="game_all">
-		<%= link_to t(:game_all), games_path %>
+		<%= link_to t(:game_all), games_path, :class => "nice black radius button" %>
 	</div>
 	<% else %>
 	  <%= render 'shared/signin' %>
