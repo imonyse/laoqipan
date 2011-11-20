@@ -27,6 +27,7 @@ end
 
 group :production do
   gem 'unicorn', '4.1.1'
+  gem 'raindrops', '0.8.0'
   gem "therubyracer"
 end
 
