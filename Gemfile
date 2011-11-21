@@ -6,7 +6,7 @@ gem 'jquery-rails'
 gem 'bcrypt-ruby', :require => 'bcrypt'
 gem 'kaminari'
 gem 'stalker'
-gem 'capistrano'
+gem 'capistrano', "~> 2.9.0"
 gem 'paperclip'
 gem 'god', :require => false
 gem 'juggernaut', '2.0.4'
