@@ -95,10 +95,11 @@ class Board
     window.show_confirm_dialog(dot)
 
   on_dot_click: (dot, draw_flag) ->
+    rc = false
     if dot?
       if @ko_dot?
         if dot.name is @ko_dot
-          return false
+          return rc
         else
           @ko_dot = null
       # add stone, then check liberties
@@ -112,10 +113,16 @@ class Board
         @dots_checked = []
         if @is_alive dot
           dot.check_nearby_dots true
+          rc = true
         else
           dot.check_nearby_dots false
           if @captured_color is dot.owner or @captured_color is 'e'
             @to_be_captured[@to_be_captured.length] = dot
+          rc = false
+          if @color_in_turn is 'w'
+            @color_in_turn = 'b'
+          else
+            @color_in_turn = 'w'
 
         @capture_stones()
         @captured_color = 'e'
@@ -130,10 +137,9 @@ class Board
           target.removeClass('last_text')
 
         @draw_last_mark dot, draw_flag
+        return rc
 
-      return true
-
-    return false
+    return rc
 
   find_stone_by_name: (name) ->
     for dot in @dots
@@ -539,6 +545,11 @@ window.on_player_click = (e) ->
       $('#score').hide()
       $('#resign').hide()
       $.post(window.location.pathname  + '/moves', {"sgf":$("#game").attr("sgf"), "player_id":$("#game").attr("current_user")})
+    else
+      if window.get_locale() is 'zh'
+        alert('无效的落子点.')
+      else
+        alert('This is an illegal move.')
 
 window.post_comments = ->
   (e) ->
