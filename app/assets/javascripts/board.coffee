@@ -113,16 +113,10 @@ class Board
         @dots_checked = []
         if @is_alive dot
           dot.check_nearby_dots true
-          rc = true
         else
           dot.check_nearby_dots false
           if @captured_color is dot.owner or @captured_color is 'e'
             @to_be_captured[@to_be_captured.length] = dot
-          rc = false
-          if @color_in_turn is 'w'
-            @color_in_turn = 'b'
-          else
-            @color_in_turn = 'w'
 
         @capture_stones()
         @captured_color = 'e'
@@ -137,6 +131,7 @@ class Board
           target.removeClass('last_text')
 
         @draw_last_mark dot, draw_flag
+        rc = true
         return rc
 
     return rc
@@ -532,24 +527,19 @@ window.on_player_click = (e) ->
     
   player.board.draw_fake_stone dot
   window.pendding_move = ->
-    if player.board.on_dot_click(dot) is true
-      move[dot.owner.toUpperCase()] = dot.name
-      player.parser.update_game move
+    player.board.on_dot_click(dot)
+    move[player.board.color_in_turn.toUpperCase()] = dot.name
+    player.parser.update_game move
 
-      if black_player is current_player
-        $('#game').attr('current_player', white_player)
-      else
-        $('#game').attr('current_player', black_player)
-      # for better user experience
-      $('#pass').hide()
-      $('#score').hide()
-      $('#resign').hide()
-      $.post(window.location.pathname  + '/moves', {"sgf":$("#game").attr("sgf"), "player_id":$("#game").attr("current_user")})
+    if black_player is current_player
+      $('#game').attr('current_player', white_player)
     else
-      if window.get_locale() is 'zh'
-        alert('无效的落子点.')
-      else
-        alert('This is an illegal move.')
+      $('#game').attr('current_player', black_player)
+    # for better user experience
+    $('#pass').hide()
+    $('#score').hide()
+    $('#resign').hide()
+    $.post(window.location.pathname  + '/moves', {"sgf":$("#game").attr("sgf"), "player_id":$("#game").attr("current_user")})
 
 window.post_comments = ->
   (e) ->
