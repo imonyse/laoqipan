@@ -528,7 +528,16 @@ window.on_player_click = (e) ->
   player.board.draw_fake_stone dot
   window.pendding_move = ->
     player.board.on_dot_click(dot)
-    move[player.board.color_in_turn.toUpperCase()] = dot.name
+    if dot.owner != 'e'
+      move[dot.owner.toUpperCase()] = dot.name
+    else
+      turn = player.board.color_in_turn
+      n = null
+      if turn is 'w'
+        n = 'B'
+      else
+        n = 'W'
+      move[n] = dot.name
     player.parser.update_game move
 
     if black_player is current_player
