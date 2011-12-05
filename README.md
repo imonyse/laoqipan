@@ -4,6 +4,8 @@ This is the source code for [laoqipan.com](http://laoqipan.com), a site for play
 
 If you have suggestions or questions, please post them on the [Issue Tracker](https://github.com/imonyse/laoqipan/issues).
 
+Currently, laoqipan lack a good way to submit bug, and demonstration issues. In order to fix that, I'm planning to rewrite the go board javascript model. Hopefully it can be finished before the Chinese Spring Festival in 2012.
+
 ## Setup
 
 ### Software Requirements

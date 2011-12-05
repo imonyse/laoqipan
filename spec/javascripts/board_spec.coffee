@@ -140,14 +140,14 @@ describe 'Board', ->
       board.click_via_coordinates("g15")
       expect(board.find_stone_by_coordinates("g15").owner).toEqual("w")
       
-    it 'should remove opponent stone withou liberties even if it has no liberties when place', ->
+    it 'should remove opponent stone without liberties even if it has no liberties when place', ->
       for pos in ['o16', 'p16', 'n15', 'q15', 'o14', 'p14', 'r14', 'm14', 'q13', 'n13', 'p15', 'o15']
         board.click_via_coordinates pos
         
       expect(board.find_stone_by_name("oe").owner).toEqual("e")
       expect(board.find_stone_by_name("ne").owner).toEqual("w")
       
-    it 'normally you wouldnt placed positions', ->
+    it "normally you wouldn't placed positions", ->
       for pos in ['t18', 's18', 'r19']
         board.click_via_coordinates pos, 'w'
         
