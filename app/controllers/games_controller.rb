@@ -7,6 +7,7 @@ class GamesController < ApplicationController
   def index
     respond_to do |format|
       format.html { @feed_items = Game.feed_items.page(params[:page]).per(10) }
+      format.js { @games = Game.feed_items.page(params[:game_page]).per(10)}
     end
   end
   
