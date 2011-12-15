@@ -103,7 +103,7 @@ GEM
     json (1.6.1)
     json_pure (1.5.4)
       spruz (~> 0.2.8)
-    juggernaut (2.0.4)
+    juggernaut (2.1.0)
       redis
     kaminari (0.12.4)
       rails (>= 3.0.0)
@@ -229,7 +229,7 @@ DEPENDENCIES
   god
   jasminerice
   jquery-rails
-  juggernaut (= 2.0.4)
+  juggernaut (~> 2.1.0)
   kaminari
   launchy
   oily_png

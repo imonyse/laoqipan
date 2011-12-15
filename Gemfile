@@ -9,7 +9,7 @@ gem 'stalker'
 gem 'capistrano', "~> 2.9.0"
 gem 'paperclip'
 gem 'god', :require => false
-gem 'juggernaut', '2.0.4'
+gem 'juggernaut', '~> 2.1.0'
 gem 'rake', '0.9.2'
 gem 'rack', '1.3.5'
 gem 'oily_png'
