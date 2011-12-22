@@ -43,7 +43,7 @@ God.watch do |w|
   w.name = 'unicorn-worker'
   w.interval = 30.seconds
   w.env = {"RAILS_ENV" => "production"}
-  w.start = "unicorn -c #{RAILS_ROOT}/config/unicorn.conf.rb -E production"
+  w.start = "/usr/local/bin/unicorn -c #{RAILS_ROOT}/config/unicorn.conf.rb -E production"
   w.log = "#{RAILS_ROOT}/log/unicorn-worker.log"
   
   w.start_if do |start|
@@ -81,7 +81,7 @@ God.watch do |w|
   w.name = 'juggernaut-worker'
   w.interval = 30.seconds
   w.env = {"RAILS_ENV" => "production"}
-  w.start = "juggernaut"
+  w.start = "/usr/local/bin/juggernaut"
   w.log = "#{RAILS_ROOT}/log/juggernaut-worker.log"
   
   w.start_if do |start|
