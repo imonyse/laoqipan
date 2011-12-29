@@ -225,7 +225,10 @@ class Board
         @capture_stones()
     else
       if examinee.owner isnt examiner.owner
-        @capture_stones()
+        if @captured_color is examiner.owner
+          @add_captured examiner
+        else
+          @capture_stones()
 
   is_alive: (dot) ->
     rc = false
@@ -407,7 +410,7 @@ class BoardDot
     return dots
 
   # @flag: true => sibling dots of same color live
-  #        false => sibling dots of same color die
+  #        false => sibling dots of same color die if no opponent dots get eaten
   check_nearby_dots: (flag) ->
     dots = @get_nearby_dots()
 

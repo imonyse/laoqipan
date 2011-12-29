@@ -147,6 +147,16 @@ describe 'Board', ->
       expect(board.find_stone_by_name("oe").owner).toEqual("e")
       expect(board.find_stone_by_name("ne").owner).toEqual("w")
       
+    it 'should remove opponent stone without liberty first', ->
+      # bug found at http://www.laoqipan.com/games/1067
+      for pos in ["pd","pj","pp","kk","dq","fj","cd","cj","ed","qn","co","jp","nq","jr","qh","jd","hc","me","pf","kh","on","hl","mn","mi","ml","gq","cl","dl","kn","cm","cg","lb","ro","oc","pc","pb","qb","pa","fh","qc","rb","oe","pe","rc","sb","sc","rd","qd","re","qa","qe","ra","sd","sa","bl","oh","bm","ck","ob","nb","na","la","nc","od","of","mb","ne"]
+        board.click_via_name pos
+        
+      board.click_via_name 'oa'
+      
+      expect(board.find_stone_by_name('ob').owner).toEqual('e')
+      expect(board.find_stone_by_name('pa').owner).toEqual('w')
+      
     it "normally you wouldn't placed positions", ->
       for pos in ['t18', 's18', 'r19']
         board.click_via_coordinates pos, 'w'
