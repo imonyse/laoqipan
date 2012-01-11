@@ -2,7 +2,7 @@ source 'http://rubygems.org'
 
 gem 'rails', '3.1.3'
 gem 'pg'
-gem 'jquery-rails'
+gem 'jquery-rails', '~> 1.0.19'
 gem 'bcrypt-ruby', :require => 'bcrypt'
 gem 'kaminari'
 gem 'stalker'
@@ -34,7 +34,7 @@ end
 group :development, :test do
   # Pretty printed test output
   gem 'turn', :require => false
-  gem 'jasminerice'
+  gem 'jasminerice', '~> 0.0.8'
   gem 'cucumber-rails', '1.0.2'
   gem 'database_cleaner'
   gem 'launchy'

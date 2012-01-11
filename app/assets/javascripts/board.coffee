@@ -226,7 +226,7 @@ class Board
     else
       if examinee.owner isnt examiner.owner
         if @captured_color is examiner.owner
-          @add_captured examiner
+          @add_captured examinee
         else
           @capture_stones()
 
@@ -256,6 +256,12 @@ class Board
             else
               # ally has no liberty too, time to die...
               @add_captured e
+          # else
+          #   if e not in @to_be_captured
+          #     # ally has been checked before, but not in prison
+          #     rc = true
+          #     break
+            
 
     if rc is true
       @dots_checked = []

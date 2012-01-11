@@ -1,0 +1,24 @@
+/*
+ *= require_self
+ */
+ 
+#board {
+    width:531px;
+    height:531px;
+    margin-left:1px;
+    background:url(/assets/board.jpg);
+    border:1px solid #aaa;
+}
+
+.board_fallback_area.b {
+    background:url(/assets/black_stone.png) no-repeat center;
+}
+.board_fallback_area.b.last {
+    background:url(/assets/last_black_stone.png) no-repeat center;
+}
+.board_fallback_area.w {
+    background:url(/assets/white_stone.png) no-repeat center;
+}
+.board_fallback_area.w.last {
+    background:url(/assets/last_white_stone.png) no-repeat center;
+}

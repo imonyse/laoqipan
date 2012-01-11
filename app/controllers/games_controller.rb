@@ -216,9 +216,10 @@ class GamesController < ApplicationController
   end
   
   def qualified?
-    if current_user.level == 0
-      redirect_to challenge_url, :alert => I18n.t(:need_qualification)
-    end
+    return true
+    # if current_user.level == 0
+    #   redirect_to challenge_url, :alert => I18n.t(:need_qualification)
+    # end
   end
   
 end

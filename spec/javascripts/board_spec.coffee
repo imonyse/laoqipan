@@ -175,6 +175,15 @@ describe 'Board', ->
       expect(board.find_stone_by_coordinates("t18").owner).toEqual("e");
       expect(board.find_stone_by_coordinates("s18").owner).toEqual("e");
       
+    it 'suicide as a dragon', ->
+      # This is really a problem
+      for pos in ["pd","me","mc","md","lc","ld","cc","nd","ob","nc","nb","mf","qq","mg","dp","le","jc","ke","hd","je","hf","ie","he","mh","hh","hg","gg","ig","hj","if","ei","ih","pf","gh","hi","gf","fg","ii","jk","hk","ij","jj","gk","ik","il","hl","hm","mi","ln","mm","mp","nm","qn","qm","qi","pi","qh","qg","pg","ph","rg","qf","rf","qe","of","pe","oe","od","qd","re","pm","rd","rc","qc","pc","oc","pb","mb","ql","kc","id","lb","jq","qj","pj","rh","ri","sh","oi","oh","nh","ni","og","mj","on","oj","ok","nj","kk","pi","ph","mk","gq","ml","cp","lm","cl","sf","sc","sg","sd","si","rj","qk","pk","mn","kn","mo","kj","ji","no","km","lo","ng","jm","jn","jo","in","hn","gl","gi","fh","eh","fi","gj","fj","fk","ek","ej","im","io","kl","jl","kp","kq","ko","lp","np","nq","op","oq","oo","nn","pn","po","om","pp","ol","jb","pl","rm","rl","qm","nk","pi","sk","se","sj","ki","rg","rk","sl","kh","kg","na","rb","qb","sb","qc","ma","kb","ka","ja","qa","ra","sa","jh","jd","hb","ib","la","pa","ra","sb","jg","jf","lg","kf","lh","ic","hc","ha","lk","ga","ia","sa","oh"]
+        board.click_via_name pos
+      board.click_via_name 'rb'
+      
+      expect(board.find_stone_by_coordinates('s19').owner).toEqual('e')
+      expect(board.find_stone_by_coordinates('r18').owner).toEqual('b')
+      
     it 'dragon eat without liberties case', ->
       for pos in ['a16','b16','b17','b18','b19','c19','c17']
         board.click_via_coordinates pos, 'b'
